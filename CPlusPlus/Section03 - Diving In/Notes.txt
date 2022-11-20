@@ -1,0 +1,20 @@
+_._._._._._._._.
+ C++ INTRO MAIN
+-.-.-.-.-.-.-.-.
+
+= #include <iostream> is a feature C++ offers to load the propose library that we can use.
+= main() is the entry for your program or the first point where your program run from.
+= std::cout and std::endl, is one of the library inside the iostream.
+= std::cout << use to print the word that you pass to it.
+= std::cout << use to print the new line that you pass to std::cout.
+= return 0 tell the OS that the program is successfully run.
+
+_._._._._._._.
+ C++ COMMENTS
+-.-.-.-.-.-.-.
+
+= comments make you clear about your code, and it doesn't compile by the compiler
+= comments created by using // (double slash) and /* */
+= comments created by // are one line comment, you only create a comment in one line
+= comments created by /* */ are multi line comment, you can create a comment inside the asterisk
+
