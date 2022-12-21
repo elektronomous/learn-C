@@ -1,0 +1,49 @@
+= using main.cpp in this folder make the vscode to detect the source code
+  and it will load the compiler automatically when we try to configure task
+= click Terminal => configure task => choose the compiler you wanna set up for C++
+= copy and paste this to a file called task.json:
+
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: g++.exe BUILD ACTIVE FILE",
+      "command": "C:\\TDM-GCC-64\\bin\\g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-Wall",
+        "-Werror",
+        "-std=c++2a",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "compiler: C:\\TDM-GCC-64\\bin\\g++.exe"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: g++.exe build active file",
+      "command": "C:\\TDM-GCC-64\\bin\\g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "compiler: C:\\TDM-GCC-64\\bin\\g++.exe"
+    }
+  ],
+  "version": "2.0.0"
+}
