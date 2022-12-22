@@ -4,7 +4,7 @@
     {
       "type": "cppbuild",
       "label": "C/C++: g++-10 BUILD ACTIVE FILE",
-      "command": "/usr/bin/g++-10",
+      "command": "g++-12",
       "args": [
         "-fdiagnostics-color=always",
         "-g",
