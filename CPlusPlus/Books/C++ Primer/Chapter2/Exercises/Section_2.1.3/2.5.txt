@@ -1,0 +1,21 @@
+(a) 'a'     // char
+    L'a'    // wchar_t
+    "a"     // std::string
+    L"a"    // std::wstring
+
+(b) 10      // int
+    10u     // unsigned int
+    10L     // long int
+    10uL    // unsigned long int
+    012     // int
+    0xC     // int
+
+(c) 3.14    // double
+    3.14f   // float
+    3.14L   // long double
+
+(d) 10      // int
+    10u     // unsigned int
+    10.     // double
+    10e-2   // double
+

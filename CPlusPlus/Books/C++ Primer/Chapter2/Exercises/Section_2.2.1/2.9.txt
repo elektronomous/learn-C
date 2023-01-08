@@ -1,0 +1,21 @@
+Explain the following definitions. For those that are illegal, explain what's wrong
+and how to correct it.
+(a) std::cin >> int input_value;
+= You need to define variable first then you can read value from them
+    int input_value;
+    std::cin >> input_value;
+
+(b) int i = {3.14}
+= list initialization will give you an error if you put initializer that likely will 
+  loss when initialized.
+
+    float i = {3.14};
+
+(c) double salary = wage = 999.99;
+= you can define one or more variable with type specifier that seperated by comma
+    double salary, wage = 999.99;
+
+(d) int i = 3.14;
+= Compiler allow this but the value after the decimal point is trunctated.
+  so,
+        i = 3;

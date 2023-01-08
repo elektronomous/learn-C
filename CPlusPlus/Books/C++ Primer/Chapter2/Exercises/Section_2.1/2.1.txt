@@ -1,0 +1,15 @@
+1. What are the differences between int, long, long long and short?
+   Between unsigned and signed type? between a float and a double?
+= The differences is on the bits its hold(size). If you find the size
+  int and long are same, which in this case 8 bytes the machine you use is a 64-bit. 
+  If you find the them different then you use 32-bit machine.
+= the differences between signed and unsigned is that when you display
+  a value whether negative or positive.
+= float holds for 32bit while double holds 64(bits)
+
+2. To calculate a mortgage payment, what types would you use for the rate
+   principal and payment? Explain why you selected each type
+= the rate, principal and payment will only use double since all of the 
+  number we account here is a form of decimal point. if you use integer
+  then conversion will be bottleneck of the account because the program
+  need some conversion integer to double method.

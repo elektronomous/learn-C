@@ -1,0 +1,9 @@
+1. What values do these literals represent? What type does each have?
+   (a) "What goes with F\145rgus?\012"
+= "What goes with Fergus?
+  "
+  
+   (b) 3.14e1L      // long double => 3.14 * 10 ^ 1
+   (c) 1024f        // float => 1024.0
+   (d) 3.14L        // long double = 3.14
+   
