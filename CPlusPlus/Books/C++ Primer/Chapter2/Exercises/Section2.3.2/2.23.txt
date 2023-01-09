@@ -1,0 +1,7 @@
+Given a pointer p, can you determine whether p points to a valid object?
+if so, how ? if not, why not?
+
+= You can use pointer as condition, using if statement this will give you a result
+  whether the pointer is valid or not. Pointer that's initialized an object (only 
+  declare, not defined) will result in false, this will give you a sign that the pointer
+  you try to access is uninitialized(invalid if you try to access it).

@@ -1,0 +1,4 @@
+What does the following program do ?
+int i = 42;
+int *p1 = &i;       // define the pointer p1 points to object which has address &i
+*p1 = *p1 * *p1;    // do operation on which pointer points by multiply them by itself

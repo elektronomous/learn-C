@@ -1,0 +1,4 @@
+Assuming p is a pointer to int, explaint the following:
+
+if(p) // This condition only true if the pointer has been initialized by an object
+if(*p) // This condition only true if the pointer has been initialized by an object, and the object is nonzero value

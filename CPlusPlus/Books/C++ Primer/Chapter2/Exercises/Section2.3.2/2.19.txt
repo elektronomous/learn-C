@@ -1,0 +1,5 @@
+Explain the key differences between pointers and references
+
+= the pointers are object and the references is an alias of an object
+  so when we declare pointer, we can leave it uninitialized while the 
+  references must be initialized to an object.

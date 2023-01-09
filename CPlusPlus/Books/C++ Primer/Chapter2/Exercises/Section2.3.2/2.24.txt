@@ -1,0 +1,8 @@
+Why is the initialization of p legal but that of lp illegal?
+    int i = 42;
+    void *p = &i;
+    long *lp = &i;
+
+= pointer that has type void is a special type that could point to any type.
+  that makes the p not illegal, while the lp illegal because the type to which
+  it points isn't match.

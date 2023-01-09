@@ -1,0 +1,9 @@
+Explain each of the following definitions. Indicate whether any are 
+illegal and if so, why:
+    int i = 0;
+    (a) double *dp = &i;
+    = Invalid, pointer must point to type that match with its base type
+    (b) int *p = i;
+    = Invalid, pointer point indirectly to an object. so suggest that an object use the address-of operator(&)
+    (c) int *p = &i;
+    = Valid, pointer point to an address object.
