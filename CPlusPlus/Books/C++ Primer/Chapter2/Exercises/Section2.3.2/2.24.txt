@@ -5,4 +5,4 @@ Why is the initialization of p legal but that of lp illegal?
 
 = pointer that has type void is a special type that could point to any type.
   that makes the p not illegal, while the lp illegal because the type to which
-  it points isn't match.
+  it points isn't match. 
