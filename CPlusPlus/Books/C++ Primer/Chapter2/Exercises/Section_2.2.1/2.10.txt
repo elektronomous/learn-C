@@ -1,0 +1,9 @@
+What are the initial values, if any, of each of the following variables?
+
+(a) std::string global_str;     // empty string
+(b) int global_int;             // variable that define outside the function will contain => 0
+
+int main(void) {
+    int local_int;              // uninitialized means you cannot copy, or do operation on it
+    std::string local_str       // empty string
+}

@@ -1,0 +1,9 @@
+= the output will never tell the user that the number it has
+  been input won't show the output how many times the number
+  occurs.
+= But the counter is counting the number the user has input
+= to make the program show its output, we use end-of-line that
+  operating system provided.
+  = for windows, Ctrl + z => enter
+  = for linux, Ctrl + d => enter
+  

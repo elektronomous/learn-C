@@ -1,0 +1,3 @@
+= When you need modify a value that's part of the condition
+  you can use a while-loop
+= When you need only looping or doing something repeatedly, go for-loop

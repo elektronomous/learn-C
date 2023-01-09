@@ -18,3 +18,15 @@ _._._._._._._.
 = comments created by // are one line comment, you only create a comment in one line
 = comments created by /* */ are multi line comment, you can create a comment inside the asterisk
 
+_._._._._._.
+ C++ ERRORS
+-.-.-.-.-.-.
+
+= There are 3 kind of errors:
+  [=] Compile Time errors
+  [=] Run Time errors
+  [=] Warnings
+= Those 3 kind of errors comes up because we have break the rules of compiler rules.
+= Compile Time error => your program is not going to compile and you're not going to get your binary
+  executable of your program.
+  [=] You must go back to your source code and fix the problem.

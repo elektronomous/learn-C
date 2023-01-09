@@ -1,0 +1,6 @@
+1. What if any differences between the following definitions:
+   int month = 9, day = 7;
+   int month = 09, day = 07;
+
+= the above one is the decimal value, the bottom one is octal
+  but 09 is an error because the octal number ranges from 0 - 8

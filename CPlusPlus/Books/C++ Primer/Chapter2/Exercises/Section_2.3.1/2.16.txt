@@ -1,0 +1,14 @@
+Which if any of the following assignments are invalid ? if they are
+valid, explain what they do.
+
+int i = 0, &r1 = i;
+double d = 0, &r2 = d;
+
+(a) r2 = 3.14159;
+= valid, the object on which r2 refers change its value to 3.14159
+(b) r2 = r1
+= invalid, reference must match its type and the object type it references.
+(c) i = r2
+= valid, i will assign to r2 but the number after the decimal point will be trunctated
+(d) r1 = d;
+= valid, since the object it refers is an int and this is an assign to a double.
