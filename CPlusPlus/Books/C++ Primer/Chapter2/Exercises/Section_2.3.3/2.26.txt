@@ -1,0 +1,11 @@
+Which of the following are legal? For those that illegal, explain why
+(a) const int buf
+= Illegal, const object cannot change value after we created it so it must be initialized.
+(b) const int sz
+= legal
+(c) int cnt = 0;
+= legal
+(d) ++cnt
+= legal
+    ++sz;
+= illegal, you cant change the value of object of const type.

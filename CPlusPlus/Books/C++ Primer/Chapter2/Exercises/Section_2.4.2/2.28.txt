@@ -1,0 +1,11 @@
+Explain the following definitions. Identify any that are illegal:
+(a) int i, *const cp;
+= Illegal, *const cp must be initialized since it is a const pointer.
+(b) int *p1, *const p2;
+= Illegal, *const p2 must be initialized since it is a const pointer.
+(c) const int ic, &r = ic;
+= Illegal, const int ic must be initialized because it is top-level const.
+(d) const int *const p3;
+= Illegal, *const p3 must be initialized because it has top-level const.
+(e) const int *p;
+= Legal, we could point to another const or nonconst object later.

@@ -6,12 +6,10 @@ NOTE
  */
 
 int main(void) {
-    int *p1;
+    int i = 10;
+    int *toI = &i;
+    const int *toII = toI;
 
-    if(p1) {
-        std::cout << "initialized" << std::endl;
-    } else {
-        std::cout << "uninitialized" << std::endl;
-    }
+    std::cout << *toII << std::endl;
     return 0;
 }

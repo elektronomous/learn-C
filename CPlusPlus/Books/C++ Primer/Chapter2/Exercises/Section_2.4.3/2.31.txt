@@ -1,0 +1,11 @@
+Given the declarations in the previous exercise determine whether the
+following assignments are legal. Explain how the top-level or low-level
+const applies in each case:
+(a) r1 = v2;
+= Both const low-level or top-level aren't involved here
+(b) p1 = p2;
+= p2 has low-level const, it's an error to assign pointer to int with pointer to const int
+(c) p1 = p3;
+= p3 has low-level const, it's an error to assign pointer to int with pointer to const int.
+(d) p2 = p3;
+= both of them has low-level const, so p2 can point to address that p3 pointed.

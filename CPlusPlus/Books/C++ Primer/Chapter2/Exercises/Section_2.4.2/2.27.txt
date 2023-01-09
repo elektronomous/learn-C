@@ -1,0 +1,15 @@
+Which of the following initialization are legal? Explain why:
+(a) int i = -1, &r = 0;
+= the part where &r = 0 were illegal, we cant reference a literal
+(b) int *const p2 = &i2;
+= legal, after the p2 has been initialized we can't change the address it points to.
+(c) const int i = -1, &r = 0;
+= Both are legal, we can reference to const to a literal.
+(d) const int *const p3 = &i2;
+= legal, Neither object's value nor the address could be changed.
+(e) const int *p1 = &i2;
+= legal, First exception rule for pointer, pointer to const can point to object that's nonconst or const.
+(f) const int &const r2;
+= illegal, There's no such reference. reference only has low-level const.
+(g) const int i2 = i, &r = i;
+= Both are legal, we reference to const can refer to plain int. 

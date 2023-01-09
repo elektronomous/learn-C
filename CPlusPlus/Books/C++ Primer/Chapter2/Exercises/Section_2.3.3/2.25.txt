@@ -1,0 +1,13 @@
+Determine the types and values of each of the following variables
+(a) int* ip, i, &r = i;
+= *ip is uninitialized pointer that point to int object.
+  i is an uninitialized int.
+  &r is the reference to an int object.
+
+(b) int i, *p = 0;
+= i is an uninitialized int.
+  *p is a pointer that defined to null.
+
+(c) int* ip, ip2;
+= *ip is uninitialized pointer that point to int object.
+   ip2 is uninitialized int.

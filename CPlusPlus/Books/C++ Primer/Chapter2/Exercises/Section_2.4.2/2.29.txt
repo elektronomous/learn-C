@@ -1,0 +1,15 @@
+Using the variables in the previous Exercise, which of the following assignment
+are legal? Explain why:
+(a) i = ic;
+= Legal, since assignment only copy the object not modify it.
+(b) p1 = p3;
+= Illegal, when copying an object the low-level const are never ignored.
+(c) p1 = &ic;
+= Illegal, p1 is a pointer to in not pointer to const int.
+(d) p3 = &ic;
+= Legal, p3 is const pointer to pointer to int. the matter is the low-levl const where the pointer
+  points to.
+(e) p2 = p1;
+= Legal, there's now low-levl const are involved here.
+(f) ic = *p3;
+= Legal, both has low-level but this assignment only copy the object value.
