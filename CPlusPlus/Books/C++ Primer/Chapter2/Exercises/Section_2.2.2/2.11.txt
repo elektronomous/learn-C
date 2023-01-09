@@ -1,0 +1,8 @@
+Explain whether each of the following is a declaration or a definitions
+(a) extern int ix = 1024;
+= (This is allowed if the extern is outside function body) It's definitions
+(b) int iy;
+= declaration and definition, we say that definition because we provide a memory here
+(c) extern int iz;
+= declaration, in this case we make a name(iz) known to the program, but not provide the
+  memory.

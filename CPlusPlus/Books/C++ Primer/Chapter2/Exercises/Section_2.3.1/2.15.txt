@@ -1,0 +1,9 @@
+Which of the following definitions if any are invalid? why?
+(a) int ival = 1.01;
+= valid, but the number after the decimal point will be trunctated
+(c) int &rval2 = ival;
+= valid, since ival is an object we can refers to it
+(b) int &rval1 = 1.01;
+= invalid, we can't reference to a literal
+(d) int &rval3;
+= invalid, reference must be initialized

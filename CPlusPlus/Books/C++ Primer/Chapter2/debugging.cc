@@ -6,8 +6,12 @@ NOTE
  */
 
 int main(void) {
-    std::cout << "What goes with F\145rgus?\012";
-    std::cout << "Hello";
+    int i, &ri = i;
 
+    i = 5;
+    ri= 20;
+
+    std::cout << i << " " << ri << std::endl;
+    
     return 0;
 }

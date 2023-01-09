@@ -1,0 +1,10 @@
+what doesn the following code print?
+
+int i, &ri = i;
+
+i = 5;
+r1 = 20;
+
+std::cout << i << " " << std::endl;
+
+= 20 20
