@@ -6,10 +6,12 @@ NOTE
  */
 
 int main(void) {
-    int i = 10;
-    int *toI = &i;
-    const int *toII = toI;
+    int i = 0;
+    const int ci = i;
 
-    std::cout << *toII << std::endl;
+    auto *p = &ci;
+
+    std::cout << *p << std::endl;
+
     return 0;
 }

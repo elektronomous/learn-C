@@ -1,0 +1,9 @@
+Is the following code legal or not? If not, how might you make
+it legal?
+
+int null = 0, *p = null;
+= we dont create a declarator as the one of the keywords that the language provided.
+  so we replace null name by zero. when you initialize the pointer, you need the address-of
+  the object you want to point, not the object itself. so we make it legal be like:
+
+int zero = 0, *p = &zero;
