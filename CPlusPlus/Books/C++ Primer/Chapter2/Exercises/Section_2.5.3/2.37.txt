@@ -1,0 +1,13 @@
+Assignment is an example of an expresion that yields a reference type.
+The type is a reference to the type of the left-hand operand.
+That is, if i is an int, then the type of the expression i = x is an int&
+
+    int i;
+    i = 10;     // return int& (reference to int) => it should be easy if it says that
+                // after asssignment, the address-of the i is result of the expression
+
+Using that knowledge, determine the type and value of each variable in this code:
+
+    int a = 3, b = 4;
+    decltype(a) c = a;      // c is an int => 3
+    decltype(a = b) d = a;  // d is an int& => reference to a => 3
