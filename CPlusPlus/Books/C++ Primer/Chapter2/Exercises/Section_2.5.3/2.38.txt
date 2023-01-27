@@ -1,0 +1,25 @@
+Describe the differences in type deduction between decltype and auto.
+Give an example of an expression where auto and decltype will deduce
+the same type and an example where they will deduce different type.
+
+= Example where auto and decltype deduce the same type:
+
+    int a = 10;
+    decltype(a) b = a;
+    auto c = a;
+
+    // we dont declare, this another example of deduce the same type
+    decltype((a)) b = a;
+    auto &c = a;
+
+    decltype(&a) b = &a;
+    auto *p = &a;
+
+= Example where auto and decltype deduce the different type:
+
+    int i = 10, *p = &i;
+
+    decltype(*p) a = i;
+    auto a = *p;
+
+    

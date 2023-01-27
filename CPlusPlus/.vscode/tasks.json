@@ -1,41 +1,28 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "cppbuild",
-<<<<<<< HEAD
-      "label": "C/C++: g++-9 build active file",
-      "command": "/usr/bin/g++-10",
-      "args": [
-        "-std=c++20",
-        "-Wall",
-        "-Werror",
-        "-fdiagnostics-color=always",
-        "-g",
-=======
-      "label": "C/C++: g++-10 BUILD ACTIVE FILE",
-      "command": "g++-12",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "-Wall",
-        "-Werror",
-        "-std=c++20",
->>>>>>> b02ae290fb725dc98196193d80140aa7bffe76c7
-        "${file}",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
-      },
-      "problemMatcher": ["$gcc"],
-      "group": "build",
-<<<<<<< HEAD
-      "detail": "compiler: /usr/bin/g++-9"
-=======
-      "detail": "compiler: /usr/bin/g++-10"
->>>>>>> b02ae290fb725dc98196193d80140aa7bffe76c7
-    }
-  ]
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe BUILD ACTIVE FILE",
+            "command": "g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-Wall",
+                "-Werror",
+                "-std=c++2a",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "compiler: C:\\TDM-GCC-64\\bin\\g++.exe"
+        }
+    ],
+    "version": "2.0.0"
 }
