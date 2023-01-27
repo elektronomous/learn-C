@@ -1,0 +1,6 @@
+1. Explain how whitespace characters are handled in the string input operator
+   and in getline function.
+
+= the input operator will ended its operation when the characters are found to be non-whitespace 
+  (space, tab, newline) characters.
+= the getline function will ended its operation once it found a newline.
