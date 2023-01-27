@@ -26,4 +26,4 @@ what happens in each of these assignment:
 (e) e = 42;
 = illegal, e is pointer to const int (const int *), you need to initialize address-of an object not a literal
 (f) g = 42;
-= illegal, g is reference to const(const int &), after point to ci, it can reassign to another value/object.
+= legal, g is reference to const(const int &), after point to ci, it can reassign to another value/object.

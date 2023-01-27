@@ -5,13 +5,14 @@ NOTE
 
  */
 
+
 int main(void) {
-    int i = 0;
-    const int ci = i;
+    const int &i = 10;
+    const int j = 20;
 
-    auto *p = &ci;
+    int &toj = i;
 
-    std::cout << *p << std::endl;
-
+    std::cout << i << std::endl;
+    std::cout << toj << std::endl;
     return 0;
 }
