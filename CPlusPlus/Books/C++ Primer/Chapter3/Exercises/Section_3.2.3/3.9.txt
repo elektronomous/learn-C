@@ -1,0 +1,7 @@
+1. What does the following program do? Is it valid? If not, why not?
+        string s;
+        cout << s[0] << endl;
+
+= It's valid because the s is initialized with empty string which you can
+  access as the first ([0]) character. When you try to access more than 0
+  characters, it give you undefined result.
