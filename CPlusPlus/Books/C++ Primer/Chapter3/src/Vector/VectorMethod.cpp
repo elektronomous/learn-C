@@ -34,6 +34,10 @@ int main(void) {
    for (int &c: ivec)
     cout << c << endl;
 
+   // empty() => return true if ivec is empty; otherwise returns false
+   cout << ivec.empty() << endl;    // false => 0
+   cout << ivec.size() << endl;     // => 100 elements
+
 
    return 0;
 

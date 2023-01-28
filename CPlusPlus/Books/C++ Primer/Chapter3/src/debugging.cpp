@@ -1,11 +1,19 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
+using std::cout,
+      std::cin,
+      std::endl,
+      std::vector,
+      std::string;
+
+typedef vector<int> vint;
+typedef vector<string> vstr;
 
 int main(void) {
-    std::string name = "faza akbar";
-    char &toName = name[0];
-    toName = 'F';
+    cout << 1/2 << endl;
 
-    std::cout << name << std::endl;
+
     return 0;
 }

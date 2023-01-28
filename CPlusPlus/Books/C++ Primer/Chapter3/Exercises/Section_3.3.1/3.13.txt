@@ -16,7 +16,7 @@
    = 2 elements, first element initialized to 10, second element initialized to 42
     
    (f) vector<string> v6{10}
-   = same as the (d)
+   = 10 elements, each initialized with empty string
 
    (g) vector<string> v7{10, "hi"};
-   = Illegal initialization. we can only list initialized vector with one type.
+   = 10 element, each initialized with "hi"
