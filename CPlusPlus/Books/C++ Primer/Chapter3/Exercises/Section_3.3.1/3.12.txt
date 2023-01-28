@@ -1,0 +1,19 @@
+1. Which, if any, of the following vector definitions are in error?
+   For those that are legal, explain what the definition does. For those
+   that are not legal explain why they are illegal.
+
+(a) vector<vector<int>> ivec;
+= Legal, we could create empty vector like this refer to the first restriction of initialization.
+  int is built-in type, vector always empty-initialize the element when we supply built-in type
+  with no size. Because the vector inside is initialize itself by default, we can supply it as
+  another vector
+
+(b) vector<string> svec = ivec;
+= Illegal, you can copy vector but the type must match. You cannot copy int to a string vector.
+
+(c) vector<string> svec(10, "null");
+= Legal, This initialize svec with ten string, each initialize with "null"
+
+
+
+  
