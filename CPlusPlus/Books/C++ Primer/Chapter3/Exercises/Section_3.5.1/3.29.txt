@@ -1,4 +1,6 @@
 1. List some of the drawbacks of using an array instead of a vector.
 = You can define the dimension once.
+  You can check the size of the array by looking at the dimension's value
+  which might confuse when you define many arrays.
   
 

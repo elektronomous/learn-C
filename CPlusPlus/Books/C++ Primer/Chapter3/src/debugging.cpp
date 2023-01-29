@@ -12,7 +12,12 @@ typedef vector<int> vint;
 typedef vector<string> vstr;
 
 int main(void) {
-    cout << 1/2 << endl;
+
+    int arr[10];
+
+    for (int &v : arr)
+        cout << v << " ";
+    cout << endl;
 
 
     return 0;

@@ -1,0 +1,8 @@
+1. Identify the indexing errors in the following code:
+        constexpr size_t array_size = 10;
+        int ia[array_size];
+
+        for (size_t ix = 1; ix <= array_size; ++ix)
+            ia[ix] = ix;
+= the ix condition should be ix < array_size, because when you define an N array
+  then the subscript operator will allowed to be access from range 0 - (N-1). 
