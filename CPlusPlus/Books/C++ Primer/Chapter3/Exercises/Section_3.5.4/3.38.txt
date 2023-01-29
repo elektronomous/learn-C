@@ -1,0 +1,7 @@
+1. In this section, we noted that it was not only illegal but meaningless
+   to try to add two pointers. Why would adding two pointers be meaningless? 
+
+= When you try to add pointer, basically you're trying to add two different address which 
+  could result another address of variable that's might be the computer not defined for
+  the program to use.
+  

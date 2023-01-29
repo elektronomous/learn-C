@@ -1,0 +1,12 @@
+1. What does the following program do?
+
+        const char ca[] = {'h','e', 'l', 'l', 'o'};
+        const char *cp = ca;
+
+        while (*cp) {
+            cout << *cp << endl;
+            ++cp;
+        }
+
+= The first initialization doesn't end with null make the while loop to iterates through
+  the arrays beyond the size of the ca.
