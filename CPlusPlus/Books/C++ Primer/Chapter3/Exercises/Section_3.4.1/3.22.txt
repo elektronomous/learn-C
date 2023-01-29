@@ -1,0 +1,15 @@
+1. Revise the loop that printed the first paragraph in text to instead change the elements
+   in text that correspond to the first paragraph to all uppercase.
+   After you've updated text, prints its content
+    
+    vector<string> text;
+
+        for (auto it = text.cbegin();
+             it != text.cend() && !it->empty(); ++it)
+                cout << *it << endl;
+    
+
+= for (auto it = text.begin();
+       it != text.end() && !it->empty(); it++)
+        for (char &c : *it)
+            c = toupper(c);

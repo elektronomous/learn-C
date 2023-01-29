@@ -1,0 +1,10 @@
+1. In the binary search program on page 112, why did we write
+        mid = beg + (end-beg)/2;
+   instead of
+        mid = (beg + end)/2;
+
+= when you substract iterator, you get the distance. now if you divide the distance
+  by 2 you get the half of the distance. then if you add to the beginning of your path
+  you get the half of the distance.
+  Now, if you just substract iterator you get only the half distance and if you don't know your
+  beginning path(begin) you can't reach that distance.
