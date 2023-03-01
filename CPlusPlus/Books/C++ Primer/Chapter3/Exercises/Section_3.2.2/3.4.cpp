@@ -10,8 +10,8 @@ int main(void) {
     string str1, str2;
 
     // enter str1
-    getline(std::cin, str1);
-    getline(std::cin, str2);
+    getline(cin, str1);
+    getline(cin, str2);
 
     if (str1 == str2) {
         cout << "The string has same characters";
