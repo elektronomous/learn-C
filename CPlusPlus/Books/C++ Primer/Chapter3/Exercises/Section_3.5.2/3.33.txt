@@ -1,0 +1,2 @@
+1. What would happen if we did not initialize the scores array in the program on page 116
+= The value of each element would be undefined

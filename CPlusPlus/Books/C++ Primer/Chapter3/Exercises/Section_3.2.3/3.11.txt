@@ -1,0 +1,5 @@
+1. Is the following range for legal? If so, what is the type of c?
+    const string s = "Keep out!";
+    for (auto &c : s) { /* ... */ }
+
+= reference to char (char &)

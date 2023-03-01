@@ -1,0 +1,12 @@
+1. Assuming txt_size is a function that takes no arguments and returns an int value
+   which of the following definitions are illegal? explain why:
+        unsigned buf_size = 1024;
+        (a) int ia[buf_size];
+        = Illegal, the dimension must be a constant value
+        (b) int ia[4 * 7 - 14];
+        = Legal, constant could be created from literal value
+        (c) int ia[txt_size()];
+        = Illegal, the function must be return constexpr or const int
+        (d) char st[11] = "fundamental";
+        = Illegal, when you initialize a literal string to a array of char you need to
+          make a one space for the null('\0') character.

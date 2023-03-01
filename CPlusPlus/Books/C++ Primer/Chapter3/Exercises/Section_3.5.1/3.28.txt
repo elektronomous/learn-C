@@ -1,0 +1,16 @@
+1. What are the values in the following arrays?
+        /* global scope */
+        string sa[10];
+        int ia[10];
+
+        int main() {
+            /* function scope */
+            string  sa2[10];
+            int     ia2;
+        }
+
+= When you define the built-in type on global scope without the initializer,
+  it has value-initialize which to 0 for arithmetic type, empty string for string type.
+  Now on function scope, the built-in type will be left uninitialize or undefined. but the
+  library types like string still be empty string.  
+    

@@ -1,0 +1,9 @@
+1. List three ways to define a vector and give it ten elements, each with
+   the value 42. Indicate whether there is a preferred way to do so and why
+
+        typedef vector<int> vint;
+=       (1) vint v(10, 42);
+        (2) vint v{42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+        (3) vint v = vint(10, 42);
+
+= There's only one way to define effiently is to use the first way
