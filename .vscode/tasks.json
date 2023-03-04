@@ -9,7 +9,6 @@
         "-g",
         "-Wall",
         "-Werror",
-        "-fmodules-ts",
         "-std=c++20",
         "${fileDirname}/${fileBasename}",
         "-o",

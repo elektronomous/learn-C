@@ -1,0 +1,9 @@
+Using table 4.12(166), parenthesize the following expressions to indicate
+the order in which the operands are grouped:
+(a) * vec.begin();
+    = function call then dereference(*)
+    = *(vec.begin())
+
+(b) * bec.begin() + 1
+    = function call, dereference, then addition(not unary)
+    = (*(vec.begin())) + 1
