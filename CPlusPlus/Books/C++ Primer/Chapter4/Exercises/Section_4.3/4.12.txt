@@ -1,0 +1,9 @@
+Assuming i, j, and k are all ints, explain what i != j < k means
+
+= because the precedence of the < (less than) operator is higher
+  than the != (inequality) operator, then the evaluation will be
+  
+        i != (j < k)
+
+  which says, if j less than k and the result of both operation will
+  compare using inequality operator(!=) with i.
