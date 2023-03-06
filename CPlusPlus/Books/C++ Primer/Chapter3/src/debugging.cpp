@@ -6,6 +6,8 @@ using std::cout,
       std::cin,
       std::endl,
       std::vector,
+      std::begin,
+      std::end,
       std::string;
 
 typedef vector<int> vint;
@@ -13,11 +15,11 @@ typedef vector<string> vstr;
 
 int main(void) {
 
-    int arr[10];
+    int arr[2][3] = {1,2,3,4,5,6};
 
-    for (int &v : arr)
-        cout << v << " ";
-    cout << endl;
+    int *toArr = std::begin(arr);
+
+    
 
 
     return 0;

@@ -9,11 +9,10 @@
         "-g",
         "-Wall",
         "-Werror",
-        "-fmodules-ts",
-        "-std=c++20",
+        "-std=c++2a",
         "${fileDirname}/${fileBasename}",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/${fileBasenameNoExtension}.exe"
       ],
       "options": {
         "cwd": "${fileDirname}"
