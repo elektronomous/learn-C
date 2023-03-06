@@ -1,0 +1,12 @@
+Explain when operands are evaluated in the logical AND, logical OR
+and equality operators
+
+= LOGICAL AND
+  = left operands are evaluated first, and if only left operands
+    are true then evaluate the right operands.
+= LOGICAL OR
+  = left operands are evaluated first, and if only left operands are
+    false then evaluate the right operands.
+= EQUALITY
+  = if both operands are same, then the conditions are true otherwise
+    false.

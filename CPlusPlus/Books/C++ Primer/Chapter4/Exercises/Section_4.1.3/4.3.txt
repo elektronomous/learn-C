@@ -1,0 +1,9 @@
+Order of evaluation for most of the binary operators is left undefined
+to give the compiler opportunities for optimization. This strategy presents
+a trade-off between efficient code generation and potential pitfalls in the 
+use of language by the programmer. Do you consider that an acceptable trade-off?
+Why or why not ? 
+
+= It's acceptable since some operands are function, which is need some optimization.
+  If this function is huge, then the function need to be optimize to make it faster
+  when evaluating in using operator.

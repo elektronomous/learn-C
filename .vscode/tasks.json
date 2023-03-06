@@ -9,7 +9,11 @@
         "-g",
         "-Wall",
         "-Werror",
+<<<<<<< HEAD
         "-std=c++2a",
+=======
+        "-std=c++20",
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
         "${fileDirname}/${fileBasename}",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}.exe"
