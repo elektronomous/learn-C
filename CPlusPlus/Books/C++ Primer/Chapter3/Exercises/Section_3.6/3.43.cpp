@@ -1,9 +1,18 @@
 #include <iostream>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
 using std::cout,
       std::cin,
       std::endl;
 
+<<<<<<< HEAD
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
+=======
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
 int main(void) {
     int arr[3][5] = {
         {1,2,3,4,5},
@@ -11,6 +20,24 @@ int main(void) {
         {11,12,13,14,15}
     };
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    // using for-range loop
+    for (const int (&toArr)[5] : arr) {
+        for (const int &el : toArr)
+            std::cout << el << " ";
+        std::cout << std::endl;
+    }
+
+    // using pointer
+    for (int (*toArr)[5] = std::begin(arr); toArr != std::end(arr); toArr++){
+        for (int *toEl = std::begin(*toArr); toEl != std::end(*toArr); toEl++)
+            std::cout << *toEl << " ";
+        std::cout << std::endl;
+    }
+=======
+=======
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
     // using for-range wihtout auto
     cout << "Using for-range loop: ";
     for (int (&toArr)[5] : arr) {
@@ -34,4 +61,8 @@ int main(void) {
     }
 
     return 0;
+<<<<<<< HEAD
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
+=======
+>>>>>>> b5290e2b0cd458d3c79133d698174a643bc0b469
 }
