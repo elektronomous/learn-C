@@ -1,0 +1,7 @@
+What are the values of i and d after each assignment?
+        int i;      double d;
+        d = i = 3.5;        i = d = 3.5;
+
+(1) = d will be converted to 3 because the first assignment has type int
+      which convert the literal 3.5 to 3
+    = i still get 3 because the literal value 3.5 will get converted.

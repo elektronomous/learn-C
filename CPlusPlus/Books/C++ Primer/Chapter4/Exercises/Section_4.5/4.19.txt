@@ -1,0 +1,16 @@
+Given that ptr points to an int, that vec is a vector<int> and that
+ival is an int, explain the behavior of each of these expression. Which, if any
+are likely to be incorrect? Why? How might each be corrected?
+
+        int *ptr;
+        vector<int> vec;
+        int ival;
+
+(a) ptr != 0 && *ptr++
+(b) ival++ && ival
+= It clear both (a) and (b) are the left always evaluated first before the right.
+
+(c) vec[ival++] <= vec[ival]
+= because relational operator doesn't guarantee how operands are evaluated order, this
+  will be an undefined result.
+

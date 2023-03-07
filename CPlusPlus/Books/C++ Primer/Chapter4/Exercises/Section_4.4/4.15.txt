@@ -1,0 +1,6 @@
+The following assignment is illegal. Why? How would you correct it?
+
+        double dval; int ival; int *pi;
+        dval = ival = pi = 0;
+
+= When you combine assignment, the variables must have the same type.

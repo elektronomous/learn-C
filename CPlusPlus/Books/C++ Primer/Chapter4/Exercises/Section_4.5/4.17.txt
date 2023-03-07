@@ -1,0 +1,4 @@
+Explain the difference between prefix and postfix increment.
+= The prefix return the incremented(or decremented) object, while
+  the postfix return the copy original of the object, and incremented in
+  subsequent expression.

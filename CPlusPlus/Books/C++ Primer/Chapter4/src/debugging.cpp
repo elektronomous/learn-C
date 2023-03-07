@@ -1,22 +1,16 @@
 #include <iostream>
-#include <climits>
+#include <vector>
 
-int& changeObject(int &object) {
-    object++;
-
-    return object;
-}
+using std::cout,
+      std::cin,
+      std::endl,
+      std::vector;
 
 int main(void) {
-    
-    const char *cp = "";
+    int ival = 0;
 
-    if(*cp) {
-        std::cout << "string";
-    }else {
-        std::cout << "empty";
-    }
-
-    return 0;
-
+    if (ival++ && ival)
+        cout << "Hello";
+    else
+        cout << "There";
 }

@@ -1,0 +1,7 @@
+Explain what happens in each of the if tests:
+    if (42 = i) // ...
+    if (i = 42) // ...
+
+(1) It's illegal to assign the literal value, which is an rvalue. you can't assign
+    to a rvalue.
+(2) After assignment, the value of i will be evaluated.
