@@ -7,3 +7,4 @@ Why or why not ?
 = It's acceptable since some operands are function, which is need some optimization.
   If this function is huge, then the function need to be optimize to make it faster
   when evaluating in using operator.
+= I think the answer need some references.

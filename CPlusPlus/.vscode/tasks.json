@@ -3,27 +3,17 @@
     {
       "type": "cppbuild",
       "label": "C/C++: g++.exe BUILD ACTIVE FILE",
-<<<<<<< HEAD
-      "command": "g++.exe",
-=======
+      // "command": "g++.exe",
       "command": "g++",
->>>>>>> e1b50c36c58e31cf4d94116e4b183e6c8e04428b
       "args": [
         "-fdiagnostics-color=always",
         "-g",
         "-Wall",
         "-Werror",
-<<<<<<< HEAD
-        "-std=c++17",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}"
-=======
         "-std=c++17",
         "${file}",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
->>>>>>> e1b50c36c58e31cf4d94116e4b183e6c8e04428b
       ],
       "options": {
         "cwd": "${fileDirname}"

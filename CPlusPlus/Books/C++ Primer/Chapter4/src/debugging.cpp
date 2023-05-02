@@ -1,16 +1,11 @@
 #include <iostream>
-#include <vector>
-
-using std::cout,
-      std::cin,
-      std::endl,
-      std::vector;
 
 int main(void) {
-    int ival = 0;
+    unsigned short int short_val = 32768;
 
-    if (ival++ && ival)
-        cout << "Hello";
-    else
-        cout << "There";
+    std::cout << short_val << std::endl;
+
+    std::cout << -30 / 3 * 21 % 4 << std::endl;
+
+    return 0;
 }

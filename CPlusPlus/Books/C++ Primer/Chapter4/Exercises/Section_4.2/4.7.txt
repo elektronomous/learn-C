@@ -1,3 +1,7 @@
 What does overflow means? Show three expressions that will overflow.
-= Overflow is a condition where memory couldn't handle data that's too big
-  for it to handle 
+= Overflow is a condition where a value it represents is bigger than the 
+  the value that the data type could represent.
+
+    short int short_val = 32768;      // assign a value is too big for short data type can represent
+    short int short_val = 32767 + 1;  // operation that result could overflow
+    
