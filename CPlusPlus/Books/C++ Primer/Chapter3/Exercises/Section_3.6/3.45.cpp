@@ -17,8 +17,8 @@ int main(void) {
         cout << endl;
     }
 
-    for (auto *toArr = arr; toArr != arr + 3; toArr++) {
-        for (auto *el = *toArr; el != *toArr + 5; el++)
+    for (auto toArr = arr; toArr != arr + 3; toArr++) {
+        for (auto el = *toArr; el != *toArr + 5; el++)
             cout << *el << " ";
         cout << endl;
     }
