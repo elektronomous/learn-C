@@ -3,6 +3,6 @@ Explain the behavior of the condition in the following if:
         const char *cp = "Hello World";
         if (cp && *cp)
 
-= cp will be always true if it's not contain zero value (in this case null)
+= cp will be always true if it's not contain / point to zero value  (in this case null)
 = *cp will be always true if it's not contain empty string
 = Both operand will be evaluated
