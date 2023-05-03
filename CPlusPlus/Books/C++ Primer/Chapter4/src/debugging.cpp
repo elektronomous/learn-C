@@ -8,16 +8,10 @@ using std::cout,
       std::string;
 
 int main(void) {
-    unsigned short int short_val = 32768;
+    vector<string> vint {"hey", "there"};
+    vector<string>::iterator toVint = vint.begin();
 
-    std::cout << short_val << std::endl;
-
-    std::cout << -30 / 3 * 21 % 4 << std::endl;
-
-    const char *cp = " "; // empty string
-
-    if (*cp)
-        cout << "True, it's empty string" << endl;
-
+    cout << toVint++->size() << endl;
+    cout << toVint->size() << endl;
     return 0;
 }

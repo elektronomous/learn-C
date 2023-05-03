@@ -1,4 +1,4 @@
 Explain the difference between prefix and postfix increment.
-= The prefix return the incremented(or decremented) object, while
-  the postfix return the copy original of the object, and incremented in
+= The prefix return the incremented(or decremented) object as lvalue, while
+  the postfix return the copy original of the object as rvalue, and incremented in
   subsequent expression.

@@ -8,6 +8,7 @@ are likely to be incorrect? Why? How might each be corrected?
 
 (a) ptr != 0 && *ptr++
 (b) ival++ && ival
+= ival is declared not defined, so it should be incorrect to incremenet undefined value.
 = It clear both (a) and (b) are the left always evaluated first before the right.
 
 (c) vec[ival++] <= vec[ival]

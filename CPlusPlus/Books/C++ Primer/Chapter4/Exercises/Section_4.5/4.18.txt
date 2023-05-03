@@ -8,4 +8,4 @@ from a vector used the prefix increment operator?
 
 = It will miss the first pbeg, and when the last pbeg are about to cout to the screen
   the pbeg are incremented, and pbeg are point to object that doesn't exist
-  which cout are undefined.
+  which cout will displays undefined value.
