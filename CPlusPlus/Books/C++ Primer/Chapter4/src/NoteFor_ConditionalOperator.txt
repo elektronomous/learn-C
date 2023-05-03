@@ -1,0 +1,47 @@
+= if you ask why the conditional operator (?:) should right associative ?
+
+  = say that you have nested condition like this:
+    
+            int z = a == b ? 1 : 
+                    0 ? false  : true;
+  
+  = If the conditional operator has left associative, then the result second 
+    condition is depend on the first condition instead of the second condition itself.
+
+            int z = ( (a == b) ? 1 : 0) ? false : true;
+
+  = so it first evaluate the first condition
+
+            a == b ?  1 : 0;
+
+  = then the result of this condition will be the condition of the second condition
+    which is not what we intended.
+
+= It can be analogy using the if-statement:
+
+    if (a == b)
+        temp = 1;
+    else
+        temp = 0;
+    
+
+    if (temp)
+        false;
+    else
+        true
+
+= What we intended is:
+
+    
+    if (a == b)
+        temp = 1;
+    else {
+        temp = 0;
+        if (temp)
+            false;
+        else
+            true;
+    }
+
+
+                  

@@ -1,0 +1,29 @@
+Our program that distinguished between high pass, pass and
+fail depended on the fact that the conditional operator is right associative.
+Describe how that operator would be evaluated if the operator were left associative.
+
+= We create the mini-example so we can short our time
+= say that grade is 80 and the conditional operator's describe as the following:
+
+        string resultGrade = (grade > 90) ? "high pass" :
+                             (grade > 70) ? "pass"      : "fail";
+
+= Now what happens when the conditional operator is left-associative ?
+= The grade will be evaluate from left-to-right
+
+    ( (grade > 90) "high pass" : (grade > 70)) ? "pass" : "fail";
+
+= (assume the first condition is true) the second condition result will be depend on 
+  the result of the first condition which is not we intended. To make clean, we use 
+  the same code using the if-statement:
+
+    if (grade > 90)
+        resultGrade = "high pass";
+    else
+        temp = "pass";
+    
+
+    if (temp)
+        resultGrade = "pass";
+    else
+        resultGrade = "fail";      

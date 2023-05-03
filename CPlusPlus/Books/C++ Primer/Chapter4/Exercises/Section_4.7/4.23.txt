@@ -1,0 +1,9 @@
+The following expression fails to compile due to operator precedence.
+Using table 4.12(166), explain why it fails. How ould you fix it ?
+
+    string s = "word";
+    string p1 = s + s[s.size() - 1] == 's' ? "" : "s";
+
+= It decide wether the s is a "word" or "words"
+
+    string p1 = s + ( (s[s.size() - 1] == 's') ? "" : "s");

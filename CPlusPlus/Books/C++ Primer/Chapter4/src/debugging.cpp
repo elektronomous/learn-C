@@ -8,10 +8,10 @@ using std::cout,
       std::string;
 
 int main(void) {
-    vector<string> vint {"hey", "there"};
-    vector<string>::iterator toVint = vint.begin();
+    string s = "word";
+    string p1 = s + ((s[s.size() - 1] == 's') ? "" : "s");
 
-    cout << toVint++->size() << endl;
-    cout << toVint->size() << endl;
+    cout << p1 << endl;
+
     return 0;
 }
