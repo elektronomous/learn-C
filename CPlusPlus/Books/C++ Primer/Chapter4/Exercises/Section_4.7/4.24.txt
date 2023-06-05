@@ -20,7 +20,7 @@ Describe how that operator would be evaluated if the operator were left associat
     if (grade > 90)
         resultGrade = "high pass";
     else
-        temp = "pass";
+        temp = grade > 70;
     
 
     if (temp)

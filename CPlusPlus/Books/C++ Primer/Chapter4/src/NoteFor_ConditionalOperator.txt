@@ -5,7 +5,7 @@
             int z = a == b ? 1 : 
                     0 ? false  : true;
   
-  = If the conditional operator has left associative, then the result second 
+  = If the conditional operator has left associative, then the result of second 
     condition is depend on the first condition instead of the second condition itself.
 
             int z = ( (a == b) ? 1 : 0) ? false : true;
@@ -17,7 +17,7 @@
   = then the result of this condition will be the condition of the second condition
     which is not what we intended.
 
-= It can be analogy using the if-statement:
+= It can be depicted using the if-statement:
 
     if (a == b)
         temp = 1;
