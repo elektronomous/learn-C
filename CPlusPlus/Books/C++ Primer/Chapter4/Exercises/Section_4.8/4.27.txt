@@ -1,0 +1,20 @@
+What is the result of each of these expressions ?
+    unsigned long ul1 = 3, ul2 = 7;
+
+= for my computer, unsigned long has 64-bit.
+  for the book itself, it states that unsigned long has 32-bit
+  so we're solving this exercise according to the book.
+
+a) 0000 0000 0000 0011
+   0000 0000 0000 0111
+   ------------------- & (AND)
+   0000 0000 0000 0011
+
+a) 0000 0000 0000 0011
+   0000 0000 0000 0111
+   ------------------- | (OR)
+   0000 0000 0000 0111
+
+c) = every value that's nonzero will be evaluated to true
+
+d) = also true 

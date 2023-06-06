@@ -1,0 +1,14 @@
+In our grading example in this section, what would happen if we 
+used unsigned int as the type for quiz1 ?
+
+= in my computer, unsigned int is 32-bit but the book says that it's 
+  guaranted to be 16-bit so we're solving this exercise according to
+  book's statement.
+
+  since the bitwise AND, OR and XOR operator dont promoted the
+  left operand the number of bits the left operand has will be 
+  evaluated by the first 16-bit of the right-operand (if the operand
+  has more than 16-bit value)
+
+  so it always results in zero value, because we dont have a 27-bit
+  in unsigned int

@@ -1,0 +1,21 @@
+What is the value of ~'q' << 6 on a machine with 32-bit ints 
+and 8-bit chars, that uses Latin-1 character set in which 'q'
+has the bit pattern 0111 0001?
+
+= Not operator will promoted first the value to be int
+
+        0111 0001           -> 8-bits
+        0000 0000 0111 0001 -> 32-bits
+
+= Then not operator will inverted the bits and adds 1
+
+        1111 1111 1000 1110
+                          1 +
+        --------------------
+        1111 1111 1000 1111
+
+= The not operator has got the job done, now we shift the value
+  6 times to the left.
+
+        1110 0011 1100 0000
+

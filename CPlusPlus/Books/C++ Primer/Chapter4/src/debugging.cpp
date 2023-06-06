@@ -8,10 +8,15 @@ using std::cout,
       std::string;
 
 int main(void) {
-    string s = "word";
-    string p1 = s + ((s[s.size() - 1] == 's') ? "" : "s");
-
-    cout << p1 << endl;
+    cout << sizeof(unsigned short) << endl;
 
     return 0;
 }
+
+/*
+
+0000 0011
+1111 1100
+1111 1101
+
+ */
