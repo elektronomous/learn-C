@@ -1,0 +1,12 @@
+Explain the following loop.
+
+        constexpr int size = 5;
+        int ia[size] {1,2,3,4,5};
+
+        for (int *ptr = ia, ix = 0; ix != size && ptr != ia+size; ++ix, ++*ptr) {
+
+        }
+
+= You can get the conclusions of the works of the for-loop by looking
+  at its second statement:
+  this loop makes sure that it wouldn't access outside of the bound of the array

@@ -1,0 +1,6 @@
+Using table 4.12(p.166) explain the following expression does:
+
+    someValue ? ++x, ++y : --x, --y;
+
+= regardless of the someValue, the result is always the right-hand operand 
+  of the comma operator.
