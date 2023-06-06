@@ -8,7 +8,12 @@ using std::cout,
       std::string;
 
 int main(void) {
-    cout << sizeof(unsigned short) << endl;
+    int x[10];       int *p = x;
+    
+    for (int i = 0; i < 10; i++)
+        cout << x[i] << endl;
+    cout << sizeof (x)/sizeof (*x) << endl;
+    cout << sizeof (p)/sizeof (*p) << endl;
 
     return 0;
 }

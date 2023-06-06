@@ -1,0 +1,14 @@
+Using table 4.12 (p.166), parenthesize the following expressions to
+match the default evalution:
+
+(a) sizeof x + y
+    = sizeof (x+y)
+
+(b) sizeof a < b
+    = sizeof (a + b)
+
+(c) sizeof p->mem[i]
+    = sizeof (p->mem[i])
+
+(d) sizeof f()
+    = sizeof (f())

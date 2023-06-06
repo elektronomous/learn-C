@@ -1,0 +1,15 @@
+Predict the output of the following code and explain your
+reasoning. Now run the program. Is the output what you expected?
+If not, figure out why.
+
+        if x[10];       int *p = x;
+        
+        cout << sizeof (x)/sizeof (*x) << endl;
+        cout << sizeof (p)/sizeof (*p) << endl;
+
+= When you access the uninitialized element of an array you get 
+  undefined value which is result the runtime error. for the purpose
+  of the lesson, the undefined value could be random value it could be
+  0, 1, -32452345, and so on. Unfortunately the program should be crash
+  if you divided a value by the value 0 that you access on an array that has
+  undefined value.
