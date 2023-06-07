@@ -8,13 +8,9 @@ using std::cout,
       std::string;
 
 int main(void) {
-    int x[10];       int *p = x;
-    
-    for (int i = 0; i < 10; i++)
-        cout << x[i] << endl;
-    cout << sizeof (x)/sizeof (*x) << endl;
-    cout << sizeof (p)/sizeof (*p) << endl;
-
+    char ch = 'a';
+    int char_val = ch;
+    cout << char_val << endl;
     return 0;
 }
 

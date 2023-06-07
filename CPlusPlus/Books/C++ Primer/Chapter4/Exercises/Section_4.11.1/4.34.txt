@@ -1,0 +1,21 @@
+Given the variable definitions in this section, explain what conversions
+take place in the following expressions:
+
+(a) if (fval)
+    = float value converted to bool value.
+    = if float value is nonzero, the bool always true
+    = otherwise it's false.
+
+(b) dval = fval + ival;
+    = first ival promoted to float's type
+    = then the result of the addition which is float
+    = promoted to double's type
+
+(c) dval + ival * cval;
+    = the operations would be like
+        dval + (ival * cval)
+    
+    = now we clear how the conversion works
+    = first char would be promoted to int
+    = after the result of the multiplication which is an int
+    = promoted again to double

@@ -13,6 +13,10 @@ int main(void) {
     // size of char
     cout << sizeof (char) << endl;                      // => 1 Byte
     cout << sizeof (unsigned char) << endl;             // => 1 Byte
+    cout << sizeof (wchar_t) << endl;                   // => 4 Byte
+    cout << sizeof (char16_t) << endl;                  // => 2 Byte
+    cout << sizeof (char32_t) << endl;                  // => 4 Byte
+
 
     // size of the int
     cout << sizeof (int) << endl;                      // => 4 Byte                    

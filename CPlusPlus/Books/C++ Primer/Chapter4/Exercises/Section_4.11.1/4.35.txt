@@ -1,0 +1,38 @@
+Given the following definitions:
+
+    char cval;      int ival;       unsigned int ui;
+    float fval;     double dval;
+
+identify the implicit type conversions, if any, taking place:
+
+(a) cval = 'a' + 3;
+    = in the first place 'a' will be converted to int
+    = the result of the addition would be converted 
+    = to character value
+
+(b) fval = ui - ival * 1.0;
+    = refer to the association, the operation works would be
+
+        fval = ui - (ival * 1.0);
+    
+    = first int would be converted to double
+    = because there ui and double have different signedess
+    = the operation would machine dependent.
+    = if the ui has more bits than the double converted to ui
+    = if the double do, then ui converted to double
+
+(c) dval = ui * fval;
+    = int would be converted to float
+    = the result would be float 
+    = the assignment make the float converted again
+    = to the double's type value
+
+(d) cval = ival + fval + dval;
+    = we have 3 operation which is has the same 
+    = precedence, so we're looking at the association
+    = we begin from left
+    = int would converted to float
+    = the result would be float
+    = float result would be converted to double
+    = the double's result finally converted to 
+    = char's type
