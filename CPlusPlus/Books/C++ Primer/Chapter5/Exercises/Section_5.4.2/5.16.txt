@@ -1,0 +1,4 @@
+= I would go for while-loop, since it doesn't has a init-statement
+  which is programmer tend to check it using the if-statement after
+  the loop's end and we know that init-statement is limited by the for
+  header.

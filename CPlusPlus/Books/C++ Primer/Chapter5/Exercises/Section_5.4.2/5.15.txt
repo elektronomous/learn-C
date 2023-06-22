@@ -1,0 +1,40 @@
+(a) for (int ix = 0; ix != sz; ++ix) {
+        /* ... */
+    } 
+    
+    if (ix != sz)
+    // . . .
+
+(=) ix is limited to the body of the for loop
+
+    int ix = 0;
+    for (; ix != sz; ++ix) {
+        /* ... */
+    } 
+    
+    if (ix != sz)
+        // . . .
+
+(b) int ix;
+    for (ix != sz; ++ix){
+        /* ... */
+    }
+
+(=) The init-statement is missing, you must fill the init-statement
+    int ix;
+    for (; ix != sz; ++ix){
+        /* ... */
+    }
+
+(c) for (int ix = 0; ix != sz; ++ix, ++sz) {
+        /* ... */
+    }
+
+(=) we're not declare the sz yet and we dont increase it since it's 
+    the control of the loop.
+
+    for (int ix = 0, sz = vec.size(); ix != sz; ++ix, ++sz) {
+        /* ... */
+    }
+
+

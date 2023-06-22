@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cctype>
+
 
 using std::cout,
       std::cin,
@@ -7,10 +9,9 @@ using std::cout,
       std::string;
 
 int main(void) {
-    string ch;
-    size_t
-    while (cin >> ch)
-        cout << "The character: " << ch << endl;
-    
+    string name = "faza";
+
+    bool status = std::isupper(name[0]);
+    cout << status << endl;
     return 0;
 }
