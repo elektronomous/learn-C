@@ -17,8 +17,9 @@ int main(void) {
         cout << endl;
     }
 
-    for (auto toArr = arr; toArr != arr + 3; toArr++) {
-        for (auto el = *toArr; el != *toArr + 5; el++)
+    constexpr unsigned rows = 3, cols = 5;
+    for (auto toArr = arr; toArr != arr + rows; toArr++) {
+        for (auto el = *toArr; el != *toArr + cols; el++)
             cout << *el << " ";
         cout << endl;
     }
