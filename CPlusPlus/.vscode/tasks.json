@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "type": "cppbuild",
+      "type": "shell",
       "label": "C/C++: g++.exe BUILD ACTIVE FILE",
       // "command": "g++.exe",
       "command": "g++",
@@ -20,7 +20,7 @@
       },
       "problemMatcher": ["$gcc"],
       "group": "build",
-      "detail": "compiler: C:\\TDM-GCC-64\\bin\\g++.exe"
+      "detail": "compiler: /usr/bin/g++"
     }
   ],
   "version": "2.0.0"

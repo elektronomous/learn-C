@@ -8,10 +8,15 @@ using std::cout,
       std::endl,
       std::string;
 
-int main(void) {
-    string name = "faza";
+void throw_runtime(void) {
+    try {
+        throw std::runtime_error("this is throw from throw_runtime function.");
+    } catch (std::runtime_error &err) {
+        cout << err.what() << endl;
+    }
+}
 
-    bool status = std::isupper(name[0]);
-    cout << status << endl;
-    return 0;
+int main(void) {
+    int x;
+    cin >> x;
 }
