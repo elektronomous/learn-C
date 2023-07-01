@@ -2,15 +2,15 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "C/C++: g++.exe BUILD ACTIVE FILE",
+      "label": "C/C++: gcc BUILD ACTIVE FILE",
       // "command": "g++.exe",
-      "command": "g++",
+      "command": "gcc",
       "args": [
         "-fdiagnostics-color=always",
         "-g",
         "-Wall",
         "-Werror",
-        "-std=c++17",
+        // "-save-temps", => if you wanna extract the completed result of compiler
         "${file}",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
@@ -20,7 +20,8 @@
       },
       "problemMatcher": ["$gcc"],
       "group": "build",
-      "detail": "compiler: /usr/bin/g++"
+      "detail": "compiler: /usr/bin/gcc"
     }
   ],
   "version": "2.0.0"
+}
