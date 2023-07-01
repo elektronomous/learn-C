@@ -10,7 +10,7 @@
         }
 
 = When you define the built-in type on global scope without the initializer,
-  it has value-initialize which to 0 for arithmetic type, empty string for string type.
+  it has value-initialize which 0 for arithmetic type, empty string for string type.
   Now on function scope, the built-in type will be left uninitialize or undefined. but the
   library types like string still be empty string.  
     

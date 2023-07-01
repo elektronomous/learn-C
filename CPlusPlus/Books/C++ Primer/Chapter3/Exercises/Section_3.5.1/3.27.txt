@@ -8,5 +8,5 @@
         (c) int ia[txt_size()];
         = Illegal, the function must be return constexpr or const int
         (d) char st[11] = "fundamental";
-        = Illegal, when you initialize a literal string to a array of char you need to
+        = Illegal, when you initialize a literal string to an array of char you need to
           make a one space for the null('\0') character.
