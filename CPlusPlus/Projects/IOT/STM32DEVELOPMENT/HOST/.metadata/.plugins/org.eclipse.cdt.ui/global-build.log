@@ -1,8 +1,5 @@
-16:37:57 **** Clean-only build of configuration Debug for project arrays ****
-rm -rf main.o arrays.exe main.d 
-Cannot run program "rm": Launching failed
-
-Error: Program "rm" not found in PATH
-PATH=[C:\mingw64\bin;\bin;\usr\bin;C:/ST/STM32CubeIDE_1.12.1/STM32CubeIDE//plugins/com.st.stm32cube.ide.jre.win64_2.4.101.202303251752/jre/bin/server;C:/ST/STM32CubeIDE_1.12.1/STM32CubeIDE//plugins/com.st.stm32cube.ide.jre.win64_2.4.101.202303251752/jre/bin;C:\Python311\Scripts\;C:\Python311\;C:\Python310\Scripts\;C:\Python310\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Python;C:\Program Files\Microsoft VS Code\bin;C:\Users\PLN\AppData\Local\Programs\Python\Python39;C:\Users\PLN\AppData\Local\Programs\Python\Python39\Scripts;C:\Program Files\Java\jdk-18.0.1\bin;C:\ProgramData\chocolatey\bin;C:\xampp\php;C:\composer;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files\Calibre2\;C:\Ruby31-x64\bin;C:\Users\PLN\AppData\Local\Microsoft\WindowsApps;C:\Users\PLN\AppData\Local\Programs\Python\Python39\;C:\Users\PLN\.dotnet\tools;C:\Users\PLN\AppData\Roaming\Composer\vendor\bin;C:\Users\PLN\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;C:\Users\PLN\AppData\Roaming\npm;C:\Program Files\Java\jdk-18.0.1\bin;C:\mingw64\bin;;C:\ST\STM32CubeIDE_1.12.1\STM32CubeIDE]
-
-16:37:57 **** Clean-only build of configuration Debug for project arrays ****
+18:28:44 **** Rebuild of configuration Debug for project arrays ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -o arrays.exe main.o 
+Info: Nothing to build for arrays
