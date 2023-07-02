@@ -1,0 +1,7 @@
+Which of the following are keywords in C ?
+
+(a) for         => keyword
+(b) If
+(c) main        => keyword
+(d) printf
+(e) while       => keyword

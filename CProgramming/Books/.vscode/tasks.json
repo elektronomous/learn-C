@@ -8,6 +8,8 @@
       "args": [
         "-fdiagnostics-color=always",
         "-g",
+        "-std=c99",
+        "-O",
         "-Wall",
         "-Werror",
         "${file}",

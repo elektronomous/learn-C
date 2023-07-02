@@ -1,0 +1,10 @@
+In the dweight.c program (Section 2.4), which spaces are essential?
+
+When you compute the weight's value
+    weight = (volume + 165) / 166
+
+also when you compute the volume
+    volume = height * length * width;
+
+and declaring the variable
+    int height, length, width, volume, weight;
