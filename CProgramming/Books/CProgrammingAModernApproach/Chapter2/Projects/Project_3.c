@@ -9,7 +9,9 @@ int main(void) {
     float radius;
 
     printf("Enter the radius of the sphere: ");
-    scanf("%f", &radius);
+    
+    if (scanf("%f", &radius) != 1)
+        return 1;
     
     // declare and initialize
     float volume = FRACTION / PHI * (radius * radius * radius);
