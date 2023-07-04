@@ -1,0 +1,19 @@
+For each of the following pairs of scanf format strings, indicate
+whether or not the two strings are equivalent. If they're not, 
+show how they can be distinguished.
+
+(a) "%d"    versus " %d"    => same, the space before the format string could be ignored
+                               by the scanf
+
+(b) "%d-%d-%d" versus "%d -%d -%d" => distinguished, the space after the format string must
+                                      match with the input
+
+(c) "%f"    versus "%f "            => same, because there's no non-space character after the
+                                       space
+
+(d) "%f,%f" versus "%f, %f"         => same, because the space after ordinary character are ignored
+
+
+= we got conclusion here that the space after format-string will match by the scanf
+  and the space after the ordinary character like we saw earlier(|,-) are ignored by scanf
+  
