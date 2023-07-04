@@ -7,12 +7,7 @@ int main(void) {
     printf("%-8.1e\n",32.2533);
     printf("%6.0f\n", 32.255);
 
-    int num, denom;
-    if (scanf("%d / %d", &num, &denom) < 0)
-        return 1;
-    
-    printf("%d and %d", num, denom);
-
+    printf("Item\tUnit\tPurchase\n\tPrice\tDate\n");
 
     return 0;
 }
