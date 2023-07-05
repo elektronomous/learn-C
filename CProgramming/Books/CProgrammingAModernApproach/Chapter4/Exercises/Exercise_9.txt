@@ -1,0 +1,28 @@
+Show the output produced by each of the following program fragments.
+Assume that i, j and k are int variables.
+
+    int i, j, k;
+
+(a) i = 7, j = 8;
+    i *= j + 1;
+    printf("%d %d", i, j);
+
+(b) i = j = k = 1;
+    i += j += k;
+    printf("%d %d %d", i, j, k);
+
+(c) i = 1; j = 1; k = 0;
+    i *= j *= k;
+    printf("%d %d %d", i, j, k);
+
+(d) i = 2; j = 1; k = 0;
+    i *= j *= k;
+    printf("%d %d %d", i, j, k);
+
+
+(answer):
+
+(a) "63, 8"
+(b) "3, 2, 1"
+(c) "0 0 0"
+(d) "0 0 0"
