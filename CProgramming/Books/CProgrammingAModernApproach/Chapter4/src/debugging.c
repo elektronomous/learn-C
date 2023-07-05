@@ -1,8 +1,29 @@
 #include <stdio.h>
-
+ 
 int main(void) {
-    int i = 8, j = 5;
-    printf("%d\n", i%(-j));
+    int d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5,
+        first_sum, second_sum, total;
+
+    printf("Enter the first (single) digit: ");
+    if (scanf("%1d", &d) < 0)
+        return 1;
     
+    printf("Enter first group of five digits: ");
+    if (scanf("%1d%1d%1d%1d%1d", &i1, &i2, &i3, &i4, &i5) < 0)
+        return 1;
+
+    printf("Enter second group of five digits: ");
+    if (scanf("%1d%1d%1d%1d%1d", &j1, &j2, &j3, &j4, &j5) < 0)
+        return 1;
+
+    first_sum = d + i2 + i4 + j1 + j3 + j5;
+    second_sum = i1 + i3 + i5 + j2 + j4;
+    total = 3 * first_sum + second_sum;
+
+    printf("Total: %d\n", total);
+    printf("Check digit: %d\n", (10 - (total%10)) % 10);
+
     return 0;
 }
+
+
