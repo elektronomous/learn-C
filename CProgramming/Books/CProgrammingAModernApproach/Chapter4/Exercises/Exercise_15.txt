@@ -1,0 +1,17 @@
+Give the values of i and j after each of the following
+expressions statements has been executed.
+(Assume that i has the value 1 initially and j has the value 2)
+
+    i = 1;
+    j = 2;
+
+(a) i += j;
+(b) i--;
+(c) i * j / i;
+(d) i % ++j;
+
+(answer):
+(a) i = 3, j = 2;
+(b) i = 0, j = 2
+(c) (lost value) 2
+(d) (lost value) 1, j = 3

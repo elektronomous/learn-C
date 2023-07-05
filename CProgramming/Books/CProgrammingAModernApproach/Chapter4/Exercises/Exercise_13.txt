@@ -1,0 +1,6 @@
+Only one of the expressions ++i and i++ is exactly the same 
+as (i += 1); which is it?
+
+= The expressions ++i is almost likely to be the same as
+  (i += 1); because it directly evaluates and change its
+  variables value.
