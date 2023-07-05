@@ -1,0 +1,5 @@
+If i and j are positive integers, does (-i)/j always have the same value
+as -(i/j)? justify you answer 
+
+= for example if i = 9 and j = 7, in C89 the result could be -1 or -2.
+  but in C99 the result (-i)/j must be -(i/j).

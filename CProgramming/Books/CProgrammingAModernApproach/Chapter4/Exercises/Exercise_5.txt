@@ -1,0 +1,12 @@
+What is the value of each of the following expression in C89 ?
+(a) 8 % 5
+= 3
+
+(b) -8 % 5
+= -3 or 3
+
+(c) 8 % -5
+= -3 or 3
+
+(d) -8 % -5
+= 3

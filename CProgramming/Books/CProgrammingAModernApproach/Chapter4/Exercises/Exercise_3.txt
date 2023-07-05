@@ -1,0 +1,16 @@
+What is the value of each of the following expression in C89? 
+(Give all possible values if an expression may have more than 
+one value).
+
+(a) 8/5
+= 1
+
+(b) -8 / 5
+= it could -1 or -3
+
+(c) 8 / -5
+= it could -1 or -3
+
+(d) -8 / -5
+= 1
+
