@@ -1,0 +1,26 @@
+Explain the differences between a parameter, a local variable,
+and a local static variable. given an example of a function in
+each might be usefull
+
+(answer): 
+(1) a parameter is a path to control the function
+(2) a local variable is a variable define inside a function body
+  which hide its name from outside scope and its lifetime is limit to
+  only executing their function.
+(3) a local static variable is a local variable which is persist their value
+  accross calls.
+
+(1)
+    int getOneOrZero(int val) {
+        if (val)
+            return 1;
+        
+        return 0;
+    }
+
+(2) go to the src folder, the factorial function is the one which make
+    local variable usefull
+
+(3) debugging program, how many times a function called. go to the
+    HowManyCall.cpp on src folder
+ 
