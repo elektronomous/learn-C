@@ -1,0 +1,29 @@
+Explain the rationale for the type of each of find_char's
+parameters in particular, why is 's' a reference to const
+but 'occurs' is a plain reference? Why are these parameters
+references, but the char parameter is not? What would happen
+if we made s a plain reference? What if we made occurs a reference
+to const?
+
+
+(answer):
+
+= Why is 's' a reference to const but 'occurs is a plain reference?
+  = We're going to search through may be a string with larger text,
+    and we don't want to modify the s in purpose because we're using
+    to look for a character.
+  = We use occurs to count how many characters, so you don't use reference
+    to const because we can't modify it later.
+
+= Why are these parameters references, but the char parameter is not?
+  = Since it just only one character and it's small we're okay to copy
+    the value to the parameter. We can also create the parameter to reference
+    to const only for this parameter if we'd like.
+
+= What would happen if we made 's' a plain reference?
+  = It would be inneficient since we would maybe encounter a gigabyte txt file
+    just look for a character and how many time it occurs.
+
+= What if we made occurs a reference to const?
+  = You don't get the result of how many times the character you're looking for 
+    is occur.

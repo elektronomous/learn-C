@@ -1,0 +1,11 @@
+Assuming T is the name of a type, explain the difference
+between a function declared as 
+    void f(T)
+
+and
+
+    void f(T&)
+
+(answer):
+    The argument you pass to the first function is copy to the parameter
+    and the second function parameter is bound it instead of copy it.

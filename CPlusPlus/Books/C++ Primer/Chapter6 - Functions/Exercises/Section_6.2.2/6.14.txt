@@ -1,0 +1,12 @@
+Give an example of when a parameter should be a reference
+type. Give an example of when a parameter should not be a
+reference
+
+= You're creating a function which say that you want to search 
+  a number within a big vector of int. You don't have to copy the
+  vector instead you just directly working with it using reference
+
+= now that you've an idea that you wanna work a function using pointer
+  you can just pass the value(address) of pointer to a pointer parameter
+  
+  
