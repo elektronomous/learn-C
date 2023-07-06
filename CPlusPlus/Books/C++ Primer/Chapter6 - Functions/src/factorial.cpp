@@ -4,7 +4,7 @@ using std::cin,
       std::cout,
       std::endl;
 
-int fact(int val) {
+int fact(int val) { // (2) called function begin executed
     int ret = 1;
 
     while (val > 1)
@@ -13,7 +13,7 @@ int fact(int val) {
 }
 
 int main(void) {
-    int j = fact(5);
+    int j = fact(5);    // (1) calling function is suspended
 
     cout << "5! is : " << j << endl;
 

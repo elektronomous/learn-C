@@ -1,0 +1,7 @@
+What is the difference between a parameter and an argument?
+
+= both are variable and have type but to initialize the parameter
+  you must pass an argument. so the argument is the initializer and
+  the parameter is the initialized object. roughly argument is the
+  value and the parameter is placeholder.
+  

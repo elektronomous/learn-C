@@ -1,0 +1,20 @@
+Indicate which of the following functions are in error and why.
+Suggest how you might correct the problems.
+
+(a) int f() {
+        string s;
+        // ..
+        return s;
+}
+
+(b) f2 (int i) { /* ... */ }
+(c) int calc(int v1, int v1) /* ... */ }
+(d) double square(double x) return x * x;
+
+(answer):
+
+(a) = we must match the return type of the function with the value
+      we will returning from function.
+(b) = we must supply return type before name of the function
+(c) = the opening brace is missing
+(d) = the opening and closing braces are missing.
