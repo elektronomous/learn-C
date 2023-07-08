@@ -1,0 +1,9 @@
+In the call of fact, why did we pass val - 1 rather
+than val--?
+
+(answer):
+
+= Since this is the postfix operator, which modify the val after
+  when val is use again in the next statement. so the call will
+  stay, not decrease the val by one which cause the recursion-loop
+  will go forever.

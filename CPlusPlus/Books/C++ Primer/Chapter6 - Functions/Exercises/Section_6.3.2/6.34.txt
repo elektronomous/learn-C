@@ -1,0 +1,9 @@
+What would happen if the stopping condition in factorial were
+
+    if (val != 0)
+
+(answer):
+
+= Say that you're decrementing your factorial which is result maybe could
+  cross the zero value, it's a minus value. the condition will be always true 
+  since val isn't a zero, it would be cause recursion-loop.

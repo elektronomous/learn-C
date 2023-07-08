@@ -1,0 +1,4 @@
+When is it valid to return a reference? A reference to const?
+
+= When you want to modify your variable inside a function and
+  return it as the result of the modification.

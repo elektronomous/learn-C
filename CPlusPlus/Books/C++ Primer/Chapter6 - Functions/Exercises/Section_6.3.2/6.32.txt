@@ -1,0 +1,21 @@
+Indicate whether the following function is legal. If so,
+explain what it does; if not, correct any errors and then 
+explain it.
+
+    int &get(int *arry, int index) {
+        return arry[index];
+    }
+
+    int main(void) {
+        int ia[10];
+        for (int i = 0; i != 10; i++)
+            get(ia, i) = i;
+    }
+
+(answer):
+
+= Since you cannot copy an array, you bound the array argument in the parameter.
+  The function get is legal and you get the return value in a reference to array 
+  that you passed. This function work by pass an array and the index you want to
+  get on the array
+  
