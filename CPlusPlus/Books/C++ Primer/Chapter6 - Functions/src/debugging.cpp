@@ -6,17 +6,16 @@ using std::cin,
       std::endl,
       std::string;
 
+string (&function(void))[10];
+
 int main(void) {
-  const char *str1 = "Hello There";
-  string str2 = "or Hello World";
+  int arr[] = {1,2,3,4,5};
+  decltype(arr) anotherArr = {1,2,3,4,5};
 
-  str2 += str1;
-
-  cout << str2 << endl;
+  cout << "On the arr[0]: " << arr[0] << " and the anotherArr[0]: " << anotherArr[0] << endl;
 
   return 0;
 }
-
 /* 
 On whatAddressOf: 0x7ffe3046d8b4
 On main function: 0x7ffe3046d8b4

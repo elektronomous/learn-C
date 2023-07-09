@@ -1,0 +1,25 @@
+Write three additional declarations for the function in
+the previous exercise. One should use a type alias, one 
+should use a trailing return, and the third should use 
+decltype. Which form do you prefer and why ?
+
+(answer):
+
+= using type alias (typedef):
+
+    typedef string arrStr[10];      // array of ten strings
+    arrStr *function(void);         // return an array of ten strings
+
+= using trailing return
+
+    auto function -> string (*)[10];
+
+= using decltype
+
+    string arrStr[] = {"hello", "world"}
+
+    // return pointer to an array of 2 strings
+    decltype(arrStr) *function(void);
+
+= I would go for the trailing return type is the easiest since you can 
+  see the return type

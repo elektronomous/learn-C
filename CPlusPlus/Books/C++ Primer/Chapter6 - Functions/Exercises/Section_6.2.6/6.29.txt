@@ -1,0 +1,10 @@
+When you use an initializer_list in a range for would you
+ever use a reference as the loop control variable? If so,
+why? if not, why not?
+
+(answer):
+
+= We can't control loop over range-for since you just iterate
+  through the element. You control the loop by using for-loop
+  which in each iterate it's checks its condition before execute
+  the statement body of for-loop.

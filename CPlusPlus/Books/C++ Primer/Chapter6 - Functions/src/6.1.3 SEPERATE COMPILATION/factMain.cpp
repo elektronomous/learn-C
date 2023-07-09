@@ -1,17 +1,9 @@
 #include <iostream>
+#include "Chapter6.hpp"
 
 using std::cin,
       std::cout,
       std::endl;
-
-int fact(int val) {
-    int result = 1;
-
-    while (val > 1)
-        result *= val--;
-    
-    return result;
-}
 
 int main(void) {
     int j = fact(5);
