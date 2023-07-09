@@ -1,0 +1,21 @@
+Which if any, of the following calls are illegal? Why? Which,
+if any, are legal but unlikely to match the programmer's intent?
+Why?
+
+    char *init(int ht, int wd = 80, char bckgrnd = ' ');
+
+(a) init();
+(b) init(24,10);
+(c) init(14, '*');
+
+(answer):
+
+(a) It's an error, you must supply the first parameter with an argument.
+(b) The call will result in ht initialized with 24, and wd with 10 which is legal
+
+        init(24,10) => init(int ht = 24, int wd = 10, char bckgrnd = ' ');
+
+(c) The call will result in ht initialized with 14, and the wd is '*' which is legal
+
+        init(14, '*') => init(int ht = 14, int wd = '*' /* converted to int */, char bckgrnd = ' ');
+    

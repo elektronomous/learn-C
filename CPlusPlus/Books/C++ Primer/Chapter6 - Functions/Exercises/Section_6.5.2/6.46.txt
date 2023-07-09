@@ -1,0 +1,8 @@
+Would it be possible to define isShorter as constexpr? If so, do so.
+ If not, explain why not.
+
+(answer):
+
+= You cant define it as the constexpr, if you try to use the size function
+  of the string, the compiler will warn you since the size function doesn't
+  return const expression.
