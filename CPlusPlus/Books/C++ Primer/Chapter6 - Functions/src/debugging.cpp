@@ -7,20 +7,20 @@ using std::cin,
       std::endl,
       std::string;
 
-string (&function(void))[10];
+inline bool isLower(const string &s1, const string &s2) {
+  return s1.size() < s2.size();
+}
+inline bool isGreater(const string &s1, const string &s2) {
+  return s1.size() > s2.size();
+}
+
+auto chooseMode(const string &s) -> bool (*)(const string &, const string &) {
+  if (s == "lower")
+    return isLower;
+  
+  return isGreater;
+}
 
 int main(void) {
-    string s, shought = "hello";
-    assert(cin);
-    
-
-  return 0;
+  
 }
-/* 
-On whatAddressOf: 0x7ffe3046d8b4
-On main function: 0x7ffe3046d8b4
-
-= pointer has value which is an address, if you pass argument
-  the value you copy into the parameter is the address value
-
-*/
