@@ -22,5 +22,10 @@ auto chooseMode(const string &s) -> bool (*)(const string &, const string &) {
 }
 
 int main(void) {
-  
+  if (chooseMode("lower")("hello", "there")) {
+    cout << "s1 is lower than s2\n";
+  } else 
+    cout << "s2 is lower than s1\n";
+
+  return 0;
 }
