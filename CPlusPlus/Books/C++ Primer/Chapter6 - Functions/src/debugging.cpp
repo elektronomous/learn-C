@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cassert>
 
 using std::cin,
       std::cout,
@@ -9,10 +10,9 @@ using std::cin,
 string (&function(void))[10];
 
 int main(void) {
-  int arr[] = {1,2,3,4,5};
-  decltype(arr) anotherArr = {1,2,3,4,5};
-
-  cout << "On the arr[0]: " << arr[0] << " and the anotherArr[0]: " << anotherArr[0] << endl;
+    string s, shought = "hello";
+    assert(cin);
+    
 
   return 0;
 }

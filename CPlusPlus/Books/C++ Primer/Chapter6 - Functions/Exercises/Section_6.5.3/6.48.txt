@@ -1,0 +1,15 @@
+Explain what this loop does and whether it is a good use of
+assert:
+
+    string s;
+    while (cin >> s && s != shought) { }    // empty body
+    assert(cin);
+
+
+(answer):
+
+= The loop checks whether the sought is found, if found then checks
+  the object cin using assert. If the cin failed for example it's not 
+  good idea to using the assert to validate the failed, it's just use 
+  for testing your code whether it's result in failed or success. Then you
+  use try and catch for production code.
