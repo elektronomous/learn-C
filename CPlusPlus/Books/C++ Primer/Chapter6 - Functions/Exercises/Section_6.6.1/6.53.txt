@@ -1,0 +1,23 @@
+Explain the effect of the second declaration in each one of
+the following sets of declarations. Indicate which, if any, are illegal.
+
+(a)
+    int calc(int &, int &);
+    int calc(const int &, const int &);
+
+    = The second declarations has refer to the low-level const int,
+      so it's legal to declare it.
+
+(b) 
+    int calc(char *, char *);
+    int calc(const char *, const char *);
+
+    = The second declarations has point to const int, so it's legal
+      to declare it.
+
+(c)
+    int calc(char *, char*);
+    int calc(char *const, char *const);
+
+    = The parameter ignored the top-level, so this redeclare the first
+      declaration and it's illegal.

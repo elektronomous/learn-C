@@ -1,0 +1,5 @@
+What is a candidate function? What is a viable function?
+
+(answer):
+= candidate function is the set of the overloaded function
+= viable function is the function that match the parameter of the argument from the given call

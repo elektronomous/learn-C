@@ -1,0 +1,20 @@
+1. An exact match. An exact match happens when:
+    • The argument and parameter types are identical.
+    • The argument is converted from an array or function type to the corresponding
+      pointer type. (§ 6.7 (p. 247) covers function pointers.)
+    • A top-level const is added to or discarded from the argument.
+
+2. Match through a const conversion (§ 4.11.2, p. 162).
+3. Match through a promotion (§ 4.11.1, p. 160).
+4. Match through an arithmetic (§ 4.11.1, p. 159) or pointer conversion (§ 4.11.2, p. 161).
+5. Match through a class-type conversion. (§ 14.9 (p. 579) covers these conversions.)
+
+Given the following declarations,
+
+    void manip(int, int);
+    double dobj;
+
+what is the rank of each conversion in the following calls?
+
+(a) manip('a', 'z')     => This is rank 3, because its argument need promotoin to int
+(b) manip(55.4, dobj)   => This is rank 4, because its argument need to conversion to int

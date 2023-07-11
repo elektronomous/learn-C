@@ -1,0 +1,14 @@
+Given the declarations for f from page 242, list the viable
+functions, if any for each of the following calls. Indicate which
+function is the best match, or if the call is illegal whether there
+is no match or why the call is amibigous.
+
+    void f();
+    void f(int);
+    void f(int, int);
+    void f(double, double = 3.14);
+
+(a) f(2.56, 42)     => It's matching two calls, it's ambigous
+(b) f(42)           => It's matching the second candidate, it's legal.
+(c) f(42, 0)        => It's best matching the third candidate, it's legal.
+(d) f(2.56, 3.14)   => It's best matching the fourth candidate, it's legal.
