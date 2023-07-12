@@ -1,9 +1,12 @@
 #ifndef SALES_DATA_HPP
 #define SALES_DATA_HPP
 
+#include <iostream>
+#include <string>
+
 struct Sales_data {
     // new members: operations on Sales_data objects
-    std::string isbn() const { // The purpose of that const is to modify the type of the implicit this pointer
+    std::string isbn(/* Sales_data *const this */) const { // The purpose of that const is to modify the type of the implicit this pointer
         return bookNo;
         /* or you can also
         
@@ -54,6 +57,48 @@ double Sales_data::avg_price(void) const {
                                             // the members of Sales_data.
     
     return 0;
+}
+
+Sales_data &Sales_data::combine(const Sales_data &rhs) {
+    units_sold += rhs.units_sold;
+    revenue += rhs.revenue;
+    return *this;
+    /* 
+    why *this ? not this ? 
+    
+    = The parameter of this is a pointer, to get the reference
+      to actual object data type (Sales_data) you need to dereference
+      the pointer first.
+    */
+}
+
+/* 
+    Both following functions are return references because the
+    IO classes are types that cannot be copied.
+    If you wonder why don't we return reference to const?
+    because when reading and writing to the stream object (istream
+    and ostream), we're modifying the value of the object.
+*/
+std::istream &read(std::istream &is, Sales_data &item) {
+    double price = 0;
+    is >> item.bookNo >> item.units_sold >> price;
+    item.revenue = price * item.units_sold;
+
+    return is;
+}
+
+std::ostream &print(std::ostream &os, const Sales_data &item) {
+    os << item.isbn() << " " << item.units_sold << " " << item.revenue
+       << " " << item.avg_price() << endl;
+    
+    return os;
+}
+
+Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
+    Sales_data sum = lhs;       // copy data members from lhs into sum
+    sum.combine(rhs);
+
+    return sum;
 }
 #endif
 

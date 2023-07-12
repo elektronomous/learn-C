@@ -1,0 +1,6 @@
+Provide operations in your Person class to return the name
+and the address. Should these functions be const? Explain your
+choice.
+
+(answer):
+= Look at the file named Person.hpp

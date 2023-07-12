@@ -1,0 +1,7 @@
+What does the conditions in the following if statement do?
+
+    if (read(read(cin, data1), data2)) 
+
+(answer):
+
+= it first read the data1, and then read the data2.

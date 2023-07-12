@@ -1,0 +1,9 @@
+why does read define its Sales_data parameter as plain reference
+and print define its parameter as a reference to const?
+
+(answer):
+= because the read parameter will be modified, we're going to input 
+  a value to the object, so we're modifying it.
+
+= because the print parameter only read the value from the object, instead
+  of modifying it.

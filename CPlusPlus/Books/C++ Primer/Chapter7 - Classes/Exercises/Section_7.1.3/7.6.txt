@@ -1,0 +1,5 @@
+Define your own version of the add, read and print functions.
+
+(answer):
+
+= Look at the Sales_data.hpp
