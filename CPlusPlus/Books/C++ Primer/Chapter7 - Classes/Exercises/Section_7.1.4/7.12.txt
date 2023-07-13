@@ -1,0 +1,5 @@
+Move the definition of the Sales_data constructor that 
+takes an istream into the body of the Sales_data class.
+
+(answer):
+= Take a look into Sales_data.hpp

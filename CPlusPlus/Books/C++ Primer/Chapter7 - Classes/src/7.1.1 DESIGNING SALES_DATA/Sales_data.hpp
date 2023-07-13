@@ -5,6 +5,30 @@
 #include <string>
 
 struct Sales_data {
+    // constructors
+    Sales_data() = default();
+    /* 
+        = We must define the default constructor, because we're going to define
+          any other constructors. If we don't define this default constructor after
+          defining other constructor, we aren't allowed to create object with no arguments.
+
+                Sales_data total;       // error
+                Sales_data tarns;       // error
+
+        = By using this default, we're allowed to create an object with no arguments
+
+                Sales_data total, trans;
+    */
+   Sales_data(const std::string &s): bookNo(s) {}
+   Sales_data(const std::string &s, unsigned n, double p):
+                bookNo(s), units_sold(n), revenue(p*n) {}
+   Sales_data(std::istream &);          // we're defining this constructor outside this scope
+
+
+
+
+
+
     // new members: operations on Sales_data objects
     std::string isbn(/* Sales_data *const this */) const { // The purpose of that const is to modify the type of the implicit this pointer
         return bookNo;
@@ -38,6 +62,9 @@ struct Sales_data {
     double avg_price() const;                       // define elsewhere
 
     // data members are unchange from page 72
+    // in-class initializer is applied to class directly
+    // like the 0 and 0.0
+    // in case the of string class, it uses the in-class initializer of its class
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
@@ -89,7 +116,7 @@ std::istream &read(std::istream &is, Sales_data &item) {
 
 std::ostream &print(std::ostream &os, const Sales_data &item) {
     os << item.isbn() << " " << item.units_sold << " " << item.revenue
-       << " " << item.avg_price() << endl;
+       << " " << item.avg_price();
     
     return os;
 }
@@ -99,6 +126,11 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
     sum.combine(rhs);
 
     return sum;
+}
+
+// constructor definitions
+Sales_data::Sales_data(std::istream &is) {
+    read(is, *this);    // read will read a transaction from is into this object.
 }
 #endif
 
