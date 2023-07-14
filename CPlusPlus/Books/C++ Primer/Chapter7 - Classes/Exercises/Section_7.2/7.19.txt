@@ -1,0 +1,11 @@
+Indicate which members of your Person class you would declare as public
+and which you would declare as private. Explain your choice.
+
+(answer):
+
+= Surely the public member is the constructor and the interface (method) for 
+  the Person class. The private for the data member. You dont want public know your
+  name and address right? It's your identity so our program don't want you to 
+  spread your identity by choosing the data member to be private. Everybody has right
+  for asking your name and address and it would be our interface. Whether your want 
+  to answer or not, that's up to you.

@@ -1,0 +1,10 @@
+What is encapsulation? Why is it useful?
+
+(answer):
+= encapsulation is a way that you hide the implementation of
+  how the object works. This implementation is a combined of data
+  and the method (function) that you use to modify that data so
+  the behaviour of the object itself is represented by how that
+  implementation works.
+= It's useful because it simplify the works when use the object
+  of some type.

@@ -1,0 +1,17 @@
+What, if any, are the constraints on where and how often an
+access specifier may appear inside a class definition? What
+kinds of members should be defined after a public specifier?
+What kinds should be private?
+
+Note:
+    constraint = batasan
+(answer):
+
+= There's no such constraint on where and how often an access
+  specifier may appear inside a class. you can put it anywhere
+  in the class.
+= Generally, the members that would be appear after public specifier
+  is the interface(member function, constructor) of the object.
+= For the private specifier, it would be data members and member function
+  that is only related for the class itself.
+
