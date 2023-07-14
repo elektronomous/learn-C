@@ -1,0 +1,4 @@
+Update your Person class to hide its implementations.
+
+(answer): 
+= Look at the Person.hpp

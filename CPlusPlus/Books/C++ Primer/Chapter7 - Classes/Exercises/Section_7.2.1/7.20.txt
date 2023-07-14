@@ -1,0 +1,14 @@
+What are friends useful? Discuss the pros and cons of using friends.
+
+(answer):
+= It's useful because it could add/substitute the major function of your 
+  object. If you feel the overloaded operator is difficult for you
+  than use this friend function. It makes clear when using named function
+  than overload operator sometimes. Say that your Person class, we know 
+  that a person object has unique behaviour. Now you want to change the address
+  of the person that's unlikely to be part of the implementations, right?
+  you add the friends function that makes the address of the person is change.
+
+= The cons of using this friends is that it could mistakenly modified the 
+  state of the object since it's not part of the implementations of the object.
+  

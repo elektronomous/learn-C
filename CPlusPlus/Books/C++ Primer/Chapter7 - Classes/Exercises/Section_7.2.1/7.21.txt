@@ -1,0 +1,7 @@
+Update your Sales_data class to hide its implementations.
+The program you've written to use Sales_data operations should
+still continue to work. Recompile those programs with your new class
+definition to verify that they still work.
+
+(answer):
+= look at the Sales_data.hpp and 7.21.cpp
