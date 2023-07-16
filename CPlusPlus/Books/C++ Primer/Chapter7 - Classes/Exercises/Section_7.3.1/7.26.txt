@@ -1,0 +1,4 @@
+Define Sales_data::avg_price as inline function
+
+(answer):
+= Look at the Sales_data.hpp

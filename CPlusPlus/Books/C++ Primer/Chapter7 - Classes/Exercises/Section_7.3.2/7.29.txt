@@ -1,0 +1,5 @@
+Revise your Screen class so that move, set, and display function
+return Screen and check your prediction from the previous exercises.
+
+(answer):
+= Look at the Screen_copy.hpp and 7.29.cpp

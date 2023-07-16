@@ -1,0 +1,7 @@
+What would happen in the previous exercise if the return type
+of move, set, and display was Screen rather than Screen&?
+
+(answer):
+The object that return by member function was a copy of *this(the current object) 
+and the subsequent call will change the copy of that object not our actual object.
+ 

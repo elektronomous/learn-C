@@ -1,0 +1,10 @@
+Can Screen rely on the default versions of copy and assignment?
+If so, why? If not, why not?
+
+(answer):
+= As the book says, if your class manage a memory resource manually
+  then default version of copy and assignment won't work. But if your
+  class has a type that handle the management like string and vector
+  it's not necessary to manage that memory since the type will manage
+  for us. The Screen itself use the string as its data member so we say 
+  that default version of copy and assignment will work for us.

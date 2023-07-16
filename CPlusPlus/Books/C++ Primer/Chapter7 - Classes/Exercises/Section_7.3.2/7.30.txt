@@ -1,0 +1,11 @@
+It's legal but redundant to refer to members through the this pointer.
+Discuss the the pros and cons of explicitly using the this pointer to
+access members.
+
+(answer):
+= When defining a member function outside the class, you're using the scope
+  operator(::) to indicate that the function is own by a class. from this we
+  can refer to the data members without this keyword. But think when the local
+  data of the member function is involves in. We can't seperate which is data 
+  member of the class or the local data function. Then we need this keyword to
+  help us to clear our insight.

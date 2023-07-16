@@ -1,0 +1,5 @@
+Write your own version of the Screen class.
+
+(answer):
+
+= Look at the Screen.hpp
