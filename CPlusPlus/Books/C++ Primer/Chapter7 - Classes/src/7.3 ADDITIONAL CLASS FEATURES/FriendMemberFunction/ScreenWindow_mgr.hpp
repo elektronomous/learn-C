@@ -1,21 +1,52 @@
-#ifndef SCREEN_HPP
-#define SCREEN_HPP
+#ifndef SCREEN_WINDOW_HPP
+#define SCREEN_WINDOW_HPP
 
+#include <vector>
+#include <iostream>
 #include <string>
-#include "Window_mgr.hpp"
 
+/* 
+Making a member function a friend requires careful structuring of our
+programs to accommodate interdependencies among the declarations
+and definitions. in this example, we must order our program as follows:
+    read order:
+    1.1 -> 1.2 -> 1.3 - 2.1 -> 2.2 -> 2.3
+*/
+
+// 1.3 Screen must be declared before clear can use the members of the Screen
+class Screen;
+class Window_mgr;
+
+// 1.1 Define the window_mgr class
+class Window_mgr {
+    public:
+        using ScreenIndex = std::vector<Screen>::size_type;
+        // 1.2 which declare, but cannot define clear
+        void clear(ScreenIndex);
+        
+        void print(void) const;
+        void print(ScreenIndex i) const;
+        void addScreen(Screen &s) {
+            screens.push_back(s);
+        }
+
+    private:
+        std::vector<Screen> screens;
+
+};
+
+// 2.1 Next define class Screen
 class Screen {
     // Window_mgr members can access the private parts of this class
     // friend class Window_mgr;
-
+    
     /*
     Rather than making the entire Window_mgr class a friend, Screen
     can instead speicify that only the clear member is allowed to access
     
     2.2 including a friend declaration for clear
     */ 
-    friend void Window_mgr::clear(ScreenIndex);    
-
+    friend void Window_mgr::clear(ScreenIndex);
 
     public:
     /* 
@@ -118,9 +149,26 @@ inline Screen &Screen::set(pos ht, pos wd, char ch) {
     return *this;
 }
 
+// 2.3 define clear
 void Window_mgr::clear(ScreenIndex i) {
+    // s is a reference to the Screen we want to clear
     Screen &s = screens[i];
+    // reset the contents of that Screen to all blanks
     s.contents = std::string(s.height * s.width, ' ');
+    /* 
+    Because Screen grants friendship to Window_mgr, all the members
+    of Screen are accesible to the function in Window_mgr.
+    */
+}
+
+void Window_mgr::print(ScreenIndex i) const {
+    const Screen &s = screens[i];
+    s.display(std::cout);
+}
+
+void Window_mgr::print(void) const {
+    for (const Screen &s: screens)
+        s.display(std::cout);
 }
 
 #endif
