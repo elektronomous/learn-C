@@ -1,0 +1,6 @@
+We might want to supply cin as a default argument to the constructor
+that takes an istream&. Write the constructor declaration that uses
+cin as the default argument.
+
+(answer):
+= Look at the Sales_data.hpp

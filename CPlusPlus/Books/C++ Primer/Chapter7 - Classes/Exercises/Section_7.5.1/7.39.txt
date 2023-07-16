@@ -1,0 +1,10 @@
+Would it be legal for both constructor that takes a string
+and the one that takes an istream& to have default arguments?
+If not, why not?
+
+(answer):
+= Both of them are legal but since we need the book number (ISBN), 
+  when we create object we must supply the book number with a value
+  not empty value. In this case the default string argument won't 
+  help. But the default istream& will help because it force user to
+  enter the book number. 

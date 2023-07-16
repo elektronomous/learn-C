@@ -1,0 +1,17 @@
+The following initializer is in error. Identify and fix the problem
+
+    struct X {
+        X(int i, int j): base(i), rem(base % j) { }
+        int rem, base;
+    };
+
+(answer):
+
+= The order of initialization is begin from rem, then base.
+  When you compute uninitialized variable the result will be
+  uninitialized value.
+
+    struct X {
+        X(int i, int j):  base(i), rem(i % j) { }
+        int rem, base;
+    };

@@ -1,0 +1,14 @@
+What whould happen if we gave Screen a size member
+defined as follows? Fix any problems you identify.
+
+    pos Screen::size(void) const {
+        return height * width;
+    }
+
+(answer):
+
+= pos is seen before we're in the scope of Screen
+
+    Screen::pos Screen::size(void) const {
+        return height * width;
+    }

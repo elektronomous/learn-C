@@ -1,0 +1,10 @@
+For the class you wrote for exercise 7.40 in p. 291, decide 
+whether any of the constructors might use delegation. If so, 
+write the delegating constructor for your class. If not, Look
+at the list of abstractions and choose one that you think would 
+use a delegating constructor. Write the class definition for that 
+abstraction.
+
+(answer):
+
+= Look at the Date.hpp

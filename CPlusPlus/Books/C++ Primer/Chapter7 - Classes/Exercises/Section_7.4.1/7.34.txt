@@ -1,0 +1,7 @@
+What would happen if we put the typedef of pos in the Screen
+class on page 285 as the last line in the class.
+
+(answer):
+
+= It would be error as the book says member that defines types must
+  appear before they're used.

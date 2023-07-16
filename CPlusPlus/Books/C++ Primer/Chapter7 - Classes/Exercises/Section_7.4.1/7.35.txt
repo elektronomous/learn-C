@@ -1,0 +1,52 @@
+Explain the following code, indicating which definition
+of Type or initVal is used for each use of those names.
+Say how would you would fix any errors.
+
+    typedef string Type;
+    Type initVal();
+
+    class Exercises {
+        public:
+            typedef double Type;       
+            Type setVal(Type);
+            Type initVal();
+
+        private:
+            int val;
+    };
+
+    Type Exercises::setVal(Type parm) {
+        val = parm + initVal();
+        return val;
+    }
+
+(answer):
+
+= remember that types name are special, so you can't redefine the name of the
+  Type. We can fix it by changing the string Type as str;
+
+    typedef string str;
+    str initVal();
+
+    class Exercises {
+        public:
+            typedef double Type;        // ERROR       
+            Type setVal(Type);
+            Type initVal();
+
+        private:
+            int val;
+    };
+
+    Type Exercises::setVal(Type parm) {
+        val = parm + initVal();
+        return val;
+    }
+
+= The initVal function inside the setVal definition will called the
+  member function declared inside the class, because it hasn't find
+  the initVal declaration inside the setVal().
+
+= If you want to use the outside scope of the class version, you would go:
+
+        val = parm + ::initVal();

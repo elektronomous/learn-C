@@ -1,0 +1,14 @@
+Choose one of the following abstractions (or an abstraction of your
+own choosing). Determine what data are needed in the class. Provide
+an appropriate set of constructors. Explain your decisions.
+
+(a) Book
+(b) Date
+(c) Employee
+(d) Vehicle
+(e) object
+(f) Tree
+
+(answer):
+= I would go for Date, it will be easier to manage this abstraction.
+= Look at the Date.hpp as the answer
