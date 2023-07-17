@@ -1,0 +1,4 @@
+Define your own version of Debug.
+
+(answer):
+= Look at the Debug.hpp

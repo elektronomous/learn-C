@@ -1,0 +1,12 @@
+Is the Data class from (p.298) a literal class? If not, why not?
+If so, explain why it is literal
+
+    struct Data {
+        int iVal;
+        string s;
+    };
+
+(answer):
+
+= It's not a literal class because string is the member of the class which is
+  not a literal type.

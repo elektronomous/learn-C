@@ -1,0 +1,7 @@
+Should the members of Debug that begin with set_ be 
+declared as constexpr? If not, why not?
+
+(answer):
+
+= Since the return type of the set_ member function is void (there's no value 
+  to return), it's not considered to be constexpr.
