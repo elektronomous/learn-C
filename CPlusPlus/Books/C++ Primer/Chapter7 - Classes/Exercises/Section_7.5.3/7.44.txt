@@ -1,0 +1,8 @@
+Is the following declaration legal? If not, why not?
+
+    vector<NoDefault> vec(10);
+
+(answer):
+= Look at the 7.44.cpp
+= The error given by compiler is no matching for call to NoDefault::NoDefault()
+  which is the class need default constructor. So it obviously illegal.

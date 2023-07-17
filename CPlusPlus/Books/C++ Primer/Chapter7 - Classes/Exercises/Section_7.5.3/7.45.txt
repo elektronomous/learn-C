@@ -1,0 +1,7 @@
+What if we defined the vector in the previous exercise to hold objects
+of type C (Cclass) ?
+
+(answer):
+= Look at the 7.45.cpp
+= It's legal since we defined default constructor for the C which initialized
+  the NoDefault object.

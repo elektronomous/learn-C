@@ -1,0 +1,21 @@
+Which, if any, of the following statements in are untrue?
+Why?
+
+(answer):
+(a) A class must provide at least one constructor
+(b) A default constructor is a constructor with an empty parameter list.
+(c) If there are no meaningful default values for a class, the class should
+    not provide a default constructor
+(d) If a class does not define a default constructor, the compiler generates
+    one that initializes each data member to the default value of its associated
+    type.
+
+(answer):
+(a) = False. If the one constructor is default constructor, that would be fine. If any
+      other constructor you need to define other default constructor.
+
+(b) = False. It contains zero or more parameter list.
+(c) = False. It should provide the default constructor because compiler could decide 
+      what value it's contains.
+
+(d) = True. It's called synthesized default constructor.
