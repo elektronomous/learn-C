@@ -1,0 +1,9 @@
+Determine whether any of your Person class constructors
+should be explicit?
+
+(answer):
+= Look at the Person.hpp
+= Because the members are strings, we make the one of the constructor
+  to be explicit. User could misuse the Person class. The Person only
+  accept name as the constructor not any other string value that's not
+  a name, such address or gender etc.

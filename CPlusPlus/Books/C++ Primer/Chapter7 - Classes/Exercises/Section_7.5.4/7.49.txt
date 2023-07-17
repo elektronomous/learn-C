@@ -1,0 +1,25 @@
+For each of the three following declarations of combine,
+explain what happens if we call i.combine(s), where i is
+Sales_data and s is a string:
+
+    Sales_data i;
+    string s;
+    i.combine(s);
+
+(a) Sales_data &combine(Sales_data);
+(b) Sales_data &combine(Sales_data&);
+(c) Sales_data &combine(const Sales_data&) const;
+
+(answer):
+= We assumed that Sales_data member function isn't explicit
+(a) = Because the parameter is the Sales_data itself, the argument that pass to it
+      will be copied. First it constructs the Sales_data using the constructor that
+      takes a string and then copied the constructed object to Sales_data. We're allowed
+      to use this because we're using temporary object assign to parameter that has type
+      Sales_data.
+
+(b) = The parameter is reference to Sales_data. You cannot reference any literal value or
+      temporary value. Then this parameter will be errors
+
+(c) = since you're modifying the i object the const for the implicit this should be removed.
+      this function will error

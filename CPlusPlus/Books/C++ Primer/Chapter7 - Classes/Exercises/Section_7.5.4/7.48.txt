@@ -1,0 +1,15 @@
+Assuming the Sales_data constructors are not explicit,
+What operations happen during the following definitions:
+
+    string null_isbn("9-999-99999-9");
+    Sales_data item1(null_isbn);
+    Sales_data item2("9-999-99999-9");
+
+What happens if the Sales_data constructors are explicit?
+
+(answer):
+
+= Whether the Sales_data is explicit or not, this will happen:
+= The second statment will call the constructor that takes string as its 
+  parameter and construct the object.
+= The third statement will do the same as the second statement.

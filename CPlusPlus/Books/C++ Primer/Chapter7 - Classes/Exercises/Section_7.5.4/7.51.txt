@@ -1,0 +1,10 @@
+Why do you think vector defines its single-argument
+constructor as explicit, but string does not?
+
+(answer):
+= Say that when the vector single-argument constructor is explicit
+  and then you copy initiazalation (assign with =) with integer value 
+  or double value. It such an awkward assignment.
+
+= because string type only accept one type of value that is enclosed with 
+  double-quotes. and the type represents the unit of sequence of character.

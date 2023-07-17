@@ -1,0 +1,14 @@
+Explain whether the Sales_data constructor that takes a string 
+should be explicit. What are the benefits of making the constructor
+explicit? What are the drawbacks?
+
+(answer):
+
+= It should be explicit because user could be assign any other string intended
+  that the other member(price, units_sold, revenue) will be keep in its value.
+  But the result is that, when you assign only string you'll get an empty member
+  except for the bookNo.
+= One of the benefit is the user forced to fill all member of the object.
+= the drawback could be for example you wanna create a temporary object with only 
+  ISBN. you must doing conversion explicitly, making the code longer especially
+  the all of member of the temporary object filled.  

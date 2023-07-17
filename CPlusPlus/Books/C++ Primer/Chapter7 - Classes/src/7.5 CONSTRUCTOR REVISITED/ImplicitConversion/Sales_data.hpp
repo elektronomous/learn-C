@@ -31,6 +31,11 @@ class Sales_data {
                 bookNo(s), units_sold(n), revenue(p*n) {}
         Sales_data(std::istream &);          // we're defining this constructor outside this scope
 
+        /* 
+        = The explicit keyword is meaningful only on constructors that can be called with a single arg.
+        = The explicit keyword is used only on the constructor declaration inside the class.
+        */
+
 
 
 
