@@ -1,0 +1,11 @@
+What is a static class member? What are the advantages of static members?
+How do they differ from ordinary members?
+
+(answer):
+= A static class member is a member which isn't related to object generated
+  by the constructor
+= Since it's related to the class, we can access the same value accross objects.
+= Ordinary member has independent value, which seperated on each object. The static
+  class members are not, they have the same value accross objects. You can access
+  static class member via object or usign the class name and the scope operator. You 
+  access ordinary data member through an object, you can't access them via class.
