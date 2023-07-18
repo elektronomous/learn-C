@@ -1,0 +1,22 @@
+Which, if any, of the following static data member declarations
+and definitions are errors? Explain why.
+
+    class Example {
+        public:
+            static double rate = 6.5;           // error #1
+            static const int vecSize = 20;
+            static vector<double> vec(vecSize); // error #2
+    };
+
+    #include "Example.h"
+
+    double Example::rate;
+    vector<double> Example::vec;
+
+(answer):
+= Look at the 7.58.cpp
+= On the error #1, we can only provide in-class initializer for static members
+  that have const type or constexpr.
+= On the error #2 the parantheses is a part of the initialization of a static member,
+  and because vector isn't const or constexpr it needs to define and initialized 
+  outside the class scope.
