@@ -15,6 +15,13 @@ int main(int argc, char *argv[]) {
     ofstream output(argv[2]);       // open the output file 
     Sales_data total;
 
+
+    /* = We can use object of the inherited type in places where an object
+     *   of the original type is expected.
+     * = That is, if we have function that takes an ostream&, we can call that
+     *   function passing it an ofstream object and similarly for istream& and
+     *   ifstream
+     */
     if (read(input, total)) {
         Sales_data trans;
 
@@ -29,6 +36,9 @@ int main(int argc, char *argv[]) {
         print(output, total) << endl;           // print the last transaction into the outputfile
     } else
         cerr << "No Data!!\n";
+    
+    input.close();      // close the input file
+    output.close();      // close the output file
 
     return 0;
 }
