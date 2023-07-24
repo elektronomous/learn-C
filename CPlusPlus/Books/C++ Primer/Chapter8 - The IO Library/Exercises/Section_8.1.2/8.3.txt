@@ -1,0 +1,9 @@
+What causes the following while to terminate ? 
+
+    while (cin >> i) /* ... */
+
+(answer):
+
+= If i is an int, then when you enter a character not a numeric value 
+  then while will stop
+= If i is a string, then when you enter an EOF then while will stop
