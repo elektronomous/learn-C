@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         cout << "How to use the program:\n";
-        cout << "UsingIOFstream <inputFile> <outputFile>\n";
+        cout << "8.6 <inputFile> <outputFile>\n";
         return 1;
     }
 

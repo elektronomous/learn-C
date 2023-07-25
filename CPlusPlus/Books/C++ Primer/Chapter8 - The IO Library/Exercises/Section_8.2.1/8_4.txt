@@ -1,0 +1,4 @@
+Each file stream type defines a default file mode that is used whenever we do not
+otherwise specify a mode. Files associated with an ifstream are opened in in
+mode; files associated with an ofstream are opened in out mode; and files
+associated with an fstream are opened with both in and out modes.
