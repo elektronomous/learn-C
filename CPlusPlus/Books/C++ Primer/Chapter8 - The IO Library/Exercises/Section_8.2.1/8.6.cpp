@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    ifstream input(argv[1]);        // open the file of the sales transactions
+    ifstream input(argv[1]);        // open the file of the sales transactions as the input stream
     ofstream output(argv[2]);       // open the output file 
     Sales_data total;
 
