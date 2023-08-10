@@ -5,14 +5,13 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
+    if (argc != 2) {
         cout << "How to use the program:\n";
-        cout << "8.6 <inputFile> <outputFile>\n";
+        cout << "8.6 <inputFile>\n";
         return 1;
     }
 
     ifstream input(argv[1]);        // open the file of the sales transactions as the input stream
-    ofstream output(argv[2]);       // open the output file 
     Sales_data total;
 
 
@@ -23,23 +22,11 @@ int main(int argc, char *argv[]) {
      *   function passing it an ofstream object and similarly for istream& and
      *   ifstream
      */
-    if (read(input, total)) {
-        Sales_data trans;
-
-        while (read(input, trans)) {
-            if (total.isbn() == trans.isbn())
-                total.combine(trans);
-            else {
-                print(output, total) << endl;   // print the result into output file
-                total = trans;
-            }
-        }
-        print(output, total) << endl;           // print the last transaction into the outputfile
-    } else
-        cerr << "No Data!!\n";
+    read(input, total);
+    cout << "ISBN\tSELL\tINCOME\tPRICE\n";
+    print(cout, total) << "\n";
     
     input.close();      // close the input file
-    output.close();      // close the output file
 
     return 0;
 }

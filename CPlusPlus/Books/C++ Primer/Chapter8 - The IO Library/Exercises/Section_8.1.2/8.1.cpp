@@ -6,7 +6,8 @@ using namespace std;
 istream& rdUntilEof(istream& is) {
     string s;
 
-    is >> s;
+    while (is >> s)
+        cout << s;
 
     if (is.eof())
         // reset the stream

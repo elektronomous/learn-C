@@ -1,31 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include "Sales_data.hpp"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        cerr << "HOW TO USE PROGRAM:\n"
-             << "8.7 <inputFile> <outputFile>\n";
+        cout << "How to use the program:\n";
+        cout << "8.6 <inputFile> <outputFile>\n";
         return 1;
     }
 
-    // open the first file
-    ifstream in(argv[1]);       // implicit in
+    ifstream input(argv[1]);        // open the file of the sales transactions as the input stream
+    ofstream output(argv[2]);       // open the file in truncated mode and out mode
+    Sales_data total;
 
-    if (in.fail()) {
-        cerr << "The input file is invalid.\n";
-        return 1;
-    }
 
-    ofstream out(argv[2]);      // implicit out and trunc
-                                // REMEMBER: this will truncated your file's content
+    /* 
+     * = We can use object of the inherited type in places where an object
+     *   of the original type is expected.
+     * = That is, if we have function that takes an ostream&, we can call that
+     *   function passing it an ofstream object and similarly for istream& and
+     *   ifstream
+     */
+    read(input, total);
+    output << "ISBN\tSELL\tINCOME\tPRICE\n";
+    print(output, total) << "\n";
+    
+    input.close();      // close the input file
+    output.close();     // close the output file
 
-    if (out.fail()) {
-        cerr << "The output file is invalid.\n";
-        return 1;
-    }
-
-    while ()
     return 0;
 }
