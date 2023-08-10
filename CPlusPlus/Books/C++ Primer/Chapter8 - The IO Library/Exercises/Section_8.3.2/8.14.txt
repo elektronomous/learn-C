@@ -1,0 +1,7 @@
+Why did we declare entry and nums as const auto &?
+
+= we only modified the copy of the entry inside the format
+  function, so we don't really modified the entry values.
+= because we have const PersonInfo, which is we can't modified
+  its value, also with its member then we must use const string
+  to get its value via nums.
