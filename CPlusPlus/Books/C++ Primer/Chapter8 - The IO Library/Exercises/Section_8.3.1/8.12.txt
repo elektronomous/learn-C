@@ -1,0 +1,3 @@
+Why we didn't use the in-class initializers in PersonInfo? 
+
+= We don't use the in-class initializer since the member is default-initialized.
