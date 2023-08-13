@@ -16,3 +16,11 @@ At the middle (fast) => forward_list, list
 = If you copy the container's value, then you're copying
   the address. Copying the address means you can change
   the value inside it
+
+==== EMPLACE_BACK | PUSH_BACK | INSERT | EMPLACE ==
+= vector, deque, list, string
+===================================================
+
+======= EMPLACE_FRONT | PUSH_FRONT SUPPORTED ======
+= list, forward_list, deque
+===================================================
