@@ -1,0 +1,18 @@
+============== ACCESSING ELEMENTS =================
+Fast-Random accesss => vector, deque, array, string
+Bidirectional access => list
+Monodirectional Access => forward_list
+===================================================
+
+============ INSERTING/DELETING VALUE =============
+At the back (fast) => vector, string, deque
+At the front (slow) => vector, string
+At the front and back (fast) => deque
+At the middle (fast) => forward_list, list
+===================================================
+
+= Only fast-random access has size function.
+= Use iterator to make the access to the element fast.
+= If you copy the container's value, then you're copying
+  the address. Copying the address means you can change
+  the value inside it

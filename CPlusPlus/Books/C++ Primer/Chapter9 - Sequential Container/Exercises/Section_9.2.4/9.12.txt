@@ -1,0 +1,8 @@
+Explain the difference between the constructor that takes a container
+to copy and the constructor that takes two iterator.
+
+(answer):
+= constructor that takes a container will copy the element of the container
+  as whole
+= constructor that takes two iterator will only copy the range that denoted
+  by the two iterator.

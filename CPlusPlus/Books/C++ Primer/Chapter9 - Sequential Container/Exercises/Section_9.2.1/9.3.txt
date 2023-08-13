@@ -1,0 +1,5 @@
+What are the constraints on the iterators that form iterator ranges?
+
+(answer):
+= Both iterator must refer to the same container
+= The end iterator must no preced the begin iterator

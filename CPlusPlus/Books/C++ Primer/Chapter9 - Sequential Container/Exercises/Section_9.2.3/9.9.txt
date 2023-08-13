@@ -1,0 +1,6 @@
+What is the difference between the begin and cbegin functions?
+
+(answer):
+= cbegin is only return const_iterator of its container type, while
+  begin return two type of iterator one for the nonconst object which
+  is iterator and the const object const_iterator.

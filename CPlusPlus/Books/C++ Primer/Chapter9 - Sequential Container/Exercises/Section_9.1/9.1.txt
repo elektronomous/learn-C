@@ -1,0 +1,20 @@
+Which is the most appropriate---- a vector, a deque, or a list - for the
+following program tasks? Explain the rationale for your choice. If there is
+no reason to prefer one or another container, explain why not.
+
+(a) Read a fixed number of words, inserting them in the container alphabetically
+    as they are entered. We'll see in the next chapter that associative containers
+    are better suited to this problem.
+(b) Read unknown number of words. Always insert new word at the back. Remove the value
+    from the front.
+(c) Read an unknown number of integers from a file. Sort the numbers and then print them 
+    to standard output.
+
+(answer):
+
+(a) list => when you inserting alphabetically, you probably gonna compare the element of the
+             middle container and inserting new value in it. 
+(b) deque => since your assignment is in front and the back, the fastest container is the deque
+(c) vector => You just read the number and insert it, there's no way arround to control the order.
+              the sort function of the vector is fast enough too, so you don't woory to control 
+              the order.

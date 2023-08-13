@@ -1,0 +1,17 @@
+What is wrong with the following program? How might you correct it?
+
+    list<int> lst1;
+    list<int>::iterator iter1 = lst1.begin(),
+                        iter2 = lst1.end();
+
+    while (iter1 < iter2) /* ... */
+
+(answer):
+
+= equality valid for all container types, so we use != instead of <
+    list<int> lst1;
+    list<int>::iterator iter1 = lst1.begin(),
+                        iter2 = lst1.end();
+
+    while (iter1 != iter2) /* ... */
+

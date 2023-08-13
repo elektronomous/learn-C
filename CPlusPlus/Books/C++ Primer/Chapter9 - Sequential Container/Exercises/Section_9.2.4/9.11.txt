@@ -1,0 +1,12 @@
+Shows an example of each of the six ways to create and 
+initialize a vector. Explain what values each vector contains
+
+(answer):
+= Say that we have vector of int;
+    
+    vector<int> vint;               // empty values, zero-initialized values
+    vector<int> vint(10, 2);        // using the vector constructor, ten elements with value 2 each.
+    vector<int> vint = {1,2,3};     // {1,2,3}, list-initialized value
+    vector<int> vint(iter1, iter2); // using iterator range
+    vector<int> vint(10);           // create ten element, default-initialized value
+    vector<int> vint(anotherVint)   // copy anotherVint elements to vint.

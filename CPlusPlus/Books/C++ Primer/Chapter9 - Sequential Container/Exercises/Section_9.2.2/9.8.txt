@@ -1,0 +1,6 @@
+What type should be used to read elements in a list of strings?
+to write them?
+    list<string>
+
+(answer):
+list<string>::iterator
