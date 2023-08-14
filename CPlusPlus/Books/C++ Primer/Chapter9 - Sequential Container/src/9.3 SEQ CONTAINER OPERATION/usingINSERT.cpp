@@ -5,6 +5,7 @@ using namespace std;
 
 int main(void) { 
     vector<int> vint {1,2};
+    vector<string> v {}
     vector<int>::iterator vintBegin = vint.begin();
 
     // insert front on vector is expensive operation
