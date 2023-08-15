@@ -24,3 +24,15 @@ At the middle (fast) => forward_list, list
 ======= EMPLACE_FRONT | PUSH_FRONT SUPPORTED ======
 = list, forward_list, deque
 ===================================================
+
+=========== BACK OPERATION =========
+= vector, deque, list, string, array
+====================================
+
+=========== FRONT OPERATION ========
+= all container
+==================================== 
+
+===== SUBSCRIPT([]) OPERATION ======
+= string, vector, deque, array
+====================================

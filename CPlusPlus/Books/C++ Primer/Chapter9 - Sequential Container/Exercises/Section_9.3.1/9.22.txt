@@ -9,4 +9,5 @@ How might you correct the problem(s) ?
             iv.insert(iter, 2 * some_val);
 
 (answer):
-= The iter must be advanced and iter must be reassigned
+= The iter must be advanced and iter must be reassigned because every time
+  you insert a value the container's data structure will be moved.
