@@ -36,3 +36,11 @@ At the middle (fast) => forward_list, list
 ===== SUBSCRIPT([]) OPERATION ======
 = string, vector, deque, array
 ====================================
+
+===== POP_BACK/ERASE OPERATION =====
+= deque, list, string, vector
+====================================
+
+==== POP_FRONT/ERASE OPERATION =====
+= deque, list, forward_list
+====================================
