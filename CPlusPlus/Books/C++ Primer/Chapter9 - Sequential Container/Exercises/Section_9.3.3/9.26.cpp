@@ -18,12 +18,17 @@ int main(void) {
     // erase the odd values from lint
     for (list<int>::iterator lintBegin = lint.begin(); lintBegin != lint.end(); lintBegin++)
         if (*lintBegin % 2 == 1)
-            lint.erase(lintBegin);
+            lintBegin = lint.erase(lintBegin); 
 
     // erase the even values from vector
     for (vector<int>::iterator vintBegin = vint.begin(); vintBegin != vint.end(); vintBegin++)
         if (*vintBegin % 2 == 0)
-            vint.erase(vintBegin);
+            vintBegin = vint.erase(vintBegin);
+    
+    /* Both of the iterator we assign back. remember when you remove/erase an element
+       inside a loop iteration, the iterator will be invalidate which means the iterator
+       doesn't longer point to the next element following the removed element.
+    */
     
     // what's left in the list
     cout << "The list contains: ";
