@@ -4,15 +4,15 @@
 using namespace std;
 
 int main(void) {
-    vector<int> vint {1,2,3,4};
-    vector<int>::iterator toVint = vint.begin() + 2;
-    // before insert a value
-    cout << "toVint after inserted value before it: " << *toVint << endl;
+    vector<int> vint {1,2,3,4,5,6,7,8};
+    vector<int>::iterator firstIterator = vint.begin() + 2;
+    vector<int>::iterator secondIterator = vint.begin() + 2;
 
-    // if i insert value on the iter, is iter would be invalidated?
-    vint.insert(toVint, {5,6});
+    vint.erase(firstIterator, secondIterator);
 
-    cout << "toVint after inserted value before it: " << *toVint << endl;
+    for (const int &val: vint)
+        cout << val << " ";
+    cout << endl;
 
     return 0;
 }

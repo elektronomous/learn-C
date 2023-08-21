@@ -1,0 +1,13 @@
+In the program on page 349 that erased a range of elements,
+what happens if elem1 and elem2 are equal? What if elem2 or
+both elem1 and elem2 are the off-the-end iterator?
+
+    // delete the range of elements between two iterators
+    // returns an iterator to the element just after the last removed element
+
+    elem1 = slist.erase(elem1, elem2); // after the call elem1 == elem2
+
+(answer):
+= The way of the erase work is that the erase using loop iterator which is on
+  the evaluation part, both elem isn't point on the same element. that's why when
+  we passed the same value of iterator, we aren't erase anything.
