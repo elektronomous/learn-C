@@ -9,5 +9,6 @@ both elem1 and elem2 are the off-the-end iterator?
 
 (answer):
 = The way of the erase work is that the erase using loop iterator which is on
-  the evaluation part, both elem isn't point on the same element. that's why when
-  we passed the same value of iterator, we aren't erase anything.
+  the evaluation part, both elem isn't point on the same element make the loop
+  to stop because the evaluation is failed. that's why when we passed the same 
+  value of iterator, we aren't erase anything.
