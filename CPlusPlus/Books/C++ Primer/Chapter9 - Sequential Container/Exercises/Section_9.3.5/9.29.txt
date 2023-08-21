@@ -1,0 +1,9 @@
+Given that vec holds 25 elements, what does vec.resize(100) do?
+What if we next wrote vec.resize(10)?
+
+(answer):
+= when you resize to 100, it means that the current size is less than
+  the requested element's size which make the vector to add to its element
+  75 elements value-initialized. Now the current vector's size is 100, when 
+  you resize to 10 elements, which is the current size is greater than the
+  size requested makes the vector to shrink it to 10 elements. 

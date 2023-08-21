@@ -1,16 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <deque>
 
 using namespace std;
 
 int main(void) {
-    vector<int> vint {1,2,3,4,5,6,7,8};
-    vector<int>::iterator firstIterator = vint.begin() + 2;
-    vector<int>::iterator secondIterator = vint.begin() + 2;
+    deque<int> deqint {1,2,3,4};
 
-    vint.erase(firstIterator, secondIterator);
+    deque<int>::iterator middleDeqint = deqint.begin() + (deqint.size()/2);
+    int &secondDeqint = deqint.at(1);
 
-    for (const int &val: vint)
+    deqint.insert(deqint.begin() + 1, {5, 6, 7});
+
+    cout << "Is middleDeqint valid: " << *middleDeqint << endl;
+    cout << "secondDeqint is it valid: " << secondDeqint << endl;
+    cout << "deqint contains: ";
+    for (const int &val: deqint)
         cout << val << " ";
     cout << endl;
 
