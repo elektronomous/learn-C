@@ -10,7 +10,7 @@ int main(void) {
     deque<int>::iterator middleDeqint = deqint.begin() + (deqint.size()/2);
     int &secondDeqint = deqint.at(1);
 
-    deqint.insert(deqint.begin() + 1, {5, 6, 7});
+    deqint.pop_front();
 
     cout << "Is middleDeqint valid: " << *middleDeqint << endl;
     cout << "secondDeqint is it valid: " << secondDeqint << endl;
@@ -19,5 +19,6 @@ int main(void) {
         cout << val << " ";
     cout << endl;
 
+    
     return 0;
 }

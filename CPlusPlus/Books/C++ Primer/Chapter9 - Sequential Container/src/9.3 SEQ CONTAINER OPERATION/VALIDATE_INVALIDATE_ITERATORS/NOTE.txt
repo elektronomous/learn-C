@@ -1,0 +1,1 @@
+Container operations may invalidate operators section 9.3.6
