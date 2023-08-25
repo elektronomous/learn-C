@@ -1,0 +1,5 @@
+     [1][3][4][5]          
+front            back
+
+(=) A deque guarantees constant-time insert and delete of elements at 
+    the beginning and end of the container

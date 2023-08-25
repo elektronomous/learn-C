@@ -1,24 +1,22 @@
 #include <iostream>
-#include <vector>
-#include <deque>
+#include <list>
 
 using namespace std;
 
 int main(void) {
-    deque<int> deqint {1,2,3,4};
+    list<int> lint {1,2,3,4,5};
+    list<int>::iterator middleIterator = lint.begin();
+    middleIterator++;
+    middleIterator++;
 
-    deque<int>::iterator middleDeqint = deqint.begin() + (deqint.size()/2);
-    int &secondDeqint = deqint.at(1);
+    list<int>::iterator afterDeleteIterator = lint.insert(middleIterator, 10);
 
-    deqint.pop_front();
+    cout << *middleIterator << endl;
+    cout << *afterDeleteIterator << endl;
 
-    cout << "Is middleDeqint valid: " << *middleDeqint << endl;
-    cout << "secondDeqint is it valid: " << secondDeqint << endl;
-    cout << "deqint contains: ";
-    for (const int &val: deqint)
+    cout << "lint contains: ";
+    for (const int &val: lint)
         cout << val << " ";
     cout << endl;
-
-    
     return 0;
 }

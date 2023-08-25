@@ -1,0 +1,3 @@
+(=) When we use an object to initialize a container, or insert an object into a
+    container, a copy of that object’s value is placed in the container, not the
+    object itself.
