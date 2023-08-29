@@ -1,3 +1,10 @@
 (=) When we use an object to initialize a container, or insert an object into a
     container, a copy of that object’s value is placed in the container, not the
     object itself.
+
+(=) In the call to emplace_back, that object is created directly in space managed 
+    by the container. The call to push_back creates a local temporaryobject that 
+    is pushed onto the container.
+
+(=) The arguments to an emplace function vary depending on the element type. The
+    arguments must match a constructor for the element type

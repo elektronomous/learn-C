@@ -1,0 +1,88 @@
+= Each of the insert functions takes an iterator as its first argument.
+= Because the iterator might refer to a nonexistent element off the end 
+  of the container, and because it is useful to have a way to insert elements
+  at the beginning of a container, element(s) are inserted before the position 
+  denoted by the iterator
+
+= Say we have empty container
+
+        END
+        |
+        |
+       [ ]
+        |
+        |
+      BEGIN
+        |
+        |
+  your iterator
+
+= If you notice that insert operation by inserting before the position denoted
+  by iterator
+
+          END
+           |
+           |
+       [3][ ]
+        |
+        |
+      BEGIN
+        |
+        |
+   your iterator   
+
+= The way the insert operation works is by moving the element pointed by your iterator
+  in few times depend on how many value you're going to insert. The iterator stays at
+  the position where it's pointed. after that insert return that iterator.
+
+= say now your iterator is point to element that has value 5 and you want insert
+  value 7
+                    END
+                    |
+                    |
+       [3][4][5][6][ ]
+        |     |
+        |     |
+        BEGIN |
+              |
+          your iterator
+                                                   END
+                                                    |
+                                                    |
+= The insert operation will move the element [5][6][ ] one time, because you just only
+  insert 1 value, which is 7
+
+                        END
+                        |
+                        |
+       [3][4][7][5][6][ ]
+        |     |
+        |     |
+        BEGIN |
+              |
+          your iterator
+
+= say now you want insert multiple value in a braced-list {0,9,8}
+
+                        END
+                        |
+                        |
+       [3][4][7][5][6][ ]
+        |     |
+        |     |
+        BEGIN |
+              |
+          your iterator
+
+= Insert will move element pointed by your iterator 3 times advance, then insert the braced-list
+  value
+
+                                END
+                                |
+                                |
+       [3][4][0][9][8][7][5][6][ ]
+        |     |
+        |     |
+        BEGIN |
+              |
+          your iterator

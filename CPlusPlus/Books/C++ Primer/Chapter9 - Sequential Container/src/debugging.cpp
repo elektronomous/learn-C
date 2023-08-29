@@ -4,19 +4,17 @@
 using namespace std;
 
 int main(void) {
-    list<int> lint {1,2,3,4,5};
-    list<int>::iterator middleIterator = lint.begin();
-    middleIterator++;
-    middleIterator++;
+    list<int> lint {};
 
-    list<int>::iterator afterDeleteIterator = lint.insert(middleIterator, 10);
-
-    cout << *middleIterator << endl;
-    cout << *afterDeleteIterator << endl;
-
-    cout << "lint contains: ";
-    for (const int &val: lint)
-        cout << val << " ";
-    cout << endl;
+    if (lint.begin() == lint.end())
+        cout << "Same" << endl;
+    
+    list<int>::iterator toLint = lint.insert(lint.begin(), 2);
+    
+    if (lint.begin() != lint.end())
+        cout << "Isn't same" << endl;
+    
+    cout << *toLint << endl;
+    
     return 0;
 }
