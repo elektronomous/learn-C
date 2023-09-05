@@ -4,17 +4,16 @@
 using namespace std;
 
 int main(void) {
-    list<int> lint {};
+    list<int> lint {0,1,2,3,4,5,6};
 
-    if (lint.begin() == lint.end())
-        cout << "Same" << endl;
-    
-    list<int>::iterator toLint = lint.insert(lint.begin(), 2);
-    
-    if (lint.begin() != lint.end())
-        cout << "Isn't same" << endl;
-    
-    cout << *toLint << endl;
+    list<int>::iterator begin_iterator = lint.begin();
+
+    while (begin_iterator != lint.end()) {
+        if (*begin_iterator % 2) {
+            begin_iterator = lint.insert(begin_iterator, *begin_iterator++);
+        } else
+            begin_iterator = lint.erase(begin_iterator);
+    }
     
     return 0;
 }

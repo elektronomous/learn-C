@@ -1,0 +1,24 @@
+In the final example in this section what would happen if
+we did not assign the result of insert to begin? Write a 
+program that ommits this assignment to see if your expec-
+tation was correct.
+
+    while (begin != v.end()) {
+        ++begin;
+        begin = v.insert(begin, 42);
+        ++begin;
+    }
+
+(answer):
+= If we ommits the assignment, the code would be:
+
+    while (begin != v.end()) {
+        ++begin;
+        v.insert(begin, 42);
+        ++begin;
+    }
+
+= Remember, the reallocated vector would make the iterator
+  begin to be invalidated which is you advance iterator that
+  points to no-where. My expectation would be this program 
+  would crash or cause runtime-error (segmentation fault).

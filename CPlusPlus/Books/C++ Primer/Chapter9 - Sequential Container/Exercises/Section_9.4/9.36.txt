@@ -1,0 +1,4 @@
+Can a container have a capacity less than its size?
+= Since the capacity only set for reserve us elements to 
+  be initialize, the capacity won't less than the container's
+  size.

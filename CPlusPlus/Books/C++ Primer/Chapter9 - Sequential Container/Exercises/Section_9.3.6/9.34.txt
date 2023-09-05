@@ -1,0 +1,15 @@
+Assuming vi is a container of ints that includes even and odd values,
+predict the behavior of the following loop. After you've analyzed this
+loop, write a program to test whether your expectations were correct.
+
+    iter = vi.begin();
+    while (iter != vi.end())
+        if (*iter % 2)
+            iter = vi.insert(iter, *iter);
+        ++iter;
+
+(answer):
+= ++iter should goes to the block of the if inside while, but 
+  the if statement has no open close bracket, the ++iter is
+  outside the while and if statement. this program would goes 
+  loop forever.

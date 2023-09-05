@@ -1,0 +1,7 @@
+Why dont list or array have capacity member?
+= Array have fixed size, so we can't insert a value 
+  dynamically which capacity operation won't be needed.
+  list is double-linked list, its element has pointer inside 
+  it which use to point to another element. To keep track its
+  adjacent element, the list uses pointer of its element. Since
+  it points to another element, we don't need capacity operation.  

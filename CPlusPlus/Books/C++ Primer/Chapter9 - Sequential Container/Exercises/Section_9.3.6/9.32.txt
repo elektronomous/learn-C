@@ -1,0 +1,10 @@
+In the program on page 354 would it be legal to write the call to insert
+as follows? If not, why not?
+
+    iter = vi.insert(iter, *iter++)
+
+(answer):
+= It's legal, it just shorted the code that's before:
+
+    iter = vi.insert(iter, *iter);
+    iter++;

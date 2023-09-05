@@ -1,0 +1,4 @@
+Explain the difference between a vector's capacity and its size.
+= The size operation tells us that how many elements has been initialized
+  meanwhile the capacity tells us how many elements reserved for us to be
+  initialized.

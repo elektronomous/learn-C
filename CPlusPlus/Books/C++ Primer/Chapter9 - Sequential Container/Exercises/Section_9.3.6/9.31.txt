@@ -1,6 +1,6 @@
 The program on page 354 to remove even-valued elements and duplicate
 odd ones will not work on a list or forward_list. why? Revise the program
-so that it works on these types as well.
+so that it works on these types as well. (9.31.cpp)
 
     vector<int> vi {0,1,2,3,4,5,6,7,8,9};
     auto iter = vi.begin();     // call begin, not cbegin because we're changing vi
@@ -15,5 +15,5 @@ so that it works on these types as well.
     }
 
 (answer):
-= Because in list & forward_list, when you remove or add element the iterator remain valid,
-  which means that you can't advance the iterator
+= Because list and forward list doesn't support for the iterator arithmetic,
+  which you can't add the iterator after you've been inserted values.
