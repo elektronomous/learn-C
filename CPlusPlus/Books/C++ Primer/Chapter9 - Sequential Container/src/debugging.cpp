@@ -1,19 +1,15 @@
 #include <iostream>
-#include <list>
+#include <string>
 
 using namespace std;
 
 int main(void) {
-    list<int> lint {0,1,2,3,4,5,6};
+    string str = "Hello World";
+    string::iterator itStr = str.begin() + 6;
 
-    list<int>::iterator begin_iterator = lint.begin();
+    string result = str.replace(itStr, itStr + 5, "Hello");
 
-    while (begin_iterator != lint.end()) {
-        if (*begin_iterator % 2) {
-            begin_iterator = lint.insert(begin_iterator, *begin_iterator++);
-        } else
-            begin_iterator = lint.erase(begin_iterator);
-    }
-    
+    cout << "The string after replace: " << str << endl;
+    cout << "The string result: " << result << endl; 
     return 0;
 }
