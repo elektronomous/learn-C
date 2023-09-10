@@ -1,0 +1,5 @@
+Given the definition of name and numbers on page 365,
+what does numbers.find(name) return?
+
+(answer):
+= It will return string::npos, since there's no name in numbers.
