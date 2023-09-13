@@ -1,0 +1,16 @@
+The find operations we’ve used so far execute left to right. The library provides
+analogous operations that search from right to left. The rfind member searches
+for the last—that is, right-most—occurrence of the indicated substring:
+string river("Mississippi");
+auto first_pos = river.find("is"); // returns 1
+auto last_pos = river.rfind("is"); // returns 4
+find returns an index of 1, indicating the start of the first "is", while rfind
+returns an index of 4, indicating the start of the last occurrence of "is".
+Similarly, the find_last functions behave like the find_first functions,
+except that they return the last match rather than the first:
+• find_last_of searches for the last character that matches any element of
+the search string.
+• find_last_not_of searches for the last character that does not match any
+element of the search string.
+Each of these operations takes an optional second argument indicating the position
+within the string to begin searching.
