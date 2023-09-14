@@ -4,12 +4,9 @@
 using namespace std;
 
 int main(void) {
-    string str = "Hello World";
-    string::iterator itStr = str.begin() + 6;
+    string name = "faza";
 
-    string result = str.replace(itStr, itStr + 5, "Hello");
-
-    cout << "The string after replace: " << str << endl;
-    cout << "The string result: " << result << endl; 
+    if (name.find_first_of("0.13516546546984") == string::npos)
+        cout << "npos" << endl;
     return 0;
 }
