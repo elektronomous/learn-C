@@ -24,80 +24,63 @@ class Date {
     public:
         explicit Date(const std::string &dateString) :
             formatDate(dateString) {
-                std::string::size_type pos = 0;
-                
-                try {
-                    // if the format date using word of month like "january", "february" etc.
-                    if (formatDate.find_first_of("abcdefghijklmnopqrstuvwxyz") != std::string::npos) {
+                // to keep track how many numbers we get
+                std::string::size_type pos_found = 0, pos_string = 0;
+                std::vector<std::string::size_type> temporaryDate {};
 
+                // get day
+                pos_found = formatDate.find_first_of(NUMBERS);
+                if (pos_found != std::string::npos) {
+                    day = std::stoi(formatDate.substr(pos_found));
+                    // advance the position
+                    pos_found = formatDate.find_first_not_of(NUMBERS, pos_found);
+                }
 
-                        // get months
-                        for (std::vector<std::string>::size_type n = 1; n < MONTHS.size(); n++)
-                            if (formatDate.find_first_of(MONTHS[n]) != std::string::npos) {
+                // get months
+                if (formatDate.find_first_of(ALPHABETS) != std::string::npos) {
+                    pos_string = formatDate.find_first_of(" ");
+                    if (pos_string != std::string::npos) {
+                        for (std::vector<std::string>::size_type n = 0; n<MONTHS.size(); n++) {
+                            if (formatDate.compare(0, pos_string, MONTHS[n], 0, pos_string) == 0) {
                                 month = n;
                                 break;
                             }
-                        
-                        if (!month)
-                            throw std::runtime_error("month isn't found in the date format.");                         
-                        
-                        // get day
-                        pos = formatDate.find_first_of("0123456789");
-                        if (pos == std::string::npos)
-                            throw std::runtime_error("day isn't found in date format.");
-                        else {
-                            day = std::stoi(formatDate.substr(pos));
-                            if (day < 1 && day > 31)
-                                throw std::runtime_error("Invalid day for the date format");
-
-                            pos++;
                         }
-
-                        // get year
-                        pos = formatDate.substr(pos).find_first_of("0123456789");
-                        if (pos == std::string::npos)
-                            throw std::runtime_error("Invalid year in the date format.");
-                        else
-                            year = std::stoi(formatDate.substr(pos));
-
-                    } else {
-                        std::vector<std::string::size_type> temporaryDate {};
-
-                        while ((pos = formatDate.find_first_of("0123456789", pos)) != std::string::npos) {
-                            temporaryDate.push_back(std::stoi(formatDate.substr(pos))); 
-                            pos++;
-                        }
-
-                        if (temporaryDate.size() != 3)
-                            throw std::runtime_error("Invalid date format.");
-                        
-                        // get day
-                        day = temporaryDate[0];
-                        // get month
-                        month = temporaryDate[1];
-                        // get year
-                        year = temporaryDate[2];
-
-                        if (day < 0 and day > 31)
-                            throw std::runtime_error("Invalid day in the date format.");
-                        if (month < 0 and month > 12)
-                            throw std::runtime_error("Invalid month in the date format.");   
                     }
-                } catch(std::runtime_error &err) {
-                    std::cerr << "Error: " << err.what() << std::endl;
+                } else {
+                    pos_found = formatDate.find_first_of(NUMBERS, pos_found);
+                    if (pos_found != std::string::npos) {
+                        month = std::stoi(formatDate.substr(pos_found));
+                        // advance the position
+                        pos_found = formatDate.find_first_not_of(NUMBERS, pos_found);
+                    }
+                }
+
+                // verified the day and month
+                if (day > 31)
+                    day %= day;
+                if (month > 12)
+                    month %= month;
+
+                // get year
+                pos_found = formatDate.find_first_of(NUMBERS, pos_found);
+                if (pos_found != std::string::npos) {
+                    year = std::stoi(formatDate.substr(pos_found));
+                    pos_found = formatDate.find_first_not_of(NUMBERS, pos_found);
                 }
             }
 
-        Date(const std::string &d, const std::string &m, const std::string &y) :
-            dayStr(d), monthStr(m), yearStr(y) {
-                day = getNumbers(dayStr);
-                month = getNumbers(monthStr);
-                year = getNumbers(yearStr); 
-            }
+        constexpr unsigned getDay(void) const {
+            return day;
+        }
 
-        unsigned getDay(void) const;
-        unsigned getMonth(void) const;
-        unsigned getYear(void) const;
+        constexpr unsigned getMonth(void) const {
+            return month;
+        }
+        
+        constexpr unsigned getYear(void) const {
+            return year;
+        }
 
     private:
         /* using in-class initializer */
@@ -110,22 +93,9 @@ class Date {
                monthStr = "",
                yearStr = "";
         
-        /* get numbers from std::string */
-        std::string::size_type getNumbers(const std::string &str) const;
+        static const std::string NUMBERS;
+        static const std::string ALPHABETS;
 };
 
-std::string::size_type Date::getNumbers(const std::string &str) const {
-    return stoi(str.substr(str.find_first_of("+-.0123456789")));
-}
-
-unsigned Date::getDay(void) const {
-    return day;
-}
-
-unsigned Date::getMonth(void) const {
-    return month;
-}
-
-unsigned Date::getYear(void) const {
-    return year;
-}
+const std::string Date::NUMBERS("0123456789");
+const std::string Date::ALPHABETS("abcdefghijklmnopqrstuvwxyz");

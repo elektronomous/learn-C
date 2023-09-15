@@ -4,9 +4,11 @@
 using namespace std;
 
 int main(void) {
-    Date d("1/1/2019");
+    Date d("12/1/2019");
 
     cout << d.getDay() << endl;
+    cout << d.getMonth() << endl;
+    cout << d.getYear() << endl;
     
     return 0;
 }
