@@ -1,0 +1,3 @@
+In addition to the sequential containers, the library defines three sequential container
+adaptors: stack, queue, and priority_queue
+
