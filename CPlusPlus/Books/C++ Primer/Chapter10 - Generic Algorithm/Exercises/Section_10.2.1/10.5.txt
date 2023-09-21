@@ -1,0 +1,28 @@
+In the call to equal on rosters, what would happen if both rosters held
+C-style strings, rather than library strings?
+
+(answer):
+
+#include <vector>
+#include <iostream>
+#include <cstring>
+int main()
+{
+  std::vector <const char*> vec = {"nima","123"};
+  std::vector <const char*> vec2 = {"nima","123"};
+  std::cout << std::boolalpha;
+  std::cout << reinterpret_cast<const unsigned int*>(vec[0]) << "\n";
+  std::cout << reinterpret_cast<const unsigned int*>(vec2[0]) << "\n";
+  std::cout << reinterpret_cast<const unsigned int*>(vec[1]) << "\n";
+  std::cout << reinterpret_cast<const unsigned int*>(vec2[1]) << "\n";
+ 
+  char* a = new char[sizeof("nima")];
+  std::strcpy(a, "nima"); 
+  char* b = new char[sizeof("nima")];
+  std::strcpy(b, "nima");
+  std::cout << a << " " << b << " " << (b==a) << "\n"; 
+ 
+ 
+}
+
+https://stackoverflow.com/questions/14911085/why-does-the-equal-works-for-const-char-in-c

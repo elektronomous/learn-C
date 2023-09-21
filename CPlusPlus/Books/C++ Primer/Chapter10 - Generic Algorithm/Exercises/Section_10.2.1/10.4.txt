@@ -1,0 +1,8 @@
+Assuming v is a vector<double>, what, if anything, is wrong 
+with calling accumulate(v.cbegin(), v.cend(), 0) ?
+
+(answer):
+= The third argument is decide the result of the return value 
+  from accumulate. so if it's a 0, then the result must be integer,
+  long it, unsigned but when it's 0.0, then the result must be double
+  
