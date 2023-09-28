@@ -10,7 +10,7 @@ range of the unique values
 */
 
 int main(void) {
-    vector<string> notUniqueWords {"fox", "jumps", "over", "quick", "red", "red", "slow", "the", "the", "turtle"};
+    vector<string> notUniqueWords {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
 
     cout << "Not unique words: " << endl;
     for (const string &word: notUniqueWords)

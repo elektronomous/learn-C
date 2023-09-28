@@ -1,0 +1,4 @@
+Why do you think the algorithms don't change the size of containers?
+
+(answer):
+Iterators don't have operation that could make the container element is added.
