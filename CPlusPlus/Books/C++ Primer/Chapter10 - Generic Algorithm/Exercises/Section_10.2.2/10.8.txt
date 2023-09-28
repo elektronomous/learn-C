@@ -1,0 +1,9 @@
+We said that algorithms do not change the size of the containers
+over which they operate. Why doesn't the use of back_inserter invalidate
+this claim?
+
+(answer):
+because back_inserter operation is using the push_back operation of the container.
+if the container has no push_back operation (forward_list), then the container can't
+be the argument of the back_inserter. you can't try it by using back_inserter on 
+forward_list (10.8.cpp)
