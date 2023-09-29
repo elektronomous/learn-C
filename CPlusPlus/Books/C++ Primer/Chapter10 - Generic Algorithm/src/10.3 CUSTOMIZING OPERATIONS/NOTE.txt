@@ -1,0 +1,17 @@
+Many of the algorithms compare elements in the input sequence. By
+default, such algorithms use either the element type’s < or == operator.
+The library also defines versions of these algorithms that let us supply
+our own operation to use in place of the default operator.
+For example, the sort algorithm uses the element type’s < operator.
+However, we might want to sort a sequence into a different order from
+that defined by <, or our sequence might have elements of a type (such
+as Sales_data) that does not have a < operator. In both cases, we need to
+override the default behavior of sort.
+
+A predicate is an expression that can be called and that returns a value
+that can be used as a condition
+
+The predicates used by library algorithms are either unary predicates 
+(meaning they have a single parameter) or binary predicates 
+(meaning they have two parameters)
+
