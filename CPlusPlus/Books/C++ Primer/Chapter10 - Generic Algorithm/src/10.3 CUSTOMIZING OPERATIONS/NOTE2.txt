@@ -1,0 +1,20 @@
+When we define a lambda, the compiler generates a new (unnamed) class type that
+corresponds to that lambda.
+
+By default, the class generated from a lambda contains a data member corresponding to 
+the variables captured by the lambda. Like the data members of any
+class, the data members of a lambda are initialized when a lambda object is created.
+
+If we capture a variable by reference, we must be certain
+that the referenced object exists at the time the lambda is executed
+
+Reference captures are sometimes necessary. For example, we might want our
+biggies function to take a reference to an ostream on which to write and a
+character to use as the separator
+
+    vector<string> words;
+    for_each(words.begin(), words.end(), [&os, c](const string &s) { cout << s << c; });
+
+We can also return a lambda from a function. If the function returns a lambda, then—for
+the same reasons that a function must not return a reference to a local variable—that lambda
+must not contain reference captures.
