@@ -25,3 +25,12 @@ element type’s == operator to compare each element to the given value.
 Other algorithms require that the element type have the < operator. However, as we’ll
 see, most algorithms provide a way for us to supply our own operation to use in place
 of the default operator.
+
+The unique algorithm rearranges the input range to “eliminate” adjacent duplicated entries,
+and returns an iterator that denotes the end of the range of the unique values.
+
+before using unique  => |fox|jumps|over|quick|red|red|slow|the|the|turtle|
+after using unique   => |fox|jumps|over|quick|red|slow|the|turtle|red|the|
+                                                                   |
+                                                                   |
+                                                      return end_of_unique_iterator

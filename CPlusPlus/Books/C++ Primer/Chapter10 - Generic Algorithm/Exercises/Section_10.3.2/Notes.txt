@@ -1,0 +1,5 @@
+the different result from 10.17 and 10.18 is:
+10.17 has result:
+corresponds generates (unnamed) compiler lambda, lambda define class
+10.18 has result:
+class define lambda lambda, compiler (unnamed) generates corresponds

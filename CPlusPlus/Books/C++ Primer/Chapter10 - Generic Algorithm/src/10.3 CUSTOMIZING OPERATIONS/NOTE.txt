@@ -15,3 +15,39 @@ The predicates used by library algorithms are either unary predicates
 (meaning they have a single parameter) or binary predicates 
 (meaning they have two parameters)
 
+The algorithms that take predicates call the given predicate on the 
+elements in the input range. As a result, it must be possible to
+convert the element type to the parameter type of the predicate
+
+A lambda expression represents a callable unit of code. It can be thought of
+as an unnamed, inline function. Like any function, a lambda has a return type, a
+parameter list, and a function body. Unlike a function, lambdas may be defined
+inside a function. A lamba expression has the form
+
+    [capture list](parameter list) -> return type { function body }
+
+where capture list is an (often empty) list of local variables defined in the enclosing
+function; return type, parameter list, and function body are the same as in any ordinary
+function. 
+We can omit either or both of the parameter list and return type but MUST ALWAYS
+include the capture list and function body
+
+If we omit the return type, the lambda has an inferred return type that
+depends on the code in the function body.
+If the function body is just a return statement, the return type is inferred from the type of the expression that is returned.
+Otherwise, the return type is void.
+
+Unlike ordinary functions, a lambdamay not have default arguments.Therefore, a call to a lambda always has as many arguments as the
+lambda has parameters.
+
+Inside the [] that begins a lambda we can provide a comma-separated list of
+names defined in the surrounding function.
+
+we use the capture list only for (nonstatic) variables defined in the surrounding function. lambdas can
+use local statics and variables declared outside the function directly
+
+The library defines an algorithm named partition that takes a predicate
+and partitions the container so that values for which the predicate is true appear
+in the first part and those for which the predicate is false appear in the second part.
+The algorithm returns an iterator just past the last element for which the predicate
+returned true.
