@@ -18,3 +18,15 @@ character to use as the separator
 We can also return a lambda from a function. If the function returns a lambda, then—for
 the same reasons that a function must not return a reference to a local variable—that lambda
 must not contain reference captures.
+
+The & tells the compiler to capture by reference, and the = says
+the values are captured by value.
+When we mix implicit and explicit captures, the first item in the capture list must
+be an & or =. That symbol sets the default capture mode as by reference or by
+value, respectively
+
+hat is, if the implicit capture is by reference (using &),
+then the explicitly named variables must be captured by value; hence their names
+may not be preceded by an &. Alternatively, if the implicit capture is by value
+(using =), then the explicitly named variables must be preceded by an & to indicate
+that they are to be captured by reference.
