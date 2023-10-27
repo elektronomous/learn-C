@@ -1,0 +1,5 @@
+How many arguments does bind take?
+
+(answer):
+= It takes arg_list means that it takes argument as many 
+  as the function has.
