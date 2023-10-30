@@ -1,0 +1,6 @@
+Explain the differences among the three kind of insert interators.
+
+(answer):
+- The back_inserter use push_back member of container operation
+- The front_inserter use push_front member of container operation
+- The inserter use insert member of container operation

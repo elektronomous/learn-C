@@ -4,7 +4,7 @@
       "type": "shell",
       "label": "C/C++: g++.exe BUILD ACTIVE FILE",
       // "command": "g++.exe",
-      "command": "g++",
+      "command": "g++-12",
       "args": [
         "-fdiagnostics-color=always",
         "-g",
@@ -20,7 +20,7 @@
       },
       "problemMatcher": ["$gcc"],
       "group": "build",
-      "detail": "compiler: /usr/bin/g++"
+      "detail": "compiler: /usr/bin/g++-12"
     }
   ],
   "version": "2.0.0"
