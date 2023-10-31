@@ -1,0 +1,17 @@
+An istream_iterator (Table 10.3 (overleaf)) reads an input stream, and an ostream_iterator (Table 10.4
+(p. 405)) writes an output stream.
+
+These iterators treat their corresponding stream as a sequence of elements of a specified type
+	
+	istream_iterator<int> int_it(cin);   // reads ints from cin
+	istream_iterator<int> int_eof;       // end iterator value
+	ifstream in("afile");
+	istream_iterator<string> str_it(in); // reads strings from "afile"
+
+iterator was defined as the empty istream_iterator, which is used as the end iterator
+
+An iterator bound to a stream is equal to the end iterator once its associated stream hits endof-file or encounters an IO error.
+
+++in, in++ Reads the next value from the input stream using the >> operator for the
+element type. As usual, the prefix version returns a reference to the
+incremented iterator. The postfix version returns the old value.

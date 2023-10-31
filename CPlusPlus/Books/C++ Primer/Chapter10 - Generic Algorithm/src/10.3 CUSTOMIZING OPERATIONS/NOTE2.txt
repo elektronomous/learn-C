@@ -30,3 +30,25 @@ then the explicitly named variables must be captured by value; hence their names
 may not be preceded by an &. Alternatively, if the implicit capture is by value
 (using =), then the explicitly named variables must be preceded by an & to indicate
 that they are to be captured by reference.
+
+The general form of a call to bind is:
+    auto newCallable = bind(callable, arg_list);
+
+where newCallable is itself a callable object and arg_list is a comma-separated list of
+arguments that correspond to the parameters of the given callable. That is, when
+we call newCallable, newCallable calls callable, passing the arguments in arg_list.
+
+The arguments in arg_list may include names of the form _n, where n is an
+integer. These arguments are “placeholders” representing the parameters of newCallable. 
+They stand “in place of” the arguments that will be passed to newCallable.
+The number n is the position of the parameter in the generated callable: _1 is the
+first parameter in newCallable, _2 is the second, and so forth.
+
+By default, the arguments to bind that are not placeholders are copied into the
+callable object that bind returns.
+because bind copies its arguments and we cannot copy an ostream. If we want
+to pass an object to bind without copying it, we must use the library ref function
+
+There is also a cref function that generates a class that holds a
+reference to const. Like bind, the ref and cref functions are defined in the
+functional header

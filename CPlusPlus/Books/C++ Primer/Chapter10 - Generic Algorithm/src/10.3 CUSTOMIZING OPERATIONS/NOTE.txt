@@ -51,3 +51,9 @@ and partitions the container so that values for which the predicate is true appe
 in the first part and those for which the predicate is false appear in the second part.
 The algorithm returns an iterator just past the last element for which the predicate
 returned true.
+
+When we define a lambda, the compiler generates a new (unnamed) class type that
+corresponds to that lambda
+
+However, it is not so easy to write a function to replace a lambda that captures
+local variables. 
