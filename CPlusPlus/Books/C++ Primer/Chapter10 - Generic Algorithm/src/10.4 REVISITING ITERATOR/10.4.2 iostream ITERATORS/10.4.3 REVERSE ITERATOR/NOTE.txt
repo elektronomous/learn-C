@@ -1,0 +1,9 @@
+A reverse iterator inverts the meaning of increment (and
+decrement). Incrementing (++it) a reverse iterator moves the iterator to the previous
+element; derementing (--it) moves the iterator to the next element
+
+The containers, aside from forward_list, all have reverse iterators
+
+What we need to do is transform rcomma back into an ordinary iterator that will go forward
+through line. We can do so by calling the reverse_iterator’s base member,
+which gives us its corresponding ordinary iterator
