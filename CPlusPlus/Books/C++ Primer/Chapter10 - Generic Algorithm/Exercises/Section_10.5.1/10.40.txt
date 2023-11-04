@@ -1,0 +1,10 @@
+What kinds of iterator do you think copy requires? 
+What about reverse or unique?
+
+(answer):
+
+- copy algorithm requires only output iterator
+- reverse algorithm requires clearly operation on reverse, which is Bidirectional
+  iterator
+- as we know that unique algorithm moves the non-unique element to the last element
+  that means the unique algorithm is using random-access iterator.  

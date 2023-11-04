@@ -1,0 +1,27 @@
+List the five iterator categories and the operation that each
+support
+
+(answer):
+= Input iterator
+  - != and == 
+  - ++
+  - *
+  - ->
+
+= Output iterator
+  - ++
+  - *
+  - =
+
+= Forward iterator
+  - input and output iterator operation
+
+= Bidirectional iterator
+  - forward iterator operation
+  - --
+
+= Random-Access iterator
+  - Bidirectional Iterator operation
+  - +, -, +=, -=,
+  - []
+  - <, <=, >, >=

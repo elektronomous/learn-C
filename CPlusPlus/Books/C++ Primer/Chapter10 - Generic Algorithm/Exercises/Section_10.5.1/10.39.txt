@@ -1,0 +1,10 @@
+What kind of iterator does a list have? What about a vector?
+
+(answer):
+Try to use list when using sort algorithm, then you'll find
+the compiler warns you that it was error using operator-. This means
+that list doesn't provide the minus(-) operation on its iterator. Try
+to use algorithm that use Bidirectional iterator, The upper category
+of Bidirectional iterator
+
+Vector is obviously is Random-access iterator.

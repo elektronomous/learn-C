@@ -1,0 +1,45 @@
+iterators define a common set of operations. Some operations are
+provided by all iterators; other operations are supported by only specific kinds of
+iterators. For example, ostream_iterators have only increment, dereference, and
+assignment. Iterators on vector, strings, and deques support these operations
+and the decrement, relational, and arithmetic operators
+
+Iterators are categorized by the operations they provide and the categories form a
+sort of hierarchy. With the exception of output iterators, an iterator of a higher
+category provides all the operations of the iterators of a lower categories.
+
+List the five iterator categories and the operation that each
+support
+
+(answer):
+= Input iterator
+  - != and == 
+  - ++
+  - *
+  - ->
+
+= Output iterator
+  - ++
+  - *
+  - =
+
+= Forward iterator
+  - input and output iterator operation
+
+= Bidirectional iterator
+  - forward iterator operation
+  - --
+
+= Random-Access iterator
+  - Bidirectional Iterator operation
+  - +, -, +=, -=,
+  - []
+  - <, <=, >, >=
+
+incrementing an input iterator may invalidate all other iterators into the stream. As
+a result, there is no guarantee that we can save the state of an input iterator and
+examine an element through that saved iterator
+
+Iterators for array, deque, string, and vector are random-access iterators, as are pointers when used to
+access elements of a built-in array
+
