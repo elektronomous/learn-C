@@ -1,0 +1,26 @@
+. In particular, the list types define their own versions of sort, merge,
+remove, reverse, and unique. The generic version of sort requires random
+access iterators. As a result, sort cannot be used with list and forward_list
+because these types offer bidirectional and forward iterators, respectively
+
+A list can “swap” its elements by changing the links among its elements
+rather than swapping the values of those elements. As a result, the list-specific
+versions of these algorithms can achieve much better performance than the
+corresponding generic versions
+
+    lst.merge(lst2);                        
+    lst.merge(lst2, comp);
+
+    lst.sort();
+    lst.sort(comp);
+    lst.remove(val);
+    lst.remove_if(pred);
+    lst.unique();
+    lst.unique(pred);   // given binary predicate
+
+    lst.splice(args)
+    flst.splice_after(args);
+        args => (p, lst2)
+        args => (p, lst2, p2);
+        args => (p, lst2, b, e);    // lst2 and lst(or flst) can be the same list
+                                    // but p must not denote an element in the given range.
