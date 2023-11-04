@@ -43,3 +43,23 @@ examine an element through that saved iterator
 Iterators for array, deque, string, and vector are random-access iterators, as are pointers when used to
 access elements of a built-in array
 
+Most of the algorithms have one of the following four forms:
+  alg(beg, end, other args)
+  alg(beg, end, dest, other args)
+  alg(beg, end, beg2, other args)
+  alg(beg, end, beg2, end2, other args)
+
+where alg is the name of the algorithm, and beg and end denote the input range on
+which the algorithm operates
+The common ones listed here—dest, beg2, and end2—are all iterators
+
+A dest parameter is an iterator that denotes a destination in which the algorithm can
+write its output. Algorithms assume that it is safe to write as many elements as
+needed
+
+Algorithms that take beg2 alone assume that the sequence beginning at
+beg2 is as large as the range denoted by beg and end.
+
+By default, algorithms that rearrange elements write the rearranged elements back
+into the given input range. These algorithms provide a second version that writes to a
+specified output destination.

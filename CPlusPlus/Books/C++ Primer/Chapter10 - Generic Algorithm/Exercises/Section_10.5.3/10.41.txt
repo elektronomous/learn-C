@@ -1,0 +1,21 @@
+Based only on the algorithm and argument names, describe the operation
+that each of the following library algorith performs
+
+    replace(beg, end, old_val, new_val);
+    replace_if(beg, end, pred, new_val);
+    replace_copy(beg, end, dest, old_val, new_val);
+    replace_copy_if(beg, end, dest, pred, new_val);
+
+(answer):
+
+replace(beg, end, old_val, new_val);
+- replace old_val with new_val from element beg to end.
+
+replace_if(beg, end, pred, new_val);
+- replace old_val that's specified by the pred with new_val from element beg to end.
+
+replace_copy(beg, end, dest, old_val, new_val);
+- the result of the replace operation is copy to dest.
+
+replpace_copy_if(beg, end, dest, pred, new_val);
+- the result of the replace_if opeartion is copy to dest.
