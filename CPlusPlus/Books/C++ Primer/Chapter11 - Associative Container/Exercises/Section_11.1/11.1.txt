@@ -1,0 +1,7 @@
+Describe the differences between a map and a vector;
+
+(answer):
+- map retrieve value from its element by subscript a key. this key
+  could be integer, string, char, etc.
+- vector retrieve value from its element by subscript a key. this key
+  only an integer.

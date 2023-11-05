@@ -1,0 +1,4 @@
+The map type is often referred to as an associative array. An associative array 
+is like a “normal” array except that its subscripts don’t have to be integers. 
+Values in a map are found by a key rather than by their position. 
+

@@ -1,0 +1,10 @@
+Give an eaxmple of when each of list, vector, deque,
+map and set might be most useful
+
+(answer):
+- list      -> Most useful when you have a list of a name
+- vector    -> Most useful when you have a something that has to be search randomly
+- deque     -> Most useful when you have a queue control over process execution of a program
+- map       -> Most useful when you create a dictionary or create a list of meaning word
+- set       -> Most useful when you want find something fast in a list
+

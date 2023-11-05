@@ -1,0 +1,15 @@
+Associative containers support efficient lookup and retrieval by a key
+
+map                         Associative array; holds key-value pairs
+set                         Container in which key is the value is the value 
+multimap                    map in which a key can appear multiple times
+multiset                    set in which a key can appear multiple times 
+
+unordered_map               map organized by hash function
+unordered_set               set organized by hash function
+unordered_multimap          Hashed map; keys can appear multiple times
+unordered_multiset          Hashed set; keys can appear multiple times
+
+The map and multimap types are defined in the map header; the set and multiset
+types are in the set header; and the unordered containers are in the
+unordered_map and unordered_set headers
