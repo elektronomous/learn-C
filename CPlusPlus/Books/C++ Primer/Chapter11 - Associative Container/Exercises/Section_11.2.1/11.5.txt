@@ -1,0 +1,9 @@
+Explain the difference between a map and a set. When might you 
+use on or the other?
+
+(answer):
+
+- A map has a value and a set don't. We get the value based on something,
+  that's a map do its job, while set just get the key combine as the value.
+  You use the map when you need store something as the value you'll retrieve
+  by the key and you use the set when you just need that key.

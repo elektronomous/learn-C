@@ -1,0 +1,9 @@
+Explain the difference between a set and a list. When you might
+use one or the other?
+
+(answer):
+
+The difference betwwen set and a list is that list is sequential container.
+The operation of sequential container is different from associative container.
+sequential container use when you have an arrange value in order, while associative
+container use is when you have a value match to another value.

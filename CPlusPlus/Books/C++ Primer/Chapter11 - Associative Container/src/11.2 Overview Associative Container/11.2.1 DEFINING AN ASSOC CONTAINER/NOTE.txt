@@ -1,0 +1,25 @@
+Each of the associative containers defines a default constructor, which creates
+an empty container of the specified type. We can also initialize an associative
+container as a copy of another container of the same type or from a range of values,
+so long as those values can be converted to the type of the container.
+
+initialize map elements:
+
+    map<string, size_t> word_count; // empty
+    set<string> exclude = {"the", "but, "and", "or", "an", "a", "The", "But",
+                           "And", "Or", "An", "A"};
+
+    // three elements; authors maps last name to first
+    map<string, string> authors { {"Joyce", "James"},
+                                  {"Austen", "Jane"},
+                                  {"Dickens", "Charles"}
+                                };
+
+When we initialize a map, we have to supply both the key and the value. We wrap
+each key–value pair inside curly braces:
+    {key, value}
+to indicate that the items together form one element in the map.
+
+The keys in a map or a set must be unique; there can be only one element with a
+given key. The multimap and multiset containers have no such restriction; there
+can be several elements with the same key. 
