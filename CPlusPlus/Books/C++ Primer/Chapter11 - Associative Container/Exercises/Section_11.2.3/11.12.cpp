@@ -2,17 +2,24 @@
 #include <utility>  // pair
 #include <vector>
 #include <string>
-#include <iterator>
+#include <sstream>
 
 using namespace std;
 
 int main(void) {
-    istream_iterator<string> 
-    istringstream inputString
+    string lineOfString;
     vector<pair<string, int>> vPairs;
 
-    while (inputPairs != eof_inputPairs) {
-        vPairs.push_back(*inputPairs++);
+    cout << "Enter a string and a int in sequence order(aa 1 bb 3..): " << endl;
+    while (getline(cin, lineOfString)) {
+        // we create the pair right here
+        string key;
+        int val;
+
+        istringstream inputString(lineOfString);
+        inputString >> key;
+        inputString >> val;
+        vPairs.push_back({key, val});
     }
 
     cout << "The pairs value from vectors: " << endl;
