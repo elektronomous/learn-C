@@ -1,0 +1,23 @@
+we need to know about the library type named pair, which is defined in the utility header
+We must supply two type names when we create a pair. 
+
+    pair<string, string> anon;          // holds two string
+    pair<string, size_t> word_count;    // holds a string and a size_t
+    pair<string, vector<int>> line;     // holds a string and a vector<int>
+
+The default pair constructor value initializes (§ 3.3.1, p. 98) the data members.
+Thus, anon is a pair of two empty strings, and line holds an empty string
+and an empty vector. The size_t value in word_count gets the value 0, and
+the string member is initialized to the empty string. To initialize the pair:
+
+    pair<string, string> authors {"Joyce", "James"};
+
+Unlike other library types, the data members of pair are public (§ 7.2, p. 268).
+These members are named first and second, respectively. We access these
+members using the normal member access notation (§ 1.5.2, p. 23)
+
+    // print the results
+    cout << w.first << " occurs " << w.second
+    << ((w.second > 1) ? " times" : " time") << endl;
+
+Here, w is a reference to an element in a map
