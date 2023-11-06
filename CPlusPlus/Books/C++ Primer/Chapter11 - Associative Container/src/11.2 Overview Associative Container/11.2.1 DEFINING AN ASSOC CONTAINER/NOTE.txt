@@ -45,17 +45,27 @@ have the following properties:
     that those keys are “equivalent.” If k1 is “equivalent” to k2 and k2 is
     “equivalent” to k3, then k1 must be “equivalent” to k3
 
+Using a Comparison Function for the Key Type:
 The type of the operation that a container uses to organize its elements is part of the
 type of that container.
 To specify our own operation, we must supply the type of that operation when we define 
 the type of an associative container. The operation type is specified following the element 
 type inside the angle brackets that we use to say which type of container we are defining.
+                                
+             Element type  operation type
+                 |               |
+                 |               |
+                 |               |
+    multiset<Sales_data, decltype(compareIsbn)*> bookStore(compareIsbn);
 
 Each type inside the angle brackets is just that, a type. We supply a particular
 comparison operation (that must have the same type as we specified inside the angle
 brackets) as a constructor argument when we create a container.
 
-
+                                                        constructor argument
+                                                                |
+                                                                |
+                                                                |
     multiset<Sales_data, decltype(compareIsbn)*> bookStore(compareIsbn);
 
 For example, we can’t directly define a multiset of Sales_data because
@@ -63,4 +73,12 @@ Sales_data doesn’t have a < operator. However, we can use the compareIsbn
 function from the exercises in § 10.3.1 (p. 387) to define a multiset. That function
 defines a strict weak ordering based on their ISBNs of two given Sales_data objects.
 The compareIsbn function should look something like
-    
+
+    multiset<Sales_data, decltype(compareIsbn)*> bookStore(compareIsbn);
+
+We initialize bookstore from compareIsbn, which means that when we add elements
+to bookstore, those elements will be ordered by calling compareIsbn. That is,
+the elements in bookstore will be ordered by their ISBN members
+We can write compareIsbn instead of &compareIsbn as the constructor argument because
+when we use the name of a function, it is automatically converted into a pointer if
+needed (§ 6.7, p. 248). We could have written &compareIsbn with the same effect.

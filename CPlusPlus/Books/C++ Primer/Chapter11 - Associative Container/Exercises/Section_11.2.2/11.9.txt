@@ -1,0 +1,8 @@
+Here, we use decltype to specify the type of our operation, remembering that
+when we use decltype to form a function pointer, we must add a * to indicate
+that we’re using a pointer to the given function type (§ 6.7, p. 250). We initialize bookstore from compareIsbn, which means that when we add elements
+to bookstore, those elements will be ordered by calling compareIsbn. That is,
+the elements in bookstore will be ordered by their ISBN members. We can write
+compareIsbn instead of &compareIsbn as the constructor argument because
+when we use the name of a function, it is automatically converted into a pointer if
+needed (§ 6.7, p. 248). We could have written &compareIsbn with the same effect.
