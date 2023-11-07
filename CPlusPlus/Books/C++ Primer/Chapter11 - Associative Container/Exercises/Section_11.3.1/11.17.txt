@@ -8,3 +8,17 @@ calls. Indicate whether each call is legal:
     copy(v.begin(), v.end(), back_inserter(c));
     copy(c.begin(), c.end(), inserter(v, v.end()));
     copy(c.begin(), c.end(), back_inserter(v));
+
+(answer):
+
+copy(v.begin(), v.end(), inserter(c, c.end()));
+    = The multiset c has insert member defined, this call is legal.
+
+copy(v.begin(), v.end(), back_inserter(c));
+    = The multiset c has no push_back member defined, this call is illegal
+
+copy(c.begin(), c.end(), inserter(v, v.end()));
+    = The vector v has insert member defined, this call is legal
+
+copy(c.begin(), c.end(), back_inserter(v));
+    = The vector v has push_back member defined also, this call is legal
