@@ -31,3 +31,34 @@ idea to use a generic search algorithm. We use find member defined by the associ
 we might use the generic copy algorithm to copy the elements from an associative container
 into another sequence.
 Similarly, we can call inserter to bind an insert iterator (§ 10.4.1, p. 401) to an associative container.
+
+c.insert(v)
+c.emplace(args)     v value_type object; args are used to construct an element.
+                    For map and set, the element is inserted (or constructed) only if an
+                    element with the given key is not already in c. Returns a pair containing an iterator referring to the element with the given key and a
+                    bool indicating whether the element was inserted.
+                    For multimap and multiset, inserts (or constructs) the given element and returns an iterator to the new element.
+c.insert(b, e)
+c.insert(il)        b and e are iterators that denote a range of c::value_type values;
+                    il is a braced list of such values. Returns void.
+                    For map and set, inserts the elements with keys that are not already
+                    in c. For multimap and multiset inserts, each element in the range.
+c.insert(p, v)
+c.emplace(p, args)
+                    Like insert(v) (or emplace(args)), but uses iterator p as a hint
+                    for where to begin the search for where the new element should be
+                    stored. Returns an iterator to the element with the given key.
+
+The value returned by insert (or emplace) depends on the container type and
+the parameters
+
+= inserting on MAP, SET
+The first member of the pair is an iterator to the element with the given key; 
+the second is a bool indicating whether that element was inserted, or was already there. 
+If the key is already in the container, then insert does nothing, and the bool portion of 
+the return value is false. If the key isn’t present, then the element is inserted and the bool is true
+
+= inserting on MULTIMAP, MULTISET
+For the containers that allow multiple keys, the insert operation that takes a
+single element returns an iterator to the new element. There is no need to return a
+bool, because insert always adds a new element in these types.
