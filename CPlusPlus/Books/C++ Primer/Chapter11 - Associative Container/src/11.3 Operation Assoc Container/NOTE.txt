@@ -1,0 +1,33 @@
+For the set types, the key_type and the value_type are the same; the values
+held in a set are the keys. In a map, the elements are key–value pairs. That is,
+each element is a pair object containing a key and a associated value. Because we
+cannot change an element’s key, the key part of these pairs is const
+
+    set<string>::value_type v1;             // v1 is a string
+    set<string>::key_type v2;               // v2 is a string
+    map<string, int>::value_type v3;        // v3 is pair<const string, int>
+    map<string, int>::key_type v4;          // v4 is a string
+    map<string, int>::mapped_type v5;       // v5 is an int
+
+Only the map types (unordered_map, unordered_multimap, multimap,
+and map) define mapped_type
+
+It is essential to remember that the value_type of a map is a pair and
+that we can change the value but not the key member of that pair
+
+Although the set types define both the iterator and const_iterator types,
+both types of iterators give us read-only access to the elements in the set. Just as
+we cannot change the key part of a map element, the keys in a set are also const
+
+ we do not use the generic algorithms (Chapter 10) with the associative
+containers. The fact that the keys are const means that we cannot pass associative
+container iterators to algorithms that write to or reorder container elements. Such
+algorithms need to write to the elements. The elements in the set types are const,
+and those in maps are pairs whose first element is const
+
+Because elements in an associative container can be found (quickly) by their key, it is almost always a bad
+idea to use a generic search algorithm. We use find member defined by the associative container
+
+we might use the generic copy algorithm to copy the elements from an associative container
+into another sequence.
+Similarly, we can call inserter to bind an insert iterator (§ 10.4.1, p. 401) to an associative container.

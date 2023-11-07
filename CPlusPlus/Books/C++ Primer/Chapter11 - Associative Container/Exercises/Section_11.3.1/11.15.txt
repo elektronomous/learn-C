@@ -1,0 +1,9 @@
+What are the  mapped_type, key_type and value_type of a map
+from int to vector<int>
+
+(answer):
+    map<int, vector<int>> intMapVint;
+
+    intMapVint::mapped_type pIntMapVint;        // => pair<const int, vector<int>>
+    intMapVint::key_type kIntMapVint;           // => int
+    intMapVint::value_type vIntMapVint;         // => vector<int>
