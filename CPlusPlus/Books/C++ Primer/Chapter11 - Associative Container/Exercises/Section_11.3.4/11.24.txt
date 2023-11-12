@@ -1,0 +1,8 @@
+What does the following program do? 
+
+    map<int, int> m;
+    m[0] = 1;
+
+(answer):
+
+=> it just assign a key 0 with the value 1

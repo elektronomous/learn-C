@@ -1,0 +1,27 @@
+c.erase(k)      Removes every element with key k from c. Returns size_type
+                indicating the number of elements removed.
+c.erase(p)      Removes the element denoted by the iterator p from c. p must refer to an
+                actual element in c; it must not be equal to c.end(). Returns an iterator
+                to the element after p or c.end() if p denotes the last element in c.
+c.erase(b, e)   Removes the elements in the range denoted by the iterator pair b, e.
+                Returns e.
+
+For the containers with unique keys, the return from erase is always either zero
+or one. If the return value is zero, then the element we wanted to erase was not in
+the container.
+
+For types that allow multiple keys, the number of elements removed could be
+greater than one:
+
+The map and unordered_map containers provide the subscript operator and a
+corresponding at function
+
+Subscripting a map behaves quite differently from subscripting an array
+or vector: Using a key that is not already present adds an element with
+that key to the map.
+
+Not so for maps: when we subscript a map, we get a mapped_type object; 
+when we dereference a map iterator, we get a value_type object 
+
+The map subscript operator returns an lvalue (§ 4.1.1, p. 135). Because the 
+return is an lvalue, we can read or write the element:

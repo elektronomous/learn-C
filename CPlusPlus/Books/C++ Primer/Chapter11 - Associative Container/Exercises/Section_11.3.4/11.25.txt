@@ -1,0 +1,8 @@
+Contrast the following program with the one in previous exercise.
+    vector<int> v;
+    v[0] = 1;
+
+(answer):
+= It also do the same but this program is an error since the vector
+  element needs to be created before we can assign value to it.
+  

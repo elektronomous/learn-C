@@ -1,0 +1,14 @@
+lower_bound and upper_bound not valid for the unordered containers.
+Subscript and at operations only for map and unordered_map that are not const.
+
+c.find(k)           Returns an iterator to the (first) element with key k, or the off-the-end
+                    iterator if k is not in the container.
+c.count(k)          Returns the number of elements with key k. For the containers with
+                    unique keys, the result is always zero or one.
+c.lower_bound(k)    Returns an iterator to the first element with key not less than k.
+c.upper_bound(k)    Returns an iterator to the first element with key greater than k.
+c.equal_range(k)    Returns a pair of iterators denoting the elements with key k. If k is
+                    not present, both members are c.end().
+
+When a multimap or multiset has multiple elements of a given
+key, those elements will be adjacent within the container.
