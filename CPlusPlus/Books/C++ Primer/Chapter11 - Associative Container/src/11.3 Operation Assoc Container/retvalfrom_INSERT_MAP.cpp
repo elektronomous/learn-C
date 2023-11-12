@@ -11,7 +11,7 @@ int main(void) {
 
     while (cin >> word) {
         // insert an element with key equal to word and 1
-        // if word is already in word_count, insert does nothing
+        // if word is already in word_count, insert does nothing and the bool value is false
         pair<map<string, size_t>::iterator, bool> returnFromInsert = word_count.insert({word, 1});
         if (!returnFromInsert.second)           // word was already in word_count
             ++returnFromInsert.first->second;    // increment the counter;

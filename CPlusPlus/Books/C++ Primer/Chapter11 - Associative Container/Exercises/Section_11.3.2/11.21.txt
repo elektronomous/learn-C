@@ -1,0 +1,15 @@
+Assuming word_count is a map from string to size_t and word is
+a string, explain the following loop:
+
+    while (cin >> word) {
+        ++word_count.insert({word, 0}).first->second;
+    }
+
+(answer):
+
+= On each iteration, the story goes to:
+    
+    word_count.insert({word, 0})        => insert the word to the key, 0 to the value of the map
+    .first                              => access the key of the pair return by the insert
+    ->second                            => access the value of the key of the pair
+    ++                                  => then increment the value.
