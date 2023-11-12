@@ -12,3 +12,22 @@ c.equal_range(k)    Returns a pair of iterators denoting the elements with key k
 
 When a multimap or multiset has multiple elements of a given
 key, those elements will be adjacent within the container.
+
+If the key is in the container, the iterator returned from lower_bound will refer to the first instance
+of that key and the iterator returned by upper_bound will refer just after the last
+instance of the key.
+
+Thus, calling lower_bound and upper_bound on the same key yields an iterator range (§ 9.2.1, p. 331) that
+denotes all the elements with that key
+
+If the element we’re looking for has the largest key in the container, then upper_bound on that key 
+returns the off-the-end iterator. If the key is not present and is larger than any key in the container, 
+then the return from lower_bound will also be the off-the-end iterator.
+
+If there is no element for this key, then lower_bound and upper_bound will be equal. Both will refer to
+the point at which this key can be inserted while maintaining the container order.
+
+equal_range:
+return pair of iterators. If the key is present, then the first iterator refers to the first instance 
+of the key and the second iterator refers one past the last instance of the key
+

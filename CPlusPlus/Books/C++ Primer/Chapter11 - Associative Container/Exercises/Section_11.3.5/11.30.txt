@@ -1,0 +1,13 @@
+Explain the meaning of the operand pos.first->second used in
+the output expression of the final program in this section.
+
+(answer):
+
+we know that the program returns something like this:
+
+    pair<multimap<string, string>::iterator, multimap<string, string>::iterator> pos;
+
+now if you access the value like this:
+
+    pos.first           => you get iterator to the first key element.
+    pos.first->second   => access the value of the iterator returned by pos.first

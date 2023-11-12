@@ -1,0 +1,8 @@
+What do upper_bound, lower_bound, and equal_range return
+when you pass them a key that's not in the container?
+
+(answer):
+= all of them will return iterator which point to the element
+  that can be insert the key without disrupting the order of the element.
+  If the key larger than any other key in the container, all of them will
+  return off-the-end iterator.

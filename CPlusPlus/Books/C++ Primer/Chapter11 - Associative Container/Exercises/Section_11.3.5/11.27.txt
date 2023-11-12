@@ -1,0 +1,6 @@
+What kinds of problem would you use count to solve?
+When might you use find instead?
+
+(answer):
+= I use count to solve find the duplicate key while the find
+  itself i would use to replace value that the key mapped.
