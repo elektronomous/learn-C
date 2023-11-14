@@ -1,0 +1,10 @@
+In BuildMap, what effect, if any, would there be from rewriting
+    
+    trans_map[key] = value.substr(1);
+    as
+    trans_map.insert({key, value.substr(1)})
+
+(answer):
+= The effect is that we can't update the value. When insert do their job 
+  on the same key, it doesn't modify that key. But using subscript operator
+  on the same key will update the value of the key.

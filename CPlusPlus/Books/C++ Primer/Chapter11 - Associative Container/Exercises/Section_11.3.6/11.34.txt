@@ -1,0 +1,7 @@
+What would happen if we used the subscript operator instead of find
+in the transform function?
+
+(answer):
+= If you dont' find the word, then map will be modified to added the 
+  word that you trying to find. But this is an error since we have 
+  const map where we looking for the word.

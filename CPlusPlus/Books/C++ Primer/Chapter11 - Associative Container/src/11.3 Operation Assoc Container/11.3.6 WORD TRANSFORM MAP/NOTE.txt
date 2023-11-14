@@ -1,0 +1,22 @@
+We’ll close this section with a program to illustrate creating, searching, and iterating across a map. We’ll write a program that, given one string, 
+transforms it into another. The input to our program is two files. The first file contains rules that we will use to transform the text in the second file. 
+Each rule consists of a word that might be in the input file and a phrase to use in its place. The idea is that whenever the first word appears 
+in the input, we will replace it with the corresponding phrase. The second file contains the text to transform
+
+If the contents of the word-transformation file are
+    brb be right back
+    k okay?
+    y why
+    r are
+    u you
+    pic picture
+    thk thanks!
+    l8r later
+and the text we are given to transform is
+    where r u
+    y dont u send me a pic
+    k thk l8r
+then the program should generate the following output:
+    where are you
+    why dont you send me a picture
+    okay? thanks! later
