@@ -1,0 +1,11 @@
+What are the advantages of an unordered container as 
+compared to the ordered version of that container? What are the 
+advantages of the ordered version?
+
+(answer):
+= If you have a bunch of a list of phone numbers and names. You just wanna track
+  someone by the phone number and you don't care whether the numbers are in order
+  then you need unordered container.
+  The advantages using ordered container is that you can look at the element in order
+  and then analyze it. If you don't care about the bunch of your data whether is in or
+  not may be you use unordered container.

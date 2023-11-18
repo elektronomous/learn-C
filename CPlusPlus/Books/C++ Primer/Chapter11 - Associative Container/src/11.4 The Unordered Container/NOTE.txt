@@ -1,0 +1,49 @@
+The new standard defines four unordered associative containers.
+
+the unordered containers provide the same operations (find, insert, and so on) as the 
+ordered containers. That means that the operations we’ve used on map and set apply to 
+unordered_map and unordered_set as well. Similarly for the unordered versions of the
+ containers that allow multiple keys.
+
+Rather than using a comparison operation to organize their elements, these containers use a hash
+unction and the key type’s == operator.
+
+An unordered container is most useful when we have a key type for which there is no 
+obvious ordering relationship among the elements
+
+The container puts all of its elements with a given hash value into the same bucket
+If the container allows multiple elements with a given key, all the elements with 
+the same key will be in the same bucket.
+The unordered containers are organized as a collection of buckets, each of which
+holds zero or more elements. These containers use a hash function to map elements
+to buckets. To access an element, the container first computes the element’s hash
+code, which tells which bucket to search.
+
+Bucket interface:
+    c.bucket_count()        Number of buckets in use
+    c.max_bucket_count()    Largest number of buckets this container can hold.
+    c.bucket_size(N)        Number of element in the Nth bucket.
+    c.bucket(k)             Bucket in which elements with k would be found.
+
+Bucket iteration:
+    local_iterator          Iterator type that can access element in a bucket.
+    const_local_iterator    const version of bucket Iterator
+    c.begin(N), c.end(N)    Iterator to the first, one past the last element in bucket N
+    c.cbegin(N), c.cend(N)  Return const_local_iterator
+
+Hash policy
+    c.load_factor()         Average number of elements per bucket. Returns float
+    c.max_load_factor()     Average bucket size that c tries to maintain. c adds bucket
+                            to keep load_factor <= max_load_factor. Returns float.
+    c.rehash(N)             Reorganize storage so that bucket_count >= N and bucket_count
+                            > size/max_load_factor 
+    c.reserve(N)            Reorganize so that c can hold N elements without rehash.
+
+The library supplies versions of the hash template for the built-in types, including pointers.
+Thus, we can directly define unordered containers whose key is one of the built-in
+types (including pointer types), or a string, or a smart pointer
+
+However, we cannot directly define an unordered container that uses a our own
+class types for its key type. Unlike the containers, we cannot use the hash template
+directly. Instead, we must supply our own version of the hash template. We’ll see
+how to do so in (usingUNORDERED_CONTAINER.cpp)
