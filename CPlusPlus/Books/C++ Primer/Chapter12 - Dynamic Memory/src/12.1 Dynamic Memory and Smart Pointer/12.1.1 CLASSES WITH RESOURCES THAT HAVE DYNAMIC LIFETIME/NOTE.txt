@@ -1,0 +1,19 @@
+However, we can’t store the vector directly in a Blob object. Members of an
+object are destroyed when the object itself is destroyed. For example, assume that b1
+and b2 are two Blobs that share the same vector. If that vector were stored in
+one of those Blobs—say, b2—then that vector, and therefore its elements, would
+no longer exist once b2 goes out of scope. To ensure that the elements continue to
+exist, we'll store the vector in dynamic memory.
+
+To implement the sharing we want, we’ll give each StrBlob a shared_ptr to a
+dynamically allocated vector. That shared_ptr member will keep track of how
+many StrBlobs share the same vector and will delete the vector when the last
+StrBlob using that vector is destroyed
+
+As we’ve seen, copying a shared_ptr increments its reference count; assigning
+one shared_ptr to another increments the count of the right-hand operand and
+decrements the count in the left-hand operand; and destroying a shared_ptr
+decrements the count. If the count in a shared_ptr goes to zero, the object to
+which that shared_ptr points is automatically destroyed. Thus, the vector
+allocated by the StrBlob constructors will be automatically destroyed when the last
+StrBlob pointing to that vector is destroyed.

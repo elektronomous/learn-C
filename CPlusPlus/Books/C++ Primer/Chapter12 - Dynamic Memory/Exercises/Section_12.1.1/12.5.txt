@@ -1,0 +1,19 @@
+We did not make the constructor that takes an initializer_list explicit.
+Discuss the pros and const of this design choice.
+
+(answer)
+= say that you have 2 StrBlob object, which the one you have you want its back() compare
+  with the second one's back(). The second one is created temporarily:
+    
+    StrBlob yourStrBlob({"a","an","the"});
+    
+    if (yourStrBlob.back() == StrBlob({"a","an","the"}).back())
+        cout << "The back of each StrBlob are the same" << endl;
+    else
+        cout << "They're diffrent" << endl;
+
+= When the temporarily object is created, the reference count is 1. After the if
+  statement the temporarily object is out of range, decrement its reference count
+  and destroyed the object.
+
+

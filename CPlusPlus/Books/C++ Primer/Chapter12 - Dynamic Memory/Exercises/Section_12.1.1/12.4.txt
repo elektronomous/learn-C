@@ -1,0 +1,6 @@
+In our check function we didn't check whether i was greater
+than zero. Why is it okay to omit that check?
+
+(answer):
+= Since the check function only use by front and back member function, it's not
+  necesari to check that the index was zero.

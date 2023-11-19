@@ -1,0 +1,25 @@
+A dynamic object managed through a built-in pointer exists until it is explicitly deleted.
+Functions that return pointers (rather than smart pointers) to dynamic memory put a
+burden on their callers—the caller must remember to delete the memory:
+
+In particular, when a pointer goes out of scope, nothing happens to the object to which
+the pointer points. If that pointer points to dynamic memory, that memory is not
+automatically freed.
+
+When we delete a pointer, that pointer becomes invalid. Although the pointer is
+invalid, on many machines the pointer continues to hold the address of the (freed)
+dynamic memory. After the delete, the pointer becomes what is referred to as a
+dangling pointer. A dangling pointer is one that refers to memory that once held an
+object but no longer does so.
+
+. If we need to keep the pointer around, we can assign nullptr to the pointer after we use
+delete. Doing so makes it clear that the pointer points to no object
+
+A fundamental problem with dynamic memory is that there can be several pointers
+that point to the same memory. Resetting the pointer we use to delete that memory
+lets us check that particular pointer but has no effect on any of the other pointers that
+still point at the (freed) memory. For example: (howNEW_FREE.cpp)
+
+. However, resetting p has no effect on q, which became invalid when we
+deleted the memory to which p (and q!) pointed. In real systems, finding all the
+pointers that point to the same memory is surprisingly difficult

@@ -7,7 +7,7 @@
       "command": "g++-12",
       "args": [
         "-fdiagnostics-color=always",
-        "-g",
+        "-ggdb3",
         "-Wall",
         "-Werror",
         "-std=c++17",

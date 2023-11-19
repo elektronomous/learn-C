@@ -1,0 +1,68 @@
+In C++, dynamic memory is managed through a pair of operators: new, which
+allocates, and optionally initializes, an object in dynamic memory and returns a pointer
+to that object; and delete, which takes a pointer to a dynamic object, destroys that
+object, and frees the associated memory
+
+To make using dynamic memory easier (and safer), the new library provides two
+smart pointer types that manage dynamic objects. A smart pointer acts like a
+regular pointer with the important exception that it automatically deletes the object to
+which it points. 
+
+The new library defines two kinds of smart pointers that differ in how
+they manage their underlying pointers: 
+shared_ptr, which allows multiple pointers to refer to the same object, and 
+unique_ptr, which “owns” the object to which it points.
+The library also defines a companion class named weak_ptr that is a weak reference
+to an object managed by a shared_ptr. 
+All three are defined in the memory header.
+
+A default initialized smart pointer holds a null pointer (§ 2.3.2, p. 53).
+
+When we use a smart pointer in a condition, the effect is to test whether the pointer is null:
+
+operation common to shared_ptr and unique_ptr:
+    shared_ptr<T> sp        Null smart pointer that can point to objects of type T.
+    unique_ptr<T> up
+    p                       Use p as a condition; true if p points to an object
+    *p                      Dereference p to get the object to which p points
+    p->mem                  Synonim for (*p).mem
+    p.get()                 Returns the pointer in p. Use with caution: the object to which the returned
+                            pointer points will disappear when the smart pointer deletes it.
+
+    swap(p, q)              Swaps the pointer p and q.
+    p.swap(q)
+
+operation specifict to shared_ptr:
+    make_shared<T> (args)   Returns a shared_ptr pointing to a dynamically allocated
+                            object of type T. Uses args to initialize that object.
+    shared_ptr<T> p(q)      p is a copy of shared_ptr q; increments the count in q.
+                            The pointer in q must be convertible to T*
+    p = q                   p and q are shared_ptr holding pointers that can be converted
+                            to one another. Decrement p's reference count and increments
+                            q's count; delete p's existing memory if p's goes to 0.
+    p.unique()              Returns true if p.use_count() is one; false otherwise.
+    p.use_count()           Returns the number of objects sharing with p; may be a slow
+                            operation, intended primarily for debugging process.
+
+The safest way to allocate and use dynamic memory is to call a library function named
+make_shared. This function allocates and initializes an object in dynamic memory
+and returns a shared_ptr that points to that object. Like the smart pointers,
+make_shared is defined in the memory header
+
+Calls to make_shared<T> can pass any value we can use to initialize
+a type T. And so on. If we do not pass any arguments, then the object is value
+initialized (§ 3.3.1, p. 98).
+
+We can think of a shared_ptr as if it has an associated counter, usually referred to
+as a reference count. Whenever we copy a shared_ptr, the count is incremented.
+For example, the counter associated with a shared_ptr is incremented when we use
+it to initialize another shared_ptr, when we use it as the right-hand operand of an
+assignment, or when we pass it to (§ 6.2.1, p. 209) or return it from a function by
+value (§ 6.3.2, p. 224). The counter is decremented when we assign a new value to
+the shared_ptr and when the shared_ptr itself is destroyed, such as when a local
+shared_ptr goes out of scope (§ 6.1.1, p. 204)
+
+. One way that shared_ptrs might stay around after you need them is if you put 
+shared_ptrs in a container and subsequently reorder the container so that you don’t 
+need all the elements. You should be sure to erase shared_ptr elements once you no 
+longer need those elements

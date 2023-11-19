@@ -1,0 +1,10 @@
+Does this class(12.2.hpp) need const versions of push_back and
+pop_back? If so, add them. If not, why aren't they needed?
+
+(answer):
+= When we make the push_back and the pop_back as const member function, 
+  it means the const applied to the member data also, in this case is 
+  shared_ptr<vector<string>>. When you make the shared_ptr as the const member
+  you can't point to another object since you make it const. Now push_back and
+  pop_back don't make the shared_ptr points to another object. We don't need the
+  const to be a const since we don't make the shared_ptr points to another object.
