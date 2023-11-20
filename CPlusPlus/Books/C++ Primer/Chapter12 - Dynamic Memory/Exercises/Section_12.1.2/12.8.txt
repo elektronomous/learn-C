@@ -1,0 +1,12 @@
+Explain what if anything is wrong with the following function.
+
+    bool b() {
+        int *p = new int;
+        // ...
+        return p;
+    }
+
+(answer):
+afterh *p is initialized with dynamic memory, it should be freed and the pointer
+have to initialize with nullptr after that. But the program dont do so, so this program
+leak some memory resource.
