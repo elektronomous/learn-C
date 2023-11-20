@@ -1,0 +1,10 @@
+As we’ve seen, if we do not initialize a smart pointer, it is initialized as a null pointer
+
+By default, a pointer used to initialize a smart pointer must point to dynamic
+memory because, by default, smart pointers use delete to free the associated
+object.
+
+When we bind a shared_ptr to a plain pointer, we give responsibility for that
+memory to that shared_ptr. Once we give shared_ptr responsibility for a pointer,
+we should no longer use a built-in pointer to access the memory to which the
+shared_ptr now points
