@@ -1,0 +1,8 @@
+What would happen if we called the process as follows?
+
+    process(shared_ptr<int>(p.get()));
+
+(answer):
+= Because this is the temporary object, after this call the p will 
+  point to object that no longer exist or p is dangling pointer. the
+  temporary shared_ptr will destroy its memory after the called.

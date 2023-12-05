@@ -13,6 +13,6 @@ Explain what happens in the following code:
 
 = In the second code, we allocated some memory of both *q2 and *r2 using smart pointer.
   After that we make r2 to point to the object q2 pointed. This makes the r2 reference count
-  decremented because when we assign to smart pointer another address, the reference count
+  decremented because when we assign to another smart pointer address, the reference count
   is decremented by 1. Since the address pointed by r2 is only r2, the decremented will result 0
   which makes the smart pointer to free itself.

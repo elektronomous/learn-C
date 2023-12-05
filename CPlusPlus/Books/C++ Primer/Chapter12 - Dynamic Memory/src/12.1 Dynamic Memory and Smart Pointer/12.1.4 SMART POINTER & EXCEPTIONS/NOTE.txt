@@ -1,0 +1,59 @@
+we noted that programs that use exception handling to continue processing 
+after an exception occurs need to ensure that resources are properly freed 
+if an exception occurs.
+
+When we use a smart pointer, the smart pointer class ensures that memory is
+freed when it is no longer needed even if the block is exited prematurely:
+
+    void f() {
+        shared_ptr<int> f;
+        // code that throws an exception that is not caught inside f
+        // shared_ptr is freed automatically when the f is end
+    }
+
+In contrast, memory that we manage directly is not automatically freed when an 
+exception occurs. If we use built-in pointers to manage memory and an exception
+occurs after a new but before the corresponding delete, then that memory won’t 
+be freed
+
+There is no pointer to this memory outside the function f. Thus, there is no 
+way to free this memory.
+
+    struct destination;         // represent what we're connecting to
+    struct connection;          // information needed to use the connection
+
+    connection connect(destination *d);     // open the connection
+    void disconnect(connection c);          // close the given connection
+
+    void f(destination &d) {
+        // get a connection; remember to close it when it's done.
+        connection c = connect(&d);
+
+        // use the connection
+        // if we forget to call disconnect before exiting f, there will be no way to close c
+    }
+
+If connection had a destructor, that destructor would automatically close the
+connection when f completes. 
+
+However, connection does not have a destructor. This problem is nearly identical
+to our previous program that used a shared_ptr to avoid memory leaks. It turns out 
+that we can also use a shared_ptr to ensure that the connection is properly closed.
+
+Hence, by default, when a shared_ptr is destroyed, it executes delete on the pointer it
+holds. To use a shared_ptr to manage a connection, we must first define a function to use
+in place of delete. It must be possible to call this deleter function with the pointer 
+stored inside the shared_ptr.
+
+    void end_connection(connection *p) { disconnect(*p); }
+
+When we create a shared_ptr, we can pass an optional argument that points to
+a deleter function:
+
+    void f(destination &d) {
+        // get a connection; remember to close it when it's done.
+        connection c = connect(&d);
+        shared_ptr<connection> p(&c, end_connection);
+        // when f exits, even if by an exception, the connection will properly closed.
+    }
+Moreover, p will also be destroyed, and the connection will be closed, if an exception occurs.

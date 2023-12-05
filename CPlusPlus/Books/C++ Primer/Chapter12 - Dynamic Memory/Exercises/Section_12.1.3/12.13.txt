@@ -1,0 +1,9 @@
+What happen if we execute the following code?
+
+    auto sp = make_shared<int>();
+    auto p = sp.get();
+    delete p;
+
+(answer):
+= We deleted the object to which the sp also points. so it makes the sp
+  to point to object that doesn't longer exist or dangling pointer.

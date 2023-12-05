@@ -8,3 +8,23 @@ When we bind a shared_ptr to a plain pointer, we give responsibility for that
 memory to that shared_ptr. Once we give shared_ptr responsibility for a pointer,
 we should no longer use a built-in pointer to access the memory to which the
 shared_ptr now points
+
+Other ways to define and change shared_ptr:
+    shared_ptr<T> p(q)              p manages the object to which the built-in pointer q points;
+                                    q must point to memory allocated by 'new' and must be converti
+                                    ble to T*
+    shared_ptr<T> p(u)              p assumes ownership from unique_ptr u; makes u null.
+    shared_ptr<T> p(q, d)           p assumes ownership for the object to which built-in pointer q
+                                    points; q must be convertible to *T. p will use callable object d
+                                    in place of delete to free q.
+    shared_ptr<T> p(p2, d)          p is a copy of shared_ptr p2 and uses callable object d in place of
+                                    delete to free p.
+    p.reset()                       if p is the only shared_ptr pointing to its object. reset frees
+    p.reset(q)                      p's existing object. If the original built-in pointer q is passed,
+    p.reset(q,d)                    makes p point to q, otherwise makes p null. if d is supplied, will
+                                    d to free q otherwise uses delete to free q.
+
+The smart pointer types define a function named get (described in Table 12.1 (p. 452)) that returns a 
+built-in pointer to the object that the smart pointer is managing. This function is intended for cases 
+when we need to pass a built-in pointer to code that can’t use a smart pointer. The code that uses the
+return from get must not delete that pointer.

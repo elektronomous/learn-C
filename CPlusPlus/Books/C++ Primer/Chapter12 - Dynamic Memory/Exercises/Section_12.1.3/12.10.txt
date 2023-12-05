@@ -1,0 +1,8 @@
+Explain whether the following call to the process function defined
+on page 446 is correct. If not, how would you correct this call?
+
+    shared_ptr<int> p(new int(42));
+    process(shared_ptr<int>(p));
+
+(answer):
+= look at the dummy_10.12.cpp

@@ -1,0 +1,20 @@
+Using the declarations of p and sp explain each of the following calls
+to process. If the call is legal, explain what it does. If the call is
+illegal, explain why:
+
+    auto p = new int();
+    auto sp = make_shared<int>();
+
+    (a) process(sp);
+    (b) process(new int());
+    (c) process(p);
+    (d) process(shared_ptr<int>(p));
+
+(answer):
+
+(a) legal. sp is shared_ptr that's copy to the process function parameter which is shared_ptr also.
+(b) illegal. shared_ptr<int> only accept the direct initialization not copy initialization.
+(c) illegal. p is an int* not shared_ptr<int>
+(d) legal. Since the temporary object of shared_ptr<int> we direct initialize with p object.
+
+doubt about those answer? try dummy_12.12.cpp
