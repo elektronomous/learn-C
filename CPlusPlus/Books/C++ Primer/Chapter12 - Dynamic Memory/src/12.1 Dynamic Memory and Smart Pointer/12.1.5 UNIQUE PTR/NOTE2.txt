@@ -1,0 +1,32 @@
+by default, unique_ptr uses delete to free the object to which a unique_ptr points
+Overridding the deleter in a unique_ptr affects the unique_ptr type as well as how
+we construct (or reset) objects of that type.
+
+to use deleter on unique_ptr, we must supply the deleter type inside the angle 
+brackets along with the type to which the unique_ptr can point:
+
+    unique_ptr<TypeObject, TypeDeleter> p(new Object(), fcn)
+    /* p points to object of type TypeObject
+     * and uses an object of TypeDeleter to free TypeObject.
+     */
+    
+As a somewhat more concrete example, we’ll rewrite our connection program to
+use a unique_ptr in place of a shared_ptr as follows:
+    
+    connection connect(destination *d);     // open the connection
+    void disconnect(connection c);          // close the given connection
+    
+    void end_connection(connection *c) { disconnect(*c); }
+
+    void f(destination &d) {
+        // get a connection; remember to close it when it's done.
+        connection c = connect(&d);
+
+        unique_ptr<connection, void(*)()> p(&c, end_connection);
+        //                        ||-> you can also use decltype(end_connection)*
+
+        // use the connection
+        // when f exits, even if by an exception, the connection will properly closed
+
+    }
+

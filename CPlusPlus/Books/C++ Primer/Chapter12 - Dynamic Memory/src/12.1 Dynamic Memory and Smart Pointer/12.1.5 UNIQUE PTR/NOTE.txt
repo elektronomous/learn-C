@@ -1,0 +1,68 @@
+A unique_ptr “owns” the object to which it points. Unlike shared_ptr, only
+one unique_ptr at a time can point to a given object. The object to which a
+unique_ptr points is destroyed when the unique_ptr is destroyed
+
+Instead, when we define a unique_ptr, we bind it to a pointer returned by new. 
+As with shared_ptrs, we must use the direct form of initialization:
+
+    unique_ptr<double> p1;              // unique_ptr that can point to an double
+    unique_ptr<int> p2(new int(42));    // p2 points to int with value 42
+
+Because a unique_ptr owns the object to which it points, unique_ptr does
+not support ordinary copy or assignment:
+
+    unique_ptr<string> p1(new string("Dinosaurus"));
+    unique_ptr<string> p2(p1);      // error: no copy of unique_ptr
+    unique_ptr<string> p3;
+    p3 = p2;                        // error: no assign of unique_ptr
+
+unique_ptr common operations:
+    unique_ptr<T> u1            Null unique_ptrs that can point to objects of type T. u1 will
+    unique_ptr<T, D> u2         use delete to free its pointer; u2 will use a callable object of
+                                type D to free its pointer.
+
+    unique_ptr<T, D>            u(d) Null unique_ptr that point to objects of type T that uses d,
+                                which must be an object of type D in place of delete.
+    u = nullptr                 Deletes the object to which u points; makes u null.
+    u.release()                 Relinquishes control of the pointer u had held; returns the
+                                pointer u had held and makes u null.
+    u.reset()                   Deletes the object to which u points;
+    u.reset(q)                  If the built-in pointer q is supplied, makes u point to that object.
+    u.reset(nullptr)            Otherwise makes u null.
+
+we can transfer ownership from one (nonconst) unique_ptr to another by calling release or reset
+    
+    // transfer ownership from p1(point to a string Dinosaurus) to p2
+    unique_ptr<string> p2(p1.release());        // release makes p1 null
+
+    unique_ptr<string> p3(new string("Trex"));
+    p2.reset(p3.release());                     // reset deletes the memory to which p2 had pointed
+
+If the unique_ptr is not null, then the object to which the unique_ptr had pointed is deleted. 
+The call to reset on p2, therefore, frees the memory used by the string initialized from "Dinosaurus", 
+transfers p3’s pointer to p2, and makes p3 null
+
+Calling release breaks the connection between a unique_ptr and the object it had been managing. 
+However, if we do not use another smart pointer to hold the pointer returned from release, our
+program takes over responsibility for freeing that resource
+
+    p2.release();           // WRONG: p2 won't free the memory and we've lost the pointer
+    auto p = p2.release();  // ok, but must remember p to delete(p)
+
+We can copy or assign a unique_ptr that is about to be destroyed. The most common example is when
+we return a unique_ptr from a function:
+
+    unique_ptr<int> clone(int p) {
+        // ok: explicitly create a unique_ptr<int> from int*
+        return unique_ptr<int>(new int(p));
+
+we can also return a copy of a local object:
+
+    unique_ptr<int> clone(int p) {
+        unique_ptr<int> ret(new int(p));
+
+        return ret;
+    }
+
+In both cases, the compiler knows that the object being returned is about to be destroyed. In such cases, 
+the compiler does a special kind of “copy” which we’ll discuss in § 13.6.2 (p. 534).

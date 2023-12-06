@@ -1,0 +1,9 @@
+Why doesn't shared_ptr have a release member?
+
+(answer):
+remember that destructor of the shared_ptr will delete the address
+we've allocated. Now if you release the address of the shared_ptr, what
+the destructor will left is an address that point to nothing which is a 
+dangling pointer and it's gonna delete that address. It's gonna crash the program.
+Also if you release the memory to another shared_ptr that point to another address,
+how the other shared_ptr will delete the address it currently pointed.
