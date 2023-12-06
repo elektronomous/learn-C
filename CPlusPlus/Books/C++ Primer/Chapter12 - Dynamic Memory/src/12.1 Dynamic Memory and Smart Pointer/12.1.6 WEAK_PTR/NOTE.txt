@@ -1,0 +1,39 @@
+A weak_ptr (Table 12.5) is a smart pointer that does not control the lifetime of the
+object to which it points. 
+
+Instead, a weak_ptr points to an object that is managed by a shared_ptr.
+
+Binding a weak_ptr to a shared_ptr does not change the reference count of that shared_ptr. 
+
+Once the last shared_ptr pointing to the object goes away, the object itself will be deleted. 
+
+That object will be deleted even if there are weak_ptrs pointing to it—hence the name weak_ptr, 
+which captures the idea that a weak_ptr shares its object “weakly.”
+
+When we create a weak_ptr, we initialize it from a shared_ptr:
+    
+    shared_ptr<int> p = make_shared<int>(42);
+    weak_ptr<int> wp(p);
+
+Because the object might no longer exist, to access that object, we must call lock
+The lock function checks whether the object to which the weak_ptr points still exists. 
+    If so, lock returns a shared_ptr to the shared object.
+
+we are guaranteed that the underlying object to which that shared_ptr points continues
+to exist at least as long as that shared_ptr exists:
+
+    if (shared_ptr<int> np = wp.lock()) { // true if np not null
+        // inside if, np shares its object with p
+    }
+
+weak_ptr operations:
+        weak_ptr<T> w           Null weak_ptr that can point at objects of type T.
+        weak_ptr<T> w(sp)       weak_ptr that points to the same object as the shared_ptr sp.
+                                T must be convertible to the type to which sp points.
+        w = p                   p can be a shared_ptr or a weak_ptr. After the assignment w
+                                shares ownership with p.
+        w.reset()               Makes w null.
+        w.use_count()           The number of shared_ptrs that share ownership with w.
+        w.expired()             Returns true if w.use_count() is zero, false otherwise.
+        w.lock()                If expired is true, returns a null shared_ptr; otherwise returns
+                                a shared_ptr to the object to which w points.

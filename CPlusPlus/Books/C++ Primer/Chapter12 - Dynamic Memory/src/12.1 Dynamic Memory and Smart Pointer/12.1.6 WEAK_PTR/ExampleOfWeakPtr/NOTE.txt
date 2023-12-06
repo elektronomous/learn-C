@@ -1,0 +1,34 @@
+As an illustration of when a weak_ptr is useful, we’ll define a companion pointer
+class for our StrBlob class. Our pointer class, which we’ll name StrBlobPtr, will 
+store a weak_ptr to the data member of the StrBlob from which it was initialized. 
+By using a weak_ptr, we don’t affect the lifetime of the vector to which a given 
+StrBlob points. However, we can prevent the user from attempting to access a vector 
+that no longer exists. StrBlobPtr will have two data members: wptr, which is either
+null or points to a vector in a StrBlob; and curr, which is the index of the element
+that this object currently denotes. 
+
+Like its companion StrBlob class, our pointer class has a check member to verify that
+it is safe to dereference the StrBlobPtr(LINE 27):
+
+    StrBlobPtr.hpp
+
+As we’ll see, the sz parameter will be used by the end() member of StrBlob.
+
+It is worth noting that we cannot bind a StrBlobPtr to a const StrBlob object. This 
+restriction follows from the fact that the constructor takes a reference to a nonconst
+object of type StrBlob. (LINE 12)
+
+If the vector is gone, lock will return a null pointer. In this case, any
+reference to the vector will fail, so we throw an exception. Otherwise, check
+verifies its given index. If that value is okay, check returns the shared_ptr it
+obtained from lock. (LINE 27)
+
+The deref member calls check to verify that it is safe to use the vector and that curr
+is in range. (LINE 40)
+
+We’ll also give our StrBlob class begin and end operations. These members will return 
+StrBlobPtrs pointing to the first or one past the last element in the StrBlob itself. 
+(LINE 19 & 23: StrBlob.hpp)
+
+If you ask why one past the last element ? Because the data use the size member to
+get its size, which is one past the last element when you applied to the array/vector.

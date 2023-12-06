@@ -48,6 +48,7 @@
     "forward_list": "cpp",
     "list": "cpp",
     "fstream": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "filesystem": "cpp"
   }
 }
