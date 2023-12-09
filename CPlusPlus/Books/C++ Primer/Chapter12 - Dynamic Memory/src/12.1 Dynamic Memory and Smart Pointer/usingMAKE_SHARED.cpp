@@ -16,4 +16,5 @@ int main(void) {
 
     // p6 points to a vector that hold string with no elements
     shared_ptr<vector<string>> p6 = make_shared<vector<string>>();
+
 }

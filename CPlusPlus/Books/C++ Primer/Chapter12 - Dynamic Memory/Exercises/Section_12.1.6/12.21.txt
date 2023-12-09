@@ -1,0 +1,14 @@
+We could have written StrBlobPtr's deref member as follows:
+
+    std::string& deref() const {
+        return (*check(curr, "dereference past the end"))[curr];
+    }
+
+which version do you think is better and why?
+
+(answer):
+mostly programmer is intended to write program as brief as possible.
+The program you've wrote like that is a way to short the code. The
+short the code, the hard you think how exactly that code works. Now
+if you prefer to use that long code version than the short one, you
+please to use it, there's no problem for choosing one of them. 

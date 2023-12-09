@@ -1,0 +1,84 @@
+We ask new to allocate an array of objects by specifying the number of objects to
+allocate in a pair of square brackets after a type name:
+
+    // call get_size() to determine how many ints to allocate
+    int *pia = new int[get_size()];         // pia points to the first of these ints.
+
+The size inside the brackets must have integral type but need not be a constant.
+
+another way to allocating memory to an array:
+
+    typedef int arrT[42];       // arrT names the type of the array of 42 ints.
+    int *p = new arrT;          // allocates an array of 42 ints; p points to the first one.
+
+When we use new to allocate an array, we do not get an object with an array type. 
+Instead, we get a pointer to the element type of the array. Even if we use a type
+alias to define an array type, new does not allocate an object of array type
+
+Because the allocated memory does not have an array type, we cannot call begin or end
+(§ 3.5.3, p. 118) on a dynamic array
+
+We can value initialize (§ 3.3.1, p. 98) the elements in an array by following the size
+with an empty pair of parentheses:
+
+    int *pia = new int[10];     // block of ten uninitialized ints
+    int *pia2 = new int[10]();  // block of ten ints value initialized with 0
+
+    string *psa = new string[10];   // block of ten empty string
+    string *ps2 = new string[10](); // block of ten empty string
+
+Under the new standard, we can also provide a braced list of element initializers:
+
+    // block of ten ints each initialized from the corresponding initializer
+    int *pia3 = new int[10] {0,1,2,3,4,5,6,7,8,9};
+
+    // block of ten strings; the first four initialized from the given initializer
+    string *psa3 = new string[10]{"a","an","the", string(3, 'x')};
+
+If there are fewer initializers than elements, the remaining elements are value initialized. 
+If there are more initializers than the given size, then the new expression fails and no storage
+is allocated. In this case, new throws an exception of type bad_array_new_length. Like bad_alloc, 
+this type is defined in the new header. 
+
+Although we can use empty parentheses to value initialize the elements of an
+array, we cannot supply an element initializer inside the parentheses. The fact that
+we cannot supply an initial value inside the parentheses means that we cannot use
+auto to allocate an array
+
+What happens if get_size returns 0? The answer is that our code works fine. Calling 
+new[n] with n equal to 0 is legal even though we cannot create an array variable of size 0
+
+When we use new to allocate an array of size zero, new returns a valid, nonzero
+pointer. 
+That pointer is guaranteed to be distinct from any other pointer returned
+by new. 
+This pointer acts as the off-the-end pointer (§ 3.5.3, p. 119) for a zero 
+element array. 
+We can use this pointer in ways that we use an off-the-end iterator. 
+The pointer can be compared as in the loop above. 
+We can add zero to (or subtract zero from) such a pointer and can subtract the pointer from itself, yielding zero.
+
+The pointer cannot be dereferenced—after all, it points to no element
+
+    char *cp = new char[0];     // ok: but cp can't be dereferenced
+
+To free a dynamic array, we use a special form of delete that includes an empty
+pair of square brackets:
+
+    delete [] pa;   // pa must point to a dynamically allocated array or be null
+
+The second statement destroys the elements in the array to which pa points and
+frees the corresponding memory.
+
+Elements in an array are destroyed in reverse order. That is, the last element 
+is destroyed first, then the second to last, and so on.
+
+The library provides a version of unique_ptr that can manage arrays allocated
+by new. To use a unique_ptr to manage a dynamic array, we must include a pair
+of empty brackets after the object type:
+
+    // up points to an array of ten ints
+    unique_ptr<int[]> up(new int[10]);
+    up.release();           // automatically uses delete[] to destroy its pointer
+
+when up destroys the pointer it manages, it will automatically use delete[]

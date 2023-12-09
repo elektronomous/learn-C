@@ -1,0 +1,3 @@
+The language defines a second kind of new expression that allocates and initializes an 
+array of objects. The library includes a template class named allocator that lets us 
+separate allocation from initialization
