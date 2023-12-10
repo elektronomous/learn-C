@@ -1,0 +1,21 @@
+As a companion to the allocator class, the library also defines two algorithms
+that can construct objects in uninitialized memory. These functions, described in
+Table 12.8, are defined in the memory header:
+
+These functions construct elements in the destination, rather than assigning to them.
+    uninitialized_copy(b, e, b2)
+        Copies elements from the input range denoted by iterators b and e into
+        unconstructed, raw memory denoted by the iterator b2. The memory denoted by
+        b2 must be large enough to hold a copy of the elements in the input range.
+    
+    uninitialized_copy_n(b, n, b2)
+        Copies n elements starting from the one denoted by the iterator b into raw
+        memory starting at b2.
+    
+    uninitialized_fill(b, e, t)
+        Constructs objects in the range of raw memory denoted by iterators b and e as a
+        copy of t.
+    
+    uninitialized_fill_n(b, n, t)
+        Constructs an unsigned number n objects starting at b. b must denote
+        unconstructed, raw memory large enough to hold the given number of objects.

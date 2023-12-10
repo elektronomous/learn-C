@@ -1,0 +1,86 @@
+An aspect of new that limits its flexibility is that new combines allocating memory
+with constructing object(s) in that memory. Similarly, delete combines destruction with deallocation.
+
+In this case, we’d like to decouple memory allocation from object construction. Decoupling 
+construction from allocation means that we can allocate memory in large chunks and pay the
+overhead of constructing the objects only when we actually need to create them.
+
+In general, coupling allocation and construction can be wasteful. for example:
+
+    string *const p = new string[n];        // construct n empty string => this create the object of the string
+    string s;
+    string *q = p;                          // point to the first string
+
+    while (cin >> s && q != p + n) 
+        *q++ = s;                           // assign each of q with s
+    const size_t size = q-p;                // remember how many string we read
+
+    // use the array
+
+    delete[] p;     // p points to an array; must remember to use delete[]
+
+Moreover, for those objects we do use, we immediately assign new values over the previously
+initialized strings. The elements that are used are written twice: first when the elements
+are default initialized, and subsequently when we assign to them. 
+
+More importantly, classes that do not have default constructors cannot be dynamically allocated as an array.
+
+The library allocator class, which is defined in the memory header, lets us separate allocation from construction. 
+It provides type-aware allocation of raw, unconstructed, memory.
+
+To define an allocator we must specify the type of objects that a particular allocator can allocate:
+
+    allocator<string> allocStr;             // object that can allocate string
+    string *pStr = allocStr.allocate(10);   // allocate 10 unconstructed string.
+
+common allocator operations:
+
+    allocator<T> a          Defines an allocator object named a that can allocate memory
+                            for objects of type T.
+    a.allocate(n)           Allocates raw, unconstructed memory to hold n objects of type T.
+    a.deallocate(p, n)      Deallocates memory that held n objects of type T starting at the
+                            address in the T* pointer p; p must be a pointer previously
+                            returned by allocate, and n must be the size requested when p
+                            was created. The user must run destroy on any objects that
+                            were constructed in this memory before calling deallocate.
+    a.construct(p, args)    p must be a pointer to type T that points to raw memory; args are
+                            passed to a constructor for type T, which is used to construct an
+                            object in the memory pointed to by p.
+    a.destroy(p)            Runs the destructor (§ 12.1.1, p. 452) on the object pointed to by
+                            the T* pointer p.
+
+The memory an allocator allocates is unconstructed. We use this memory by constructing objects
+in that memory. In the new library the construct member takes a pointer and zero or more additional
+arguments; it constructs an element at the given location.
+
+these additional arguments must be valid initializers for an object of the type being constructed.
+In particular, if the , object is a class type, these arguments must match a constructor for that class:
+
+    string *q = pStr;                   // q will advance to one past the last constructed element.
+    allocStr.allocate(q++);             // q is the empty string
+    allocStr.allocate(q++, 10, 'C');    // q is CCCCCCCCCC
+    allocStr.allocate(q++, "Hello");    // q is "Hello"
+
+It is an error to use raw memory in which an object has not been constructed:
+    
+    cout << *pStr << endl;     // ok: use the string output operator
+    cout << *q << endl;     // disaster: q points to unconstructed memory!
+
+When we’re finished using the objects, we must destroy the elements we constructed, which we do by 
+calling destroy on each constructed element:
+
+    while (q != pStr)
+        allocStr.destroy(--q);      // free the string we actually allocated
+
+At the beginning of our loop, q points one past the last constructed element. We
+decrement q before calling destroy. Thus, on the first call to destroy, q points
+to the last constructed element. We destroy the first element in the last iteration,
+after which q will equal p and the loop ends.
+
+We free the memory by calling deallocate:
+
+    allocStr.deallocate(pStr, n);
+
+The pointer we pass to deallocate cannot be null; it must point to memory allocated by allocate. Moreover, 
+the size argument passed to deallocate must be the same size as used in the call to allocate that obtained
+the memory to which the pointer points.
