@@ -1,0 +1,7 @@
+Given the following new expression, how would you delete pa?
+
+    int *pa = new int[10];
+
+(answer):
+
+    delete[] pa;
