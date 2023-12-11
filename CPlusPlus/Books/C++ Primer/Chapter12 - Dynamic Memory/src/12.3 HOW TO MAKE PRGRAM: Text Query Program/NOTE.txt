@@ -1,0 +1,15 @@
+Our program will let a user search a given file for words that might occur
+in it. The result of a query will be the number of times the word occurs and a
+list of lines on which that word appears. If a word occurs more than once on the
+same line, we’ll display that line only once. Lines will be displayed in ascending
+order—that is, line 7 should be displayed before line 9, and so on.
+
+For example, we might read the file that contains the input for this chapter and
+look for the word element. The first few lines of the output would be
+
+    element occurs 112 times
+        (line 36) A set element contains only a key;
+        (line 158) operator creates a new element
+        (line 160) Regardless of whether the element
+        (line 168) When we fetch an element from a map, we
+        (line 214) If the element is not found, find returns

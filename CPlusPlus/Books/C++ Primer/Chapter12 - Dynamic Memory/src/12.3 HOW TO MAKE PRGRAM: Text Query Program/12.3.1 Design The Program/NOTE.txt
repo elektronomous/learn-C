@@ -1,0 +1,32 @@
+When we design a class, it can be helpful to write programs using the class before
+actually implementing the members. That way, we can see whether the class has
+the operations we need. For example, the following program uses our proposed
+TextQuery and QueryResult classes. This function takes an ifstream that
+points to the file we want to process, and interacts with a user, printing the results
+for the given words:
+
+    void runQueries(ifstream &infile)
+    {
+        // infile is an ifstream that is the file we want to query
+        TextQuery tq(infile); // store the file and build the query map
+        
+        // iterate with the user: prompt for a word to find and print results
+        while (true) {
+            cout << "enter word to look for, or q to quit: ";
+            string s;
+            // stop if we hit end-of-file on the input or if a ’q’ is entered
+            if (!(cin >> s) || s == "q") break;
+            // run the query and print the results
+            print(cout, tq.query(s)) << endl;
+        }
+    }
+    
+We start by initializing a TextQuery object named tq from a given ifstream.
+The TextQuery constructor reads that file into its vector and builds the map
+that associates the words in the input with the line numbers on which they appear.
+The while loop iterates (indefinitely) with the user asking for a word to query
+and printing the related results. The loop condition tests the literal true (§ 2.1.3,
+p. 41), so it always succeeds. We exit the loop through the break (§ 5.5.1, p. 190)Section 12.3 Using the Library: A Text-Query Program 487
+after the first if. That if checks that the read succeeded. If so, it also checks
+whether the user entered a q to quit. Once we have a word to look for, we ask tq
+to find that word and then call print to print the results of the search.

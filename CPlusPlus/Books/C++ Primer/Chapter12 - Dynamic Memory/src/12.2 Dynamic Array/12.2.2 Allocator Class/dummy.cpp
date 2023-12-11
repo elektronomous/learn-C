@@ -4,6 +4,10 @@
 using namespace std;
 
 int main(void) {
-    allocator<string> allocStr;
-    string *pStr = allocStr.allocate(10);
+    int *pX = nullptr;
+
+    if (!pX)
+        cout << "pX is nullptr" << endl;
+    
+    return 0;
 }
