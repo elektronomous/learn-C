@@ -1,0 +1,7 @@
+The QueryResult class will share the vector representing the input file and the 
+sets that hold the line numbers associated with each word in the input. Hence, 
+our class has two data members: a shared_ptr to a dynamically allocated vector 
+that holds the input file, and a map from string to shared_ptr<set>. 
+
+As usual, for code that will go in a header file, we use std:: when we use a 
+library name (§ 3.1,p. 83).

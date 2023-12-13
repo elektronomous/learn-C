@@ -1,0 +1,9 @@
+What difference(s) would it make if we used a vector instead of a set
+to hold the line numbers? Which approach is better? and why?
+
+(answer):
+set has unique value on each of its element. so when you insert something
+that's currently exist. it does nothing. 
+when you use vector, you can insert same value as you've inserted it previously
+make it the element not unique and everytime you inserting a value the vector grows. 
+it's not efficient because it take much larger storage then the set. 

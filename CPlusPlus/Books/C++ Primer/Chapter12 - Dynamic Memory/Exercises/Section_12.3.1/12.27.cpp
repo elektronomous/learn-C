@@ -111,9 +111,18 @@ ostream& print(ostream &os, const QueryResult &dq) {
 
         // now show the line and the corresponding word
         // get the set first
-        set<size_t> lineNumbers = dq.result->getWordMapLineNumber()[dq.result->getTheQueryStr()];
-        for (const size_t number: lineNumbers)
-            cout << "\t(line " << number << ") " <<  dq.result->getWordsPerLine()[number-1] << endl;
+        string query = dq.result->getTheQueryStr();
+        set<size_t> lineNumbers = dq.result->getWordMapLineNumber()[query];
+        for (const size_t &number: lineNumbers)
+            cout << "(line " << number << ") " << dq.result->getWordsPerLine()[number-1];
+        
+        /*
+        for (const size_t &number: dq.result->getWordMapLineNumber()[dq.result->getTheQueryStr()])
+            cout << "(line " << number << ") " << dq.result->getWordMapLineNumber()[number-1];
+        => This code make the program segmentation default.. why ?
+        
+        
+        */
 
     }
 
