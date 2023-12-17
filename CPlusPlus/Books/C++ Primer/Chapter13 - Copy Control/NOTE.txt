@@ -1,0 +1,29 @@
+When we define a class, we specify—explicitly or implicitly—what happens when 
+objects of that class type are copied, moved, assigned, and destroyed.
+A class controls these operations by defining five special member functions: copy
+constructor, copy-assignment operator, move constructor, move-assignment operator, and destructor. 
+
+copied = copy constructor
+moved = move constructor
+assigned = copy-assignment constructor
+assigned = move-assignment operator
+destroyed = destructor
+
+The copy and move constructors define what happens when an object is initialized
+from another object of the same type. 
+
+The copy- and move-assignment operators define what happens when we assign an object 
+of a class type to another object of that same class type. 
+
+The destructor defines what happens when an object of the type ceases to exist. 
+Collectively, we’ll refer to these operations as copy control
+
+However, for some classes, relying on the default definitions of the copy control leads to 
+disaster. Frequently, the hardest part of implementing copy-control operations is 
+recognizing when we need to define them in the first place.
+
+Copy control is an essential part of defining any C++ class. Programmers new to C++ are 
+often confused by having to define what happens when objects are copied, moved, assigned,
+or destroyed. This confusion is compounded because if we do not explicitly define these 
+operations, the compiler defines them for us—although the compiler-defined versions might
+not behave as we intend.

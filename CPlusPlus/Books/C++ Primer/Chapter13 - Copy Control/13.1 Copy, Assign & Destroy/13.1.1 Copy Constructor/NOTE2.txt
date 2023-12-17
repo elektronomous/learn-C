@@ -1,0 +1,8 @@
+we use copy or direct initialization matters if we use an initializer 
+that requires conversion by an explicit constructor (dummyClass.cpp)
+
+    vector<int> v1(10);             // direct initialization
+    vector<int> v2 = 10;            // error: constructor that takes a size is explicit
+
+    void f(vector<int>);            // f's parameter is copy initialized
+    f(10);                          // error:

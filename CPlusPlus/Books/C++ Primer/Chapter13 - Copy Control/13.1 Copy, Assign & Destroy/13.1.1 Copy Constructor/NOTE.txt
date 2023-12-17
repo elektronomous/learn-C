@@ -1,0 +1,100 @@
+A constructor is the copy constructor if its first parameter is a reference to the class
+type and any additional parameters have default values.
+
+    class Foo {
+        public:
+            Foo();              // default constructor
+            Foo(const Foo&)     // copy constructor
+            ...
+    };
+For reasons we’ll explain shortly, the first parameter must be a reference type. That
+parameter is almost always a reference to const, although we can define the copy
+constructor to take a reference to nonconst. The copy constructor is used implicitly in
+several circumstances. Hence, the copy constructor usually should not be explicit (§ 7.5.4, p. 296).
+
+    Foo f1, f2(10);
+        f1 = f2;        // copy constructor is being executed here, if you make it as explicit
+                        // you can't do this. you have to explicitly define the class that you want to copy 
+                        //      
+                        //      f1 = Foo(f2)
+
+As we’ll see in § 13.1.6 (p. 508), the synthesized copy constructor for some classes prevents us 
+from copying objects of that class type. 
+Otherwise, the synthesized copy constructor memberwise copies the members of its argument into the
+object being created (§ 7.1.5, p. 267):
+    The compiler copies each nonstatic member in turn from the given object into the one being created
+
+The type of each member determines how that member is copied: 
+    Members of class type are copied by the copy constructor for that class; members of built-in
+      type are copied directly. 
+    Although we cannot directly copy an array (§ 3.5.1, p. 114), the synthesized copy constructor copies
+      members of array type by copying each element. Elements of class type are copied by using the elements’ 
+      copy constructor. 
+
+As an example, the synthesized copy constructor for our Sales_data class is
+equivalent to:
+        class Sales_data {
+            public:
+                // other members and constructors as before
+                // declaration equivalent to the synthesized copy constructor
+                Sales_data(const Sales_data&);
+            private:
+                std::string bookNo;
+                int units_sold = 0;
+                double revenue = 0.0;
+            };
+        
+        // equivalent to the copy constructor that would be synthesized for Sales_data
+        Sales_data::Sales_data(const Sales_data &orig):
+            bookNo(orig.bookNo),            // uses the string copy constructor
+            units_sold(orig.units_sold),    // copies orig.units_sold
+            revenue(orig.revenue)           // copies orig.revenue
+            { } // empty body
+
+direct initialization:
+    string dots(10, '.');
+    string s(dots);
+
+copy initialization:
+    string s2 = dots;
+    string null_book = "999_999_999"
+    string nines = string(100, '9');
+
+When we use copy initialization, we are asking the compiler to copy the right-hand operand into
+the object being created, converting that operand if necessary (§ 7.5.4, p. 294).
+
+what’s useful to know is when copy initialization happens and that copy initialization requires 
+either the copy constructor or the move constructor.
+
+Copy initialization happens not only when we define variables using an =, but
+also when we:
+    • Pass an object as an argument to a parameter of nonreference type
+    • Return an object from a function that has a nonreference return type
+    • Brace initialize the elements in an array or the members of an aggregate class
+    (§ 7.5.5, p. 298)
+
+Some class types also use copy initialization for the objects they allocate. For example, the library
+containers copy initialize their elements when we initialize the container, or when we call an insert
+or push member (§ 9.3.1, p. 342). By contrast, elements created by an emplace member are direct initialized (§ 9.3.1, p. 345).
+
+The fact that the copy constructor is used to initialize nonreference parameters of class type explains why the copy
+constructor’s own parameter must be a reference. If that parameter were not a reference, then the call would never succeed—to
+call the copy constructor, we’d need to use the copy constructor to copy the argument, but to copy the argument, we’d need to
+call the copy constructor, and so on indefinitely.
+
+        Foo f1, f2;
+            f1 = f2;        // f1's Foo(const Foo&) copy constructor will wrap the f2 => Foo(f2),
+                            // then copy the member of f2 to the f1.
+
+Now if your class copy constructor's has parameter which is not a reference type:
+        
+        f1 = f2;            // This is loop endlessly: f1's Foo(const Foo f) copy constructor will wrap the f2
+                            // but since the parameter isn't a reference, the parameter will copy the f2. Now
+                            // to copy the f2 to the parameter, the parameter copy constructor will wrap the f2
+                            // and copy the f2, since we know that the parameter has copy constructor that's not
+                            // a reference type, the parameter of the copy constructor of the parameter we have
+                            // earlier will copy the f2. and so on.
+        f1.Foo(f2);
+                 |-> f.Foo(f2)
+                         |-> f.Foo(f2)
+                                 |-> ....
