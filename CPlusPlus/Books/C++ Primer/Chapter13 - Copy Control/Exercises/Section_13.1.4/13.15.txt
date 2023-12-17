@@ -1,0 +1,16 @@
+Assume numbered has a copy constructor that generates a
+new serial number. Does that change the output of the calls in
+the previous exercise? If so, why? What output gets generated?
+
+(answer):
+
+= Copy constructor means when you copy initialize the object,
+  the copy constructor will be called. When you copy-initialized
+  a to b, b will get new serial number, c also get the new one.
+  Now when you call the f, the parameter will get copy-initialize
+  (refer back to Exercise Section 13.1.3, exercise 13.13.cpp). We
+  know that every time copy-initialize constructor is called, the
+  object to be copied will get another serial number. That means
+  in every call to f, will show different serial number but get
+  the same value.
+  

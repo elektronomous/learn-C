@@ -1,0 +1,7 @@
+What happens when we assign one StrBlob to another?
+What about StrBlobPtrs?
+
+(answer):
+= You can look at the 13.17.cpp as the answer. It just copy the right object
+  to the left hand object. The synthesized copy-assignment operator will copy
+  the corresponding object.

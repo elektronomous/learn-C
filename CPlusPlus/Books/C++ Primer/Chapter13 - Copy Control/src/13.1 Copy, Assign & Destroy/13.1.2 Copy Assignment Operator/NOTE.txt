@@ -1,0 +1,53 @@
+Just as a class controls how objects of that class are initialized, it also controls how
+objects of its class are assigned:
+
+    Sales_data trans, accum;
+    trans = accum;              // uses the Sales_data copy-assignment operator
+
+As with the copy constructor, the compiler synthesizes a copy-assignment operator if
+the class does not define its own.
+
+Overloaded operators are functions that have the name operator followed by the
+symbol for the operator being defined. Hence, the assignment operator is a function
+named operator=. Like any other function, an operator function has a return type
+and a parameter list
+
+The parameters in an overloaded operator represent the operands of the operator.
+
+Some operators, assignment among them, must be defined as member functions.
+
+When an operator is a member function, the left-hand operand is bound to the
+implicit this parameter (§ 7.1.2, p. 257). 
+
+The right-hand operand in a binary operator, such as assignment, is passed as an 
+explicit parameter
+
+    class Foo {
+        public:
+            Foo& operator=(const Foo&);     // assignment operator
+            //...
+    };
+
+To be consistent with assignment for the built-in types (§ 4.4, p. 145), assignment
+operators usually return a reference to their left-hand operand.
+
+the compiler generates a synthesized copy-assignment operator for a class if the class does not define its own.
+
+Analogously to the copy constructor, for some classes the synthesized copy-assignment operator
+disallows assignment (§ 13.1.6, p. 508).
+
+Otherwise, it assigns each nonstatic member of the right-hand object to the corresponding member 
+of the left-hand object using the copy-assignment operator for the type of that member. 
+
+Array members are assigned by assigning each element of the array. The synthesized copy-assignment
+operator returns a reference to its left-hand object.
+
+As an example, the following is equivalent to the synthesized Sales_data copy-assignment operator:
+
+    Sales_data& Sales_data::operator=(const Sales_data &rhs) {
+        bookNo = rhs.bookNo;            // call the string::operator=
+        units_sold = rhs.units_sold;    // uses the built-in int assignment
+        revenue = rhs.revenue;          // uses the built-in double assignment
+
+        return *this;
+    }

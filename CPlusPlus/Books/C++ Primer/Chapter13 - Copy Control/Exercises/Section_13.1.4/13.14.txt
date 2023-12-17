@@ -1,0 +1,25 @@
+Assume that numbered is a class with a default constructor that 
+generates a unique serial number for each object, which is stored in
+a data member named mysn. Assuming numbered uses the synthesized copy-control
+members and given the following function:
+
+    void f (numbered s) { cout << s.mysn << endl; }
+
+what output does the following code produce?
+
+    numbered a, b = a, c = b;
+    f(a); f(b); f(c);
+
+(answer):
+
+        class Numbered {
+            Numbered():
+                mysn(generatedValue) { }
+            private:
+                string mysn;
+        };
+
+    when a assign to b (b = a), the synthesized copy-control member will copy
+    all of the member of a to the b. That occurs also in b assigning to c. this
+    means that b and c hold the same value of the a. when you call the function
+    f three times, you got the same result.

@@ -1,0 +1,14 @@
+What happens when we copy a StrBlob? what about StrBlobPtrs?
+
+(answer):
+= Because those two class don't define the copy constructor. The class
+  will synthesized the copy constructor for them. The constructor also
+  implicitly could be created. The compiler can freely to copy the object
+  of those two classes.
+
+  In the case of StrBlob, when you copy its object the only member that
+  will be copied is only it shared_ptr. When the shared_ptr is copied, the
+  reference count of the shared_ptr will advance.
+
+  In the case of StrBlboPtrs, when you copy its object the only member that
+  will copied is the weak_ptr which could be point to object or nullptr.

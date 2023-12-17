@@ -1,0 +1,82 @@
+For example, the iostream classes prevent copying to avoid letting multiple 
+objects write to or read from the same IO buffer. 
+
+It might seem that we could prevent copies by not defining the copy-control
+members. However, this strategy doesn’t work: If our  class doesn’t define 
+these operations, the compiler will synthesize them
+
+Under the new standard, we can prevent copies by defining the copy constructor and
+copy-assignment operator as deleted functions. A deleted function is one that is
+declared but may not be used in any other way.
+
+We indicate that we want to define a function as deleted by following its parameter
+list with = delete:
+
+        struct NoCopy {
+            NoCopy() = default;     // use the synthesized default constructor
+            NoCopy(const NoCopy&) = delete;             // no copy
+            NoCopy& operator=(const NoCopy&) = delete;  // no assignment
+            ~NoCopy() = default;    // use the synthesized destructor
+            // other members
+        };
+
+The = delete signals to the compiler (and to readers of our code) that we are
+intentionally not defining these members
+
+Unlike = default, = delete must appear on the first declaration of a deleted
+function.
+
+Also unlike = default, we can specify = delete on any function (we can use = default on
+default constructor or a copy-control member that the compiler can synthesize)
+
+Although the primary use of deleted functions is to suppress the copy-control members,
+deleted functions are sometimes also useful when we want to guide the 
+function-matching process
+
+It is worth noting that we did not delete the destructor. If the destructor is deleted,
+then there is no way to destroy objects of that type.
+The compiler will not let us define variables or create temporaries of a type that has a deleted destructor.
+
+Moreover, we cannot define variables or temporaries of a class that has a member whose type has a deleted
+destructor. If a member has a deleted destructor, then that member cannot be destroyed. If a member
+can’t be destroyed, the object as a whole can’t be destroyed
+
+Although we cannot define variables or members of such types, we can dynamically
+allocate objects with a deleted destructor. However, we cannot free them:
+
+        struct NoDtor {
+            public:
+                NoDtor() = deafult;     // use the synthesized default constructor
+                ~NoDtor() = delete;     // we can't destroy objects of type NoDtor;
+        };
+
+        NoDtor nd;                      // error: NoDtor destructor is deleted
+        NoDtor *p = new NoDtor();       // ok: but we can't delete p
+        delete p;                       // error: NoDtor destructor is deleted
+
+It is not possible to define an object or delete a pointer to a dynamically
+allocated object of a type with a deleted destructor.
+
+For some classes, the compiler defines these synthesized members as deleted functions:
+
+    • The synthesized destructor is defined as deleted if the class has a member
+      whose own destructor is deleted or is inaccessible (e.g., private).
+    • The synthesized copy constructor is defined as deleted if the class has a
+      member whose own copy constructor is deleted or inaccessible. It is also deleted
+      if the class has a member with a deleted or inaccessible destructor.
+    • The synthesized copy-assignment operator is defined as deleted if a member
+      has a deleted or inaccessible copy-assignment operator, or if the class has a
+      const or reference member.
+    • The synthesized default constructor is defined as deleted if the class has a
+      member with a deleted or inaccessible destructor; or has a reference member
+      that does not have an in-class initializer (§ 2.6.1, p. 73); or has a const
+      member whose type does not explicitly define a default constructor and that
+      member does not have an in-class initializer.
+
+Although we can assign a new value to a reference, doing so changes the value of
+the object to which the reference refers. If the copy-assignment operator were
+synthesized for such classes, the left-hand operand would continue to refer to the
+same object as it did before the assignment. It would not refer to the same object as
+the right-hand operand. Because this behavior is unlikely to be desired, the
+synthesized copy-assignment operator is defined as deleted if the class has a
+reference member.

@@ -1,0 +1,97 @@
+The destructor operates inversely to the constructors: Constructors initialize the
+nonstatic data members of an object and may do other work; destructors do
+whatever work is needed to free the resources used by an object and destroy the
+nonstatic data members of the object
+
+The destructor is a member function with the name of the class prefixed by a tilde
+(~). It has no return value and takes no parameters:
+
+    class Foo {
+        public:
+            ~Foo();     // destructor
+            //..
+    };
+
+Because it takes no parameters, it cannot be overloaded. There is always only one
+destructor for a given class.
+
+In a destructor, the function body is executed first and then the members are destroyed.
+Members are destroyed in reverse order from the order in which they were initialized.
+
+Typically, the destructor frees resources an object allocated during its lifetime
+
+In a destructor, there is nothing akin to the constructor initializer list to control how
+members are destroyed; the destruction part is implicit
+
+Members of class type are destroyed by running the member’s own destructor. The built-in 
+types do not have destructors, so nothing is done to destroy members of built-in type.
+
+The destructor is used automatically whenever an object of its type is destroyed:
+    • Variables are destroyed when they go out of scope.
+    • Members of an object are destroyed when the object of which they are a part is
+        destroyed.
+    • Elements in a container—whether a library container or an array—are destroyed
+        when the container is destroyed.
+    • Dynamically allocated objects are destroyed when the delete operator is
+        applied to a pointer to the object (§ 12.1.2, p. 460).
+    • Temporary objects are destroyed at the end of the full expression in which the
+        temporary was created.
+
+Because destructors are run automatically, our programs can allocate resources and
+(usually) not worry about when those resources are released
+
+        {   // new scope
+            // p and p2 point to dynamically object
+            Sales_data *p = new Sales_data;                             // p is a built-in pointer
+            shared_ptr<Sales_data> *p2 = make_shared<Sales_data>();     // p2 is shared_ptr
+
+            Sales_data item(*p);        // copy-initialized constructor copies *p into item
+            vector<Sales_data> vSales;
+            vSales.push_back(*p2);      // copy-assigment the object to which p2 points
+            delete p;                   // destructor called on the object pointed to by p
+        }   // exit local scope; destructor called on item, p2 and vSales
+            // destroying p2 decrements its use count; if the count goes to 0, the object is freed
+            // destroying the vSales destroys the element in the vSales
+
+the only memory our code has to manage directly is the object we directly allocated. 
+Our code directly frees only the dynamically allocated object bound to p
+
+The other Sales_data objects are automatically destroyed when they go out of
+scope. When the block ends, vec, p2, and item all go out of scope, which means
+that the vector, shared_ptr, and Sales_data destructors will be run on those
+objects, respectively. The vector destructor will destroy the element we pushed onto
+vec. The shared_ptr destructor will decrement the reference count of the object to
+which p2 points. In this example, that count will go to zero, so the shared_ptr
+destructor will delete the Sales_data object that p2 allocated
+
+In all cases, the Sales_data destructor implicitly destroys the bookNo member.
+Destroying bookNo runs the string destructor, which frees the memory used to
+store the ISBN.
+
+The destructor is not run when a reference or a pointer to an object goes out
+of scope.
+
+The compiler defines a synthesized destructor for any class that does not define its
+own destructor. 
+
+As with the copy constructor and the copy-assignment operator, for some classes, the 
+synthesized destructor is defined to disallow objects of the type from being destroyed (§ 13.1.6, p. 508). 
+
+Otherwise, the synthesized destructor has an empty function body.
+
+        class Sales_data {
+            public:
+                // no work to do other than destroying the members, which happens automatically
+                ~Sales_data() { }
+
+                // other member as before
+        };
+
+The members are automatically destroyed after the (empty) destructor body is run. In
+particular, the string destructor will be run to free the memory used by the bookNo
+member.
+
+It is important to realize that the destructor body does not directly destroy the
+members themselves. Members are destroyed as part of the implicit destruction phase
+that follows the destructor body. A destructor body executes in addition to the
+memberwise destruction that takes place as part of destroying an object

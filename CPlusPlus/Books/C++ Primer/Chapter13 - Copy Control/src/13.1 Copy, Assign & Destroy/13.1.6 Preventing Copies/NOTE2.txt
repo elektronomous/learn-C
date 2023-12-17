@@ -1,0 +1,31 @@
+Prior to the new standard, classes prevented copies by declaring their copy constructor
+and copy-assignment operator as private:
+
+        class PrivateCopy {
+            // no accesss specifier; following members are private by default.
+
+            // copy control is private and so is inaccessible to ordinary user code
+            PrivateCopy(const PrivateCopy &);
+            PrivateCopy& operator=(const PrivateCopy&);
+            // other members
+
+            public:
+                PrivateCopy() = default;        // use the synthesize default constructor
+                ~PrivateCopy();                 // users can define objects of this type but not copy them
+        };
+
+However, because the copy constructor and copy-assignment operator are private,
+user code will not be able to copy such objects. However, friends and members of the
+class can still make copies. (Why ? Because friend and member only can use a member function
+that's defined)
+
+To prevent copies by friends and members, we declare these members as private but do not define them
+
+
+
+
+
+BEST PRACTICES:
+Classes that want to prevent copying should define their copy constructor and
+copy-assignment operators using = delete rather than making those
+members private.

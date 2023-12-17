@@ -1,0 +1,10 @@
+How many destructor calls occur in the following code fragment?
+
+    bool fcn(const Sales_data *trans, Sales_data accum) {
+        Sales_data item1(*trans), item2(accum);
+        return item1.isbn() != item2.isbn();
+    }
+
+(answer):
+= after return, the item1 and item2, each of them is calling its destructor.
+  So two destructor will be called.

@@ -60,6 +60,10 @@ copy initialization:
     string null_book = "999_999_999"
     string nines = string(100, '9');
 
+When we use direct initialization, we are asking the compiler to use ordinary function
+matching (§ 6.4, p. 233) to select the constructor that best matches the arguments
+we provide.
+
 When we use copy initialization, we are asking the compiler to copy the right-hand operand into
 the object being created, converting that operand if necessary (§ 7.5.4, p. 294).
 

@@ -1,0 +1,66 @@
+As we’ve seen, there are three basic operations to control copies of class objects: the
+copy constructor, copy-assignment operator, and destructor.
+
+There is no requirement that we define all of these operations: We can define one
+or two of them without having to define all of them.
+
+Classes That Need Destructors Need Copy and Assignment
+If the class needs a destructor, it almost surely needs a copy constructor and 
+copy-assignment operator as well.
+
+The HasPtr class that we have used in the exercises is a good example (§ 13.1.1,
+p. 499). That class allocates dynamic memory in its constructor.
+
+The synthesized destructor will not delete a data member that is a pointer. 
+Therefore, this class needs to define a destructor to free the memory allocated by its constructor
+
+What may be less clear—but what our rule of thumb tells us—is that HasPtr also
+needs a copy constructor and copy-assignment operator.
+Consider what would happen if we gave HasPtr a destructor but used the
+synthesized versions of the copy constructor and copy-assignment operator:
+
+        class HasPtr {
+            public:
+                HasPtr(const std::string &s = std::string()):
+                    ps(new std::string(s)), i(0) { }
+                ~HasPtr() { delete ps; }
+        };
+
+In this version of the class, the memory allocated in the constructor will be freed when
+a HasPtr object is destroyed. Unfortunately, we have introduced a serious bug! This
+version of the class uses the synthesized versions of copy and assignment. Those
+functions copy the pointer member, meaning that multiple HasPtr objects may be
+pointing to the same memory:
+
+        HasPtr f(HasPtr hp) {       // HasPtr passed by value, so it is copied
+            HasPtr ret = hp;        // copies the given HasPtr
+            // processing ret..
+            return ret;             // ret and hp are destroyed
+        }
+
+When f returns, both hp and ret are destroyed and the HasPtr destructor is run on
+each of these objects. That destructor will delete the pointer member in ret and in
+hp. But these objects contain the same pointer value. This code will delete that
+pointer twice, which is an error (§ 12.1.2, p. 462). What happens is undefined.
+
+In addition, the caller of f may still be using the object that was passed to f:
+
+        HasPtr p("some values");
+        f(p);                       // when f completes, the memory to which p.ps points is freed
+        HasPtr q(p);                // now both p and q point to invalid memory.
+
+some classes have work that needs to be done to copy or assign objects but has no
+need for the destructor.
+
+As an example, consider a class that gives each object its own, unique serial
+number. Such a class would need a copy constructor to generate a new, distinct serial
+number for the object being created. That constructor would copy all the other data
+members from the given object. This class would also need its own copy-assignment
+operator to avoid assigning to the serial number of the left-hand object. However, this
+class would have no need for a destructor.
+
+This example gives rise to a second rule of thumb: If a class needs a copy
+constructor, it almost surely needs a copy-assignment operator. And vice versa—if the
+class needs an assignment operator, it almost surely needs a copy constructor as well.
+Nevertheless, needing either the copy constructor or the copy-assignment operator
+does not (necessarily) indicate the need for a destructor.

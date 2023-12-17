@@ -1,0 +1,14 @@
+What is a copy-assignment operator? When is this operator used?
+What does the synthesized copy-assignment operator do? When is it
+synthesized?
+
+(answer):
+= copy-assignment operator is a function name with operator followed by
+  the assignment operator that is called automatically when an object
+  is assigned by the object of the same type.
+  
+  The synthesized copy-assignment operator will assign each of non-static
+  member of the object to object that's to be assigned.
+
+  The copy-assignment operator will syntehsized if it's not define as the
+  member function of a class.

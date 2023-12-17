@@ -1,0 +1,25 @@
+We can explicitly ask the compiler to generate the synthesized versions of 
+the copy-control members by defining them as = default:
+
+        class Sales_data {
+            public:
+                // copy control; use defaults
+                Sales_data() = default;
+                Sales_data(const Sales_data&) = default;
+                Sales_data& operator=(const Sales_data &);
+                ~Sales_data() = default;
+                // other members as before
+        };
+
+        Sales_data& Sales_data::operator=(const Sales_data &) = default;
+
+When we specify = default on the declaration of the member inside the class body,
+the synthesized function is implicitly inline (just as is any other member function
+defined in the body of the class).
+
+If we do not want the synthesized member to be an inline function, we can specify 
+= default on the member’s definition, as we do in the definition of the copy-assignment
+operator
+
+We can use = default only on member functions that have a synthesized version 
+(i.e., the default constructor or a copy-control member)

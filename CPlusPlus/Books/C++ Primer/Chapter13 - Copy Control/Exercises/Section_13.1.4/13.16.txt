@@ -1,0 +1,10 @@
+What if the parameter in f were const numbered&?
+Does that change the output? If so, why? What output gets
+generated?
+
+(answer):
+
+= You'll get different output also, because when you copy-initialized
+  the object b and c. that makes the b and c get another new serial number.
+  when you pass them to the f with reference parameter. It doesn't change the
+  serial number of the b and c and a.

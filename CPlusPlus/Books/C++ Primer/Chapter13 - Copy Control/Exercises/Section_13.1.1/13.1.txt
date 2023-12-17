@@ -1,0 +1,8 @@
+What is a copy constructor? When is it used?
+
+(answer):
+= Constructor that is its parameter must a reference to type of the object.
+  It construct an object from which the value is from the object that would be
+  copied to the constructed object.
+= It's used when you copy initialized an object from another object that has the
+  same type.

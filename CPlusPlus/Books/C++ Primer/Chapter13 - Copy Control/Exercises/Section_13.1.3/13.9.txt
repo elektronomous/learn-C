@@ -1,0 +1,7 @@
+What is a destructor? What does the synthesized destructor do? When is
+destructor synthesized 
+
+(answer):
+= Destructor is member function which release free memory that used by our object
+= The synthesized destructor destroys the member of the object.
+= When the class itself doesn't define its own destructor.

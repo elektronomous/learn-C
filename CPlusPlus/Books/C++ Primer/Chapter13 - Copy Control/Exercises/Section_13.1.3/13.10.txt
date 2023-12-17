@@ -1,0 +1,9 @@
+What happens when a StrBlob object is destroyed? What about StrBlobPtr?
+
+(answer):
+= when the StrBlob object is destroyed, the first object destructor member
+  is called which in this case is shared_ptr. It'll free the memory allocated
+  by the member data that's type is shared_ptr. The second member is a size_t,
+  which destructor do nothing on built-in type.
+
+= When the StrBlobPtr is destroyed, the weak_ptr's destructor will be called.
