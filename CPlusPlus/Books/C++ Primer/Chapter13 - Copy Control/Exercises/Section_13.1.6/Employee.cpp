@@ -6,7 +6,11 @@ using namespace std;
 class Employee {
     public:
         Employee() = default;
-        Employee(string n): name(n) { }
+        Employee(string n): name(n) {
+            // Each constructor should generate a unique ID by incrementing
+            // a static data member.
+            id++;
+        }
 
     private:
         // data members

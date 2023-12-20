@@ -1,0 +1,15 @@
+Assume we want to define a version of StrBlob that acts like a value.
+Also assume that we want to use a shared_ptr so that our StrBlobPtr
+class can still use a weak_ptr to the vector. Your revised class will
+need a copy constructor and copy-assignment operator but you will not
+need a destructor. Explain what the copy constructor and copy-assignment
+operators must do. Explain why the class does not need a destructor.
+
+(answer):
+= The copy-constructor will called when the StrBlob is copy-initialized.
+  this copy-constructor will copy the shared_ptr, but created another new
+  shared_ptr. The copy-assignment operator will do the same thing but also
+  destruct the current shared_ptr first and then assign a new created shared_ptr.
+  We don't need the destructor because automatically the shared_ptr have provided
+  us by that.
+  

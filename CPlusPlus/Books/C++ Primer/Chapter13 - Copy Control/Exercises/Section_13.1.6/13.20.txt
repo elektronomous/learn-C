@@ -1,0 +1,24 @@
+Explain what happens when we copy, assign, and destroy objects of our
+TextQuery and QueryResult class from Section 12.3 (p.484).
+
+(answer):
+= If you refer back to the Exercise 12.27.cpp you get the TextQuery has members:
+            
+            vector<string> wordsPerLine;
+            map<string, set<size_t>> wordMapLineNumber;
+            size_t nWordOnFile;
+            string queryStr;
+  
+  also QueryResult has members:
+
+            shared_ptr<TextQuery> result;
+            string status;
+
+= Now when you copy TextQuery object, most of our type members is class members when you 
+  try to copy or assign the object, it does so by using copy-control member of the class
+  members. When you try to destroy the object, it does so by using the destructor of the
+  class members.
+
+= Now when you copy the QueryResult object, the shared_ptr and string copy-control member
+  will do the job. when you destroy the QueryResult object, it will call the destructor
+  of the class member.  

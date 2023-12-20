@@ -1,0 +1,16 @@
+What would happen if the version of HasPtr in this section didn't
+define a destructor? What if HasPtr didn't define copy constructor?
+
+(answer):
+= Clearly if you don't define for the destructor, you'll throw a resources
+  that you've been allocated in this case is the string member which is make
+  your program consumes a lot of resource. Imagine if your HasPtr operate on
+  big scale of program.
+
+= If you don't define the copy constructor, then you'll end up point to the same
+  object. This is not good because we intended to create a class which act like
+  values, not a pointer. so your object now dependent to other object. Imagine the
+  object that you've used to copy-initialized another object is deleted first then
+  the initialized one, your initialized object will end up to point to non-exist
+  memory
+   

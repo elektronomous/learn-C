@@ -1,0 +1,8 @@
+Compare the copy-control members that you wrote for the solutions
+to the previous sections's Exercise to the code presented here. Be
+sure you understand the differences, if any, between your code and
+ours.
+
+(answer):
+= The difference is that when creating the copy-assignment operations.
+  I missed on the assignment to itself.

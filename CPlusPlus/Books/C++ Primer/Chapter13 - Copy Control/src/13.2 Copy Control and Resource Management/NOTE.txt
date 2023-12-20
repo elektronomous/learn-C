@@ -1,0 +1,21 @@
+Ordinarily, classes that manage resources (memory for ex) that do not reside 
+in the class must define the copy-control members. As we saw in § 13.1.4 
+(p. 504), such classes will need destructors to free the resources  allocated
+by the object.
+
+Classes that behave like values have their own state. When we copy a valuelike
+object, the copy and the original are independent of each other. Changes made to
+the copy have no effect on the original, and vice versa.
+
+Classes that act like pointers share state. When we copy objects of such classes,
+the copy and the original use the same underlying data. Changes made to the copy
+also change the original, and vice versa.
+
+the library containers and string class have valuelike behavior.
+the shared_ptr class provides pointerlike behavior, 
+The IO types and unique_ptr do not allow copying or assignment, so they provide 
+neither valuelike nor pointerlike behavior
+
+Our HasPtr class has two members, an int and a pointer to string.
+What we do when we copy the pointer member determines whether a class like HasPtr
+has valuelike or pointerlike behavior.

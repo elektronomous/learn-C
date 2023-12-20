@@ -1,0 +1,9 @@
+Does your Employee class need to define its own versions of the
+copy-control members? If so, why? If not, why not? Implement whatever
+copy-control members you think Employee need
+
+(answer):
+= Refer to the line 23 on NOTE.txt of the 13.1.1 that's memberwise of the 
+  synthesized copy constructor will copy nonstatic object to the object
+  that's assigned. Also refer to the line 39 on NOTE.txt of the 13.1.2 that's
+  copy assignment does the same thing as the copy constructor.

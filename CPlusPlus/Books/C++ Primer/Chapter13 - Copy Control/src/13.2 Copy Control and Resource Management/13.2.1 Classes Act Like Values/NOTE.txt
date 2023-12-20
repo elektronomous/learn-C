@@ -1,0 +1,30 @@
+Assignment operators typically combine the actions of the destructor and the copy
+constructor. 
+Like the destructor, assignment destroys the left-hand operand’s resources. Like
+the copy constructor, assignment copies data from the right-hand operand. However,
+it is crucially important that these actions be done in a sequence that is correct
+even if an object is assigned to itself.
+
+There are two points to keep in mind when you write an assignment operator:
+    • Assignment operators must work correctly if an object is assigned to itself.
+    • Most assignment operators share work with the destructor and copy constructor.
+
+A good pattern to use when you write an assignment operator is to first copy the 
+righthand operand into a local temporary. After the copy is done, it is safe to destroy the
+existing members of the left-hand operand. Once the left-hand operand is destroyed,
+copy the data from the temporary into the members of the left-hand operand
+
+To illustrate the importance of guarding against self-assignment, consider what
+would happen if we wrote the assignment operator as:
+
+        HasPtr& HasPtr::operator=(const HasPtr &rhs) {
+            delete ps;      // frees the string to which this object points;
+            // if rhs and *this are the same object, we're copying from delete memory
+            ps = new string(*(rhs.ps));
+            i = rhs.i;
+
+            return *this;
+        }
+
+When we attempt to copy *(rhs.ps) in the new expression, that pointer points to invalid
+memory. What happens is undefined.

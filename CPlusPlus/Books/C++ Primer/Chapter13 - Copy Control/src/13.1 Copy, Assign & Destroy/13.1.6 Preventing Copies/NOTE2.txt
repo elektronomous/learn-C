@@ -16,13 +16,10 @@ and copy-assignment operator as private:
 
 However, because the copy constructor and copy-assignment operator are private,
 user code will not be able to copy such objects. However, friends and members of the
-class can still make copies. (Why ? Because friend and member only can use a member function
-that's defined)
+class can still make copies.
 
 To prevent copies by friends and members, we declare these members as private but do not define them
-
-
-
+(Why ? Because friend and member only can use a member function that's defined)
 
 
 BEST PRACTICES:
