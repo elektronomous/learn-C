@@ -1,0 +1,30 @@
+Classes that define swap often use swap to define their assignment operator. These
+operators use a technique known as copy and swap. This technique swaps the lefthand 
+operand with a copy of the right-hand operand:
+
+        // NOTE: rhs is passed by value, which means the HasPtr copy constructor
+        // copies the string in the right hand operand into rhs
+        HasPtr& HasPtr::operator=(HasPtr rhs) {
+
+            // swap the content of the left-hand operand with the local rhs
+            swap(*this, rhs);       // rhs now points to the memory this object had used
+            return *this;           // rhs is temporary object: rhs is destroyed, which deletes the pointer in rhs
+        }
+
+When the assignment operator finishes, rhs is destroyed and the HasPtr destructor is run. That 
+destructor deletes the memory to which rhs now points, thus freeing the memory to which the 
+left-hand operand had pointed.
+
+The interesting thing about this technique is that it automatically handles self assignment and
+is automatically exception safe. By copying the right-hand operand before changing the left-hand operand, 
+it handles self assignment in the same was as we did in our original assignment operator (§ 13.2.1, p. 512).
+It manages exception safety in the same way as the original definition as well. The only code that might 
+throw is the new expression inside the copy constructor. If an exception occurs, it will happen before we
+have changed the left-hand operand.
+
+If you think about it, what may come fit to use this such a class, it's a class that act like value or
+act like the pointer?
+
+= Both. If you applied this swap definition to the both of the class, the class will conformed because
+  both class has its own copy constructor.
+

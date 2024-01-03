@@ -1,0 +1,13 @@
+Explain why the calls to swap inside swap(HasPtr&, HasPtr&) do not
+cause recursion loop.
+
+(answer):
+= Look inside the body of swap, we say:
+  - ps is a string data member 
+  - i is an int data member.
+  
+  Now look at the statement that says: "There's no type specific version of the swap for the built-in
+  type. In this case, these calls will invoke the library std::swap".
+  Indeed, the i data member when get swapped, the invoke function will be std::swap. As we know when 
+  using algorithm library we can sort a set of string, that's the algorithm library use the type specific
+  version of swap of the string data type.

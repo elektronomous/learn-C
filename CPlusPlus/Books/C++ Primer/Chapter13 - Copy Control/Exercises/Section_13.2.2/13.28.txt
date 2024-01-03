@@ -1,0 +1,18 @@
+Given the following classes, implement a default constructor and the necessary
+copy-control members:
+
+(a)     class TreeNode {
+            private:
+                std::string value;
+                int         count;
+                TreeNode    *left;
+                TreeNode    *right;
+        };
+
+(b)     class BinStrTree {
+            private:
+                TreeNode *root;
+        };
+
+(answer):
+TreeNode.cpp

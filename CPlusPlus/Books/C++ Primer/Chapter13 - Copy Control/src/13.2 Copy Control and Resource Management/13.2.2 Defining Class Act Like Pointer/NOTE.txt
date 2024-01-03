@@ -25,3 +25,21 @@ Reference counting works as follows:
       and decrements the counter of the left-hand operand. If the counter for the
       left-hand operand goes to zero, there are no more users. In this case, the
       copy-assignment operator must destroy the state of the left-hand operand.
+
+Defining a Reference-Counted Class
+Using a reference count, we can write the pointerlike version of HasPtr as follows:
+(HasPtr.cpp)
+
+When we copy or assign a HasPtr object, we want the copy and the original to
+point to the same string. That is, when we copy a HasPtr, we’ll copy ps itself,
+not the string to which ps points. When we make a copy, we also increment the
+counter associated with that string:
+
+The destructor cannot unconditionally delete ps—there might be other objects pointing
+to that memory. Instead, the destructor decrements the reference count, indicating that
+one less object shares the string. If the counter goes to zero, then the destructor frees
+the memory to which both ps and use point:
+
+That is, the assignment operator must increment the counter of the right-hand operand 
+(i.e., the work of the copy constructor) and decrement the counter of the left-hand operand,
+deleting the memory used if appropriate (i.e., the work of the destructor).

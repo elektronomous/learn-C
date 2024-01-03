@@ -1,0 +1,9 @@
+Would the pointerlike version of HasPtr benefit from defining a swap
+function? If so, What is the benefit ? If not, why not.
+
+(answer):
+= Both for class that act like values or pointer is benefit using this swap
+  operation. When the parameter of the operator= copy initialize the argument
+  the parameter will point to the argument's pointer, which when you swap the
+  argument value using the left operand, the left operand will automatically
+  destroyed if it reference count goes to 0.
