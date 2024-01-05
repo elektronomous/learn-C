@@ -1,0 +1,56 @@
+[MESSAGE]
+As an example of a class that needs copy control in order to do some bookkeeping, we’ll 
+sketch out two classes that might be used in a mail-handling application. These classes,
+Message and Folder, represent, respectively, email (or other kinds of) messages, and 
+directories in which a message might appear. Each Message can appear in multiple Folders. 
+However, there will be only one copy of the contents of any given Message. That way, if
+the contents of a Message are changed, those changes will appear when we view that Message
+from any of its Folders.
+
+To keep track of which Messages are in which Folders, each Message will store
+a set of pointers to the Folders in which it appears, and each Folder will contain a
+set of pointers to its Messages. Figure 13.1 illustrates this design.
+
+             [    FOLDER   ]
+-------------[ ][ ][ ][ ][ ]
+|             |       ||  
+|            /        ||
+|           /         ||
+|          /           \\
+|    [  Message ]       \\
+|    [ ][ ][ ][ ]   [  Message ]
+|     |             [ ][ ][ ][ ]
+|-----|
+
+Our Message class will provide save and remove operations to add or remove a
+Message from a specified Folder. To create a new Message, we will specify the
+contents of the message but no Folder. To put a Message in a particular Folder,
+we must call save.
+
+When we copy a Message, the copy and the original will be distinct Messages, but
+both Messages should appear in the same set of Folders. Thus, copying a
+Message will copy the contents and the set of Folder pointers. It must also add a
+pointer to the newly created Message to each of those Folders.
+
+When we destroy a Message, that Message no longer exists. Therefore, destroying
+a Message must remove pointers to that Message from the Folders that had
+contained that Message.
+
+When we assign one Message to another, we’ll replace the contents of the lefthand
+Message with those in the right-hand side. We must also update the set of
+Folders, removing the left-hand Message from its previous Folders and adding
+that Message to the Folders in which the right-hand Message appears.
+
+Looking at this list of operations, we can see that both the destructor and the copyassignment
+operator have to remove this Message from the Folders that point to it.
+Similarly, both the copy constructor and the copy-assignment operator add a
+Message to a given list of Folders. We’ll define a pair of private utility functions
+to do these tasks.
+
+[FOLDER]
+The Folder class will need analogous copy control members to add or remove
+itself from the Messages it stores.
+We’ll leave the design and implementation of the Folder class as an exercise.
+However, we’ll assume that the Folder class has members named addMsg and
+remMsg that do whatever work is need to add or remove this Message, respectively,
+from the set of messages in the given Folder.

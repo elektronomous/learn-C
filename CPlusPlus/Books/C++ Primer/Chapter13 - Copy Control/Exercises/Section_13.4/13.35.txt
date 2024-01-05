@@ -1,0 +1,7 @@
+What would happen if Message used the synthesized versions
+of the copy-control members?
+
+(answer):
+= It will only copy the contents and the folder. 
+  The copied Message object will not added to the Folder
+  

@@ -1,0 +1,7 @@
+Why is the parameter to the save and remove members of Message
+a Folder&? Why didn't we define that parameter as Folder? Or
+const Folder&?
+
+(answer):
+= By using Folder&, we can't pass temporary Folder. We must passed
+  the argument that's not a temporary object.

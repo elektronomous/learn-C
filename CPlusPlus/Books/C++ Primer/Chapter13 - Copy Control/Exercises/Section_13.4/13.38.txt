@@ -1,0 +1,21 @@
+We did not use copy and swap to define the Message assignment
+operator. Why do you suppose this is so?
+
+(answer):
+= Say that your Message copy-assignment is doing like this:
+
+        Message& Message::operator=(Message m) {
+            using std::swap;
+            swap(*this,m);
+
+            return *this;
+        }
+  
+  Now the problem is this has a lot of operation to do.
+  Suppose that you're self-assigning, then if you start from 
+  parameter m, m will copy first the argument and we got two Message
+  in the same Folder with the object that's copied. then you swap to
+  the left hand operand. boom.. you get your left-hand operand now point
+  to the same object as the object passed to m by value. If you notice
+  this operation is like copying the Message using Copy constructor. So
+  why do we not use swap? Because it does the job in a long way operation.
