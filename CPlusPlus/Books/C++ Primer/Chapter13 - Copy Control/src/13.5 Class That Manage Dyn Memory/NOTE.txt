@@ -1,0 +1,11 @@
+Some classes need to allocate a varying amount of storage at run time. Such classes
+often can (and if they can, generally should) use a library container to hold their data.
+For example, our StrBlob class uses a vector to manage the underlying storage for its elements.
+
+However, this strategy does not work for every class; some classes need to do their
+own allocation. Such classes generally must define their own copy-control members to
+manage the memory they allocate.
+
+As an example, we’ll implement a simplification of the library vector class. Among
+the simplifications we’ll make is that our class will not be a template. Instead, our
+class will hold strings. Thus, we’ll call our class StrVec.

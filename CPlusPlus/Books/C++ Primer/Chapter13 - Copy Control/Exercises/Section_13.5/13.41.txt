@@ -1,0 +1,7 @@
+Why did we use postfix increment in the call to construct inside push_back?
+What would happen if it use the prefix increment?
+
+(answer):
+= We use postfix so we can construct the current value before advance to next
+  memory address. If it use the prefix increment then you're incrementing the
+  memory address first then you construct the object.

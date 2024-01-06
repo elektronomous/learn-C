@@ -1,0 +1,32 @@
+We can avoid copying the strings by using two facilities introduced by the new
+library. First, several of the library classes, including string, define so-called “move
+constructors.” operate by “moving” resources from the given object to the
+object being constructed.
+
+The second facility we’ll use is a library function named move, which is defined in
+the utility header. For now, there are two important points to know about move:
+    First, for reasons we’ll explain in § 13.6.1 (p. 532), when reallocate constructs the
+strings in the new memory it must call move to signal that it wants to use the
+string move constructor. If it omits the call to move the string the copy
+constructor will be used. 
+    Second, for reasons we’ll cover in § 18.2.3 (p. 798), we usually do not provide 
+a using declaration (§ 3.1, p. 82) for move. When we use move, we call std::move, 
+not move.
+
+The second argument in the call to construct (i.e., the one that determines which
+constructor to use (§ 12.2.2, p. 482)) is the value returned by move. Calling move
+returns a result that causes construct to use the string move constructor.
+Because we’re using the move constructor, the memory managed by those strings
+will not be copied. Instead, each string we construct will take over ownership of the
+memory from the string to which elem points.
+
+After moving the elements, we call free to destroy the old elements and free the
+memory that this StrVec was using before the call to reallocate. The strings
+themselves no longer manage the memory to which they had pointed; responsibility
+for their data has been moved to the elements in the new StrVec memory. We don’t
+know what value the strings in the old StrVec memory have, but we are
+guaranteed that it is safe to run the string destructor on these objects.
+
+What remains is to update the pointers to address the newly allocated and initialized
+array. The first_free and cap pointers are set to denote one past the last
+constructed element and one past the end of the allocated space, respectively.

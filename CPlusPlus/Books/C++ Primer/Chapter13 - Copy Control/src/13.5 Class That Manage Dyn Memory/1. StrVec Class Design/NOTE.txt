@@ -1,0 +1,91 @@
+Recall that the vector class stores its elements in contiguous storage. To obtain
+acceptable performance, vector preallocates enough storage to hold more elements
+than are needed (§ 9.4, p. 355). Each vector member that adds elements checks
+whether there is space available for another element. If so, the member constructs an
+object in the next available spot. If there isn’t space left, then the vector is
+reallocated: The vector obtains new space, moves the existing elements into that
+space, frees the old space, and adds the new element.
+
+We’ll use a similar strategy in our StrVec class. We’ll use an allocator to obtain
+raw memory (§ 12.2.2, p. 481). Because the memory an allocator allocates is
+unconstructed, we’ll use the allocator’s construct member to create objects in
+that space when we need to add an element. Similarly, when we remove an element,
+we’ll use the destroy member to destroy the element.
+
+Each StrVec will have three pointers into the space it uses for its elements:
+    • elements, which points to the first element in the allocated memory
+    • first_free, which points just after the last actual element
+    • cap, which points just past the end of the allocated memory
+
+            [1][2][3][4][  unconstructed elements  ]
+            |           |                           |
+            |           |                           |
+        elements    first_free                    cap
+
+
+In addition to these pointers, StrVec will have a member named alloc that is an
+allocator<string>. The alloc member will allocate the memory used by a
+StrVec. Our class will also have four utility functions:
+    • alloc_n_copy will allocate space and copy a given range of elements.
+    • free will destroy the constructed elements and deallocate the space.
+    • chk_n_alloc will ensure that there is room to add at least one more element
+      to the StrVec. If there isn’t room for another element, chk_n_alloc will call
+      reallocate to get more space.
+    • reallocate will reallocate the StrVec when it runs out of space.
+
+StrVec.hpp
+
+class body define several its members:
+• The chk_n_alloc causes the StrVec to be reallocated when there is no room
+  to add another element, which happens when cap == first_free.
+• The begin and end members return pointers to the first (i.e., elements) and
+  one past the last constructed element (i.e., first_free), respectively.
+
+The push_back function calls chk_n_alloc to ensure that there is room for an
+element. If necessary, chk_n_alloc will call reallocate. When chk_n_alloc
+returns, push_back knows that there is room for the new element. It asks its
+allocator member to construct a new last element:
+
+The first argument to construct must be a pointer to unconstructed space allocated 
+by a call to allocate. The remaining arguments determine which constructor to use to
+construct the object that will go in that space. In this case, there is only one additional
+argument. That argument has type string, so this call uses the string copy constructor.
+
+It is worth noting that the call to construct also increments first_free to
+indicate that a new element has been constructed. It uses the postfix increment (§
+4.5, p. 147), so this call constructs an object in the current value of first_free and
+increments first_free to point to the next, unconstructed element.
+
+The alloc_n_copy member is called when we copy or assign a StrVec. Our StrVec class, like
+vector, will have valuelike behavior (§ 13.2.1, p. 511); when we copy or assign a StrVec, 
+we have to allocate independent memory and copy the elements from the original to the new StrVec.
+
+The alloc_n_copy member will allocate enough storage to hold its given range of
+elements, and will copy those elements into the newly allocated space. This function
+returns a pair (§ 11.2.3, p. 426) of pointers, pointing to the beginning of the new
+space and just past the last element it copied:
+
+The free member has two responsibilities: It must destroy the elements and then
+deallocate the space that this StrVec itself allocated. The for loop calls the
+allocator member destroy in reverse order, starting with the last constructed
+element and finishing with the first:
+
+Before we write the reallocate member, we should think a bit about what it must
+do. This function will
+    • Allocate memory for a new, larger array of strings
+    • Construct the first part of that space to hold the existing elements
+    • Destroy the elements in the existing memory and deallocate that memory
+
+Looking at this list of steps, we can see that reallocating a StrVec entails copying
+each string from the old StrVec memory to the new. Although we don’t know the
+details of how string is implemented, we do know that strings have valuelike
+behavior. When we copy a string, the new string and the original string are
+independent from each other. Changes made to the original don’t affect the copy, and
+vice versa.
+
+Because strings act like values, we can conclude that each string must have its
+own copy of the characters that make up that string. Copying a string must
+allocate memory for those characters, and destroying a string must free the
+memory used by that string.
+
+NOTE2.txt

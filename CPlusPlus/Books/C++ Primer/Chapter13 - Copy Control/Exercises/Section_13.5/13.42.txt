@@ -1,0 +1,5 @@
+Test your StrVec class by using it in place of the vector<string>
+in your TextQuery and QueryResult class (12.3)
+
+(answer):
+= Look at the TextQuery.hpp

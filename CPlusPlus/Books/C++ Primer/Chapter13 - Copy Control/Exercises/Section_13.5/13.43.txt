@@ -1,0 +1,8 @@
+Rewrite the free member to use for_each and a lambda (10.3.2, p. 288)
+in place of the for loop to destroy the elements. Which implementations 
+do you prefer and why?
+
+(answer):
+= If you rewind back to the 12.2.2, you safe to free the allocated object in
+  reverse order. for_each in anyway is advance forward so if you use it as the
+  loop for destroying the object, i would prefer the for loop.
