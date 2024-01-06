@@ -1,0 +1,8 @@
+Distinguish between an rvalue reference and an lvalue reference
+
+(answer):
+= rvalue reference bound to object that's in the right operand, which
+  this object you cant make it as the left operand.
+  lvalue reference bound to object that's could be in the left and right
+  operand.
+  

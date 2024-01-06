@@ -1,0 +1,89 @@
+An rvalue reference is a reference that must be bound to an rvalue. An rvalue reference 
+is obtained by using && rather than &. As we’ll see, rvalue references have the important
+property that they may be bound only to an object that is about to be destroyed. As a 
+result, we are free to “move” resources from an rvalue reference to another object.
+
+Roughly speaking, when we use an object as an rvalue, we use the object’s value (its contents). 
+When we use an object as an lvalue, we use the object’s identity (its location in memory).
+
+The important point is that (with one exception that we’ll cover in § 13.6 (p. 531)) we can
+use an lvalue when an rvalue is required, but we cannot use an rvalue when an lvalue 
+(i.e., a location) is required. When we use an lvalue in place of an rvalue, the object’s
+contents (its value) are used.
+
+As we know, we cannot bind regular references—which we’ll refer to as lvalue references
+when we need to distinguish them from rvalue references—to expressions that require
+a conversion, to literals, or to expressions that return an rvalue (§ 2.3.1, p. 51).
+Rvalue references have the opposite binding properties: We can bind an rvalue
+reference to these kinds of expressions, but we cannot directly bind an rvalue
+reference to an lvalue:
+
+        int i = 42;
+        int &r = i;             // Ok: r refers to i
+        int &&rr = i;           // Error: Cannot bind an rvalue-reference to an lvalue-reference
+        int &r2 = i * 42;       // Error: i * 42 is an rvalue
+        const int &r2 = i * 42; // Ok: we can bind a reference to const to an an rvalue
+        int &&rr2 = i * 42;     // Ok: bind rr2 to the result of multiplication
+
+Functions that return lvalue references, along with the assignment, subscript,
+dereference, and prefix increment/decrement operators, are all examples of
+expressions that return lvalues. We can bind an lvalue reference to the result of any of
+these expressions.
+
+    int& returnLval();
+    char* returnLval();
+    someArray[i];
+    ++someArray;
+    --someArray;
+    *somePointer;
+
+Functions that return a nonreference type, along with the arithmetic, relational,
+bitwise, and postfix increment/decrement operators, all yield rvalues. We cannot bind
+an lvalue reference to these expressions, but we can bind either an lvalue reference to
+const or an rvalue reference to such expressions.
+
+    int returnRval();
+    char returnRval();
+    (i == j);
+    someArray++;
+    someArray--;
+
+Lvalues have persistent state, whereas rvalues are either literals or temporary objects 
+created in the course of evaluating expressions.
+Because rvalue references can only be bound to temporaries, we know that
+• The referred-to object is about to be destroyed
+• There can be no other users of that object
+These facts together mean that code that uses an rvalue reference is free to take over
+resources from the object to which the reference refers.
+
+Although we rarely think about it this way, a variable is an expression with one
+operand and no operator. Like any other expression, a variable expression has the
+lvalue/rvalue property. Variable expressions are lvalues. It may be surprising, but as a
+consequence, we cannot bind an rvalue reference to a variable defined as an rvalue
+reference type:
+
+        int &&r1 = 42;      // Ok: literals are rvalues
+        int &&r2 = rr1;     // Error: the expression rr1 is an lvalue
+
+Given our previous observation that rvalues represent ephemeral objects, it should not
+be surprising that a variable is an lvalue. After all, a variable persists until it goes out
+of scope.
+
+Although we cannot directly bind an rvalue reference to an lvalue, we can explicitly
+cast an lvalue to its corresponding rvalue reference type. We can also obtain an rvalue
+reference bound to an lvalue by calling a new library function named move, which is
+defined in the utility header. The move function uses facilities that we’ll describe in
+§ 16.2.6 (p. 690) to return an rvalue reference to its given object.
+
+    int &&rr3 = std::move(rr1);     // Ok
+
+Calling move tells the compiler that we have an lvalue that we want to treat as if it
+were an rvalue. It is essential to realize that the call to move promises that we do not
+intend to use rr1 again except to assign to it or to destroy it. After a call to move, we
+cannot make any assumptions about the value of the moved-from object.
+
+We can destroy a moved-from object(in this example, rr1) and can assign a new value to it, but
+we cannot use the value of a moved-from object.
+
+we do not provide a using declaration (§ 3.1, p. 82) for move (§ 13.5, p. 530). We call
+std::move not move. We’ll explain the reasons for this usage in § 18.2.3 (p. 798).

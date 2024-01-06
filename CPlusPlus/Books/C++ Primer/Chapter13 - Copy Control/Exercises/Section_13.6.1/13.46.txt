@@ -1,0 +1,22 @@
+Which kind of reference can be bound to the following initializers?
+
+        int f();
+        vector<int> vi(100);
+
+        int? r1 = f();
+        int? r2 = vi[0];
+        int? r3 = r1;
+        int? r4 = vi[0] * f;
+
+(answer):
+
+        int f();
+        vector<int> vi(100);
+
+        int&& r1 = f();         // rvalue-reference
+        int& r2 = vi[0];        // lvalue-reference
+        int& r3 = r1;
+        int&& r4 = vi[0] * f;
+
+= If you doubt about these initializers, go check 13.46.cpp let the compiler
+  or intellisense to find the problem
