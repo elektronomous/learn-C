@@ -1,0 +1,92 @@
+Like the string class (and other library classes), our own classes can benefit from
+being able to be moved as well as copied. To enable move operations for our own
+types, we define a move constructor and a move-assignment operator. These
+members are similar to the corresponding copy operations, but they “steal” resources
+from their given object rather than copy them.
+
+Differently from the copy constructor, the reference parameter in the move constructor
+is an rvalue reference. As in the copy constructor, any additional parameters must all
+have default arguments
+
+In addition to moving resources, the move constructor must ensure that the moved-from
+object is left in a state such that destroying that object will be harmless. In
+particular, once its resources are moved, the original object must no longer point to
+those moved resources—responsibility for those resources has been assumed by the
+newly created object.
+
+StrVec.hpp:
+Unlike the copy constructor, the move constructor does not allocate any new memory; it 
+takes over the memory in the given StrVec. Having taken over the memory from its argument,
+the constructor body sets the pointers in the given object to nullptr. After an object is
+moved from, that object continues to exist. Eventually, the moved-from object will be 
+destroyed, meaning that the destructor will be run on that object. The StrVec destructor
+calls deallocate on first_free. If we neglected to change s.first_free, then destroying
+the moved-from object would delete the memory we just moved.
+
+Because a move operation executes by “stealing” resources, it ordinarily does not itself
+allocate any resources. As a result, move operations ordinarily will not throw any
+exceptions.
+
+One way inform the library is to specify noexcept on our constructor. We’ll cover
+noexcept, which was introduced by the new standard, in more detail in § 18.1.4 (p.
+779). For now what’s important to know is that noexcept is a way for us to promise
+that a function does not throw any exceptions.
+
+We must specify noexcept on both the declaration in the class header and on the
+definition if that definition appears outside the class.
+
+We need to indicate that a move operation doesn’t throw because of two interrelated facts: 
+First, although move operations usually don’t throw exceptions, they are permitted to do 
+so. 
+Second, the library containers provide guarantees as to what they do if an exception happens. 
+As one example, vector guarantees that if an exception happens when we call push_back, the 
+vector itself will be left unchanged.
+
+Now let’s think about what happens inside push_back. Like the corresponding
+StrVec operation (§ 13.5, p. 527), push_back on a vector might require that the
+vector be reallocated. When a vector is reallocated, it moves the elements from its
+old space to new memory, just as we did in reallocate (§ 13.5, p. 530).
+
+As we’ve just seen, moving an object generally changes the value of the moved-from
+object. If reallocation uses a move constructor and that constructor throws an
+exception after moving some but not all of the elements, there would be a problem.
+The moved-from elements in the old space would have been changed, and the
+unconstructed elements in the new space would not yet exist. In this case, vector
+would be unable to meet its requirement that the vector is left unchanged.
+
+On the other hand, if vector uses the copy constructor and an exception happens,
+it can easily meet this requirement. In this case, while the elements are being
+constructed in the new memory, the old elements remain unchanged. If an exception
+happens, vector can free the space it allocated (but could not successfully construct)
+and return. The original vector elements still exist.
+
+To avoid this potential problem, vector must use a copy constructor instead of a
+move constructor during reallocation unless it knows that the element type’s move
+constructor cannot throw an exception. If we want objects of our type to be moved
+rather than copied in circumstances such as vector reallocation, we must explicity
+tell the library that our move constructor is safe to use. We do so by marking the
+move constructor (and move-assignment operator) noexcept.
+
+StrVec.hpp move-assignment:
+In this case we check directly whether the this pointer and the address of rhs are
+the same. If they are, the right- and left-hand operands refer to the same object and
+there is no work to do.
+We do the check because that rvalue could be the result of calling move. As in any
+other assignment operator, it is crucial that we not free the left-hand resources 
+before using those (possibly same) resources from the right-hand operand.
+
+In addition to leaving the moved-from object in a state that is safe to destroy, move
+operations must guarantee that the object remains valid. In general, a valid object is
+one that can safely be given a new value or used in other ways that do not depend
+on its current value. On the other hand, move operations have no requirements as to
+the value that remains in the moved-from object. As a result, our programs should
+never depend on the value of a moved-from object.
+
+For example, when we move from a library string or container object, we know
+that the moved-from object remains valid. As a result, we can run operations such as
+as empty or size on moved-from objects. However, we don’t know what result we’ll
+get. We might expect a moved-from object to be empty, but that is not guaranteed.
+Our StrVec move operations leave the moved-from object in the same state as a
+default-initialized object. Therefore, all the operations of StrVec will continue to run
+the same way as they do for any other default-initialized StrVec. Other classes, with
+more complicated internal structure, may behave differently.

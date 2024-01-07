@@ -1,0 +1,67 @@
+When a class has both a move constructor and a copy constructor, the compiler uses
+ordinary function matching to determine which constructor to use (§ 6.4, p. 233).
+Similarly for assignment. For example, in our StrVec class the copy versions take a
+reference to const StrVec. As a result, they can be used on any type that can be
+converted to StrVec. The move versions take a StrVec&& and can be used only
+when the argument is a (nonconst) rvalue:
+
+        StrVec v1, v2;
+        v1 = v2;            // v2 is an lvalue; copy-assignment
+
+The move version of assignment is not viable (§ 6.6, p. 243), because we cannot
+implicitly bind an rvalue reference to an lvalue. Hence, this assignment uses the copy-
+assignment operator.
+
+        StrVec getVec(istream &);   // getVec returns an rvalue
+        v2 = getVec(cin);           // getVec(cin) is an rvalue; move-assignment
+
+In this case, both assignment operators are viable—we can bind the result of getVec to
+either operator’s parameter. Calling the copy-assignment operator requires a conversion
+to const, whereas StrVec&& is an exact match. Hence, the second assignment uses the move-
+assignment operator.
+
+If a class has no move constructor, function matching ensures that objects of that type
+are copied, even if we attempt to move them by calling move:
+
+        class Foo {
+            public:
+                Foo() = default;
+                Foo(const Foo&);    // copy constructor
+                // other members, but Foo does not define a move constructor
+        };
+
+        Foo x;
+        Foo y(x);               // copy constructor; x is an lvalue
+        Foo z(std::move(x))     // copy constructor, because there is no move constructor
+
+The call to move(x) in the initialization of z returns a Foo&& bound to x. The copy
+constructor for Foo is viable because we can convert a Foo&& to a const Foo&. Thus, the
+initialization of z uses the copy constructor for Foo
+
+It is worth noting that using the copy constructor in place of a move constructor is
+almost surely safe (and similarly for the assignment operators). Ordinarily, the copy
+constructor will meet the requirements of the corresponding move constructor: It will
+copy the given object and leave that original object in a valid state. Indeed, the copy
+constructor won’t even change the value of the original object
+
+HasPtr.cpp:
+Now let’s look at the assignment operator. That operator has a nonreference parameter,
+which means the parameter is copy initialized (§ 13.1.1, p. 497). Depending on the type
+of the argument, copy initialization uses either the copy constructor or the move constructor;
+lvalues are copied and rvalues are moved. As a result, this single assignment operator acts as
+both the copy-assignment and move-assignment operator.
+
+        // Assuming hp and hp2 are HasPtr objects
+        hp = hp2;               // hp2 is an lvalue; copy constructor used to copy hp2
+        hp = std::move(hp2)     // move constructor moves hp2
+
+Advice: Updating the Rule of Three
+All five copy-control members should be thought of as a unit: Ordinarily, if a
+class defines any of these operations, it usually should define them all. As
+we’ve seen, some classes must define the copy constructor, copy-assignment
+operator, and destructor to work correctly (§ 13.1.4, p. 504). Such classes
+typically have a resource that the copy members must copy. Ordinarily,
+copying a resource entails some amount of overhead. Classes that define the
+move constructor and move-assignment operator can avoid this overhead in
+those circumstances where a copy isn’t necessary.
+

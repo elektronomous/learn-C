@@ -1,0 +1,17 @@
+Although unique_ptrs cannot be copied, in 12.1.5 (P. 471) we wrote a
+clone function that returned a unique_ptr by value. Explain why that
+function is legal and how it works.
+
+(answer):
+
+        unique_ptr<int> clone(int p) {
+            // ok: explicitly create a unique_ptr<int> from int *
+            return unique_ptr<int>(new int(p));
+        }
+
+If you refer to NOTE.txt in 13.6.1, you'll find an rvalue is result from function
+that return nonreference-type, relational, bitwise, postfix operator. Now if you look
+at the function above, that function is return an rvalue which if you assign them to
+other object, the object must be a const reference or rvalue reference. rvalue is a
+value which is temporary or object that will be destroyed. so compiler allow the unique_ptr
+to return such value. 

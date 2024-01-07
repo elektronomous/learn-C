@@ -1,0 +1,5 @@
+Add a move constructor and move-assignment operator to your StrVec,
+String and Message classes.
+
+(answer):
+= Look at the HasPtr.cpp, Message.hpp, StrVec.hpp

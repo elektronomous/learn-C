@@ -1,0 +1,6 @@
+What would happen if we defined a HasPtr move-assignment operator
+but did not change the copy-and-swap operator? Write to test your
+code to test the answer.
+
+(answer):
+= The function is duplicated not overloaded.

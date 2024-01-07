@@ -17,5 +17,7 @@ int main(void) {
 
 "function "unique_ptr<_Tp, _Dp>::unique_ptr(const unique_ptr<int, default_delete<int>> &) [with _Tp=int, _Dp=default_delete<int>]\" (declared implicitly) cannot be referenced -- it is a deleted function",
 
+I came here after read the chapter 13, why the first and the third statement are illegal? 
+because unique_ptr defined the copy -constructor and -assignment as deleted function
 
 */

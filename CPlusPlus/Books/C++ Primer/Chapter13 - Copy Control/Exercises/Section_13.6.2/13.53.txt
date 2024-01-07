@@ -1,0 +1,12 @@
+As a matter of low-level efficiency, the HasPtr assignment
+operator is not ideal. Explain why. Implement a copy-assignment
+and move-assignment for HasPtr and compare the operations executed
+in your new move-assignment operator versus the copy-and-swap version
+
+(answer):
+= Now for when calling move-assignment, then how the swap function is handle
+  self assignment is dangerous. if you handle self-assignment for the object,
+  if you use the swap version, it will does the swapping and then both of object 
+  will point to the same resource (in this case string*). Eventually the swapping
+  function and return the rhs, in turn that rhs will be destroyed. Your original
+  object has beed destroyed, and when you access it you access nothing.  

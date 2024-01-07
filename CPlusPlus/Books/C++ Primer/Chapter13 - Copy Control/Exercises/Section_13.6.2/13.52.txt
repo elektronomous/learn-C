@@ -1,0 +1,23 @@
+Explain in detail what happens in the assignments of the
+HasPtr Objects on page 541. In particular, desribe step by
+step what happens to values of hp, hp2 and of the rhs parameter
+in the HasPtr assignment operator.
+
+(answer):
+
+        HasPtr hp, hp2;
+        hp = hp2;
+        hp = std::move(hp2);
+
+= The first assignment makes the object of hp to called its copy-assignment
+  operator which in its parameter has to copy-initialized the hp2. to copy-
+  initialized, the parameter need to call its copy-constructor and then the
+  body of the copy-assigment switch the hp and rhs parameter, eventually the
+  rhs parameter is destroy by calling the destructor when the function is 
+  finished.
+
+= The second assignment makes the object of hp to called its copy-assignment
+  operator which in its parameter has to move the hp2 to rhs because the assignment
+  is to hp using std::move as an rvalue. To move hp2 to rhs, the parameter called
+  its move-constructor and left the rhs to be safe-valid state. The body of the copy-
+  assignment function does the same as the in the first-assignment. 

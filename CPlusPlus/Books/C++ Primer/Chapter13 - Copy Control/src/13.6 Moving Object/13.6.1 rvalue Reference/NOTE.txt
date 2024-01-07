@@ -45,6 +45,7 @@ const or an rvalue reference to such expressions.
     int returnRval();
     char returnRval();
     (i == j);
+    !emtpy();
     someArray++;
     someArray--;
 

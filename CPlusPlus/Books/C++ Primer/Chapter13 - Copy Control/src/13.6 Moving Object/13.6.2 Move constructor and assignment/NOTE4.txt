@@ -1,0 +1,61 @@
+For example, our Message and Folder classes (§ 13.4, p. 519) should define 
+move operations. By defining move operations, the Message class can use the
+string and set move operations to avoid the overhead of copying the contents
+and folders members
+
+Message.hpp:
+However, in addition to moving the folders member, we must also update each
+Folder that points to the original Message. We must remove pointers to the old
+Message and add a pointer to the new one.
+
+It is worth noting that inserting an element to a set might throw an exception—
+adding an element to a container requires memory to be allocated, which means that
+a bad_alloc exception might be thrown (§ 12.1.2, p. 460). As a result, unlike our
+HasPtr and StrVec move operations, the Message move constructor and move-assignment
+operators might throw exceptions. We will not mark them as noexcept (§13.6.2, p. 535).
+
+The Message move constructor calls move to move the contents and default
+initializes its folders member: Message.hpp
+
+Message.hpp:
+As with any assignment operator, the move-assignment operator must destroy the old
+state of the left-hand operand. In this case, destroying the left-hand operand requires
+that we remove pointers to this Message from the existing folders, which we do in
+the call to remove_from_Folders.
+
+Now if you notice that the three of your class (HasPtr.cpp, Message.hpp, and StrVec.hpp), is
+in different form in which two of them (HasPtr.cpp, Message.hpp) is same in implementing the
+move-assignment, why? Because StrVec is a class that manage the dynamic memory. In move-
+assignment the left operand must be destroyed, so to destroy safely the left-operand we need
+to free it. That's why StrVec call free when its move-assignment is called. 
+
+The reallocate member of StrVec (§ 13.5, p. 530) used a for loop to call construct to copy the
+elements from the old memory to the new. As an alternative to writing that loop, it would be 
+easier if we could call uninitialized_copy to construct the newly allocated space. However, 
+uninitialized_copy does what it says: It copies the elements. There is no analogous library
+function to “move” objects into unconstructed memory.
+
+StrVec.hpp:
+Instead, the new library defines a move iterator adaptor (§ 10.4, p. 401). A move
+iterator adapts its given iterator by changing the behavior of the iterator’s dereference
+operator. Ordinarily, an iterator dereference operator returns an lvalue reference to
+the element. Unlike other iterators, the dereference operator of a move iterator yields
+an rvalue reference.
+
+StrVec.hpp:
+uninitialized_copy calls construct on each element in the input sequence to “copy” that element 
+into the destination. That algorithm uses the iterator dereference operator to fetch elements from
+the input sequence. Because we passed move iterators, the dereference operator yields an rvalue
+reference, which means construct will use the move constructor to construct the elements. It is worth
+noting that standard library makes no guarantees about which algorithms can be used with move iterators
+and which cannot. Because moving an object can obliterate(melenyapkan) the source, you should pass move
+iterators to algorithms only when you are confident that the algorithm does not access an element after 
+it has assigned to that element or passed that element to a user-defined function.
+
+Outside of class implementation code such as move constructors or move-assignment operators, use 
+std::move only when you are certain that you need to do a move and that the move is guaranteed to be safe.
+
+If you wonder why StrVec, HasPtr are having noexcept its declaration and definition while the Message doesn't ?
+= In StrVec and Hasptr you just only move the allocated memory address or you just move the pointer to another
+  pointer while the Message class, because you're using a member that's in moving the resource you're using the
+  member move operation doesn't guarantee you to make it succeded. 
