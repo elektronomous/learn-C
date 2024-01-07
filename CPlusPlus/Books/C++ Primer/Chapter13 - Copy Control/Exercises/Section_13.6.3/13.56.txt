@@ -1,0 +1,27 @@
+What would happen if we defined sorted as:
+        // The original
+        Foo Foo::sorted() const & {
+            Foo ret(*this);
+            sort(ret.data.begin(), ret.data.end());
+            return *this;
+        }
+
+        Foo Foo::sorted() && {
+            sort(data.begin(), data.end());
+            return *this;
+        }
+
+        // The Exercise:
+        Foo Foo::sorted() const & {
+            Foo ret(*this);
+            return ret.sorted();
+        }
+
+(answer):
+
+= This function will called only by lvalue object. for example if my code would goes:
+        Foo f;
+        f.sorted();     // calling the lvalue sorted() exercise version
+  
+  Now when the sorted() goes inside, it does the same thing. the sorted() of the ret
+  object will call its lvalue member function which in turn goes beyond forever.

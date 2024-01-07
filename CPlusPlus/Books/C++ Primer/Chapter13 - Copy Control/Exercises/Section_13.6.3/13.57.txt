@@ -1,0 +1,16 @@
+What if we defined sorted as:
+
+        // The original version
+        Foo Foo::sorted() && {
+            sort(data.begin(), data.end());
+            return *this;
+        }
+
+        Foo Foo::sorted() const & {
+            return Foo(*this).sorted();
+        }
+
+(answer):
+
+= Because Foo(*this) is an temporary object that's why it's an rvalue, 
+  the called sorted() is the version in which the function has rvalue reference(&&).

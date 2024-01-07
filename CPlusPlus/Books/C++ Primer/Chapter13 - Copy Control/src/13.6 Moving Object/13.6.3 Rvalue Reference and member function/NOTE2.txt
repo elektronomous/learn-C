@@ -1,0 +1,62 @@
+Just as we can overload a member function based on whether it is const (§ 7.3.2, p.
+276), we can also overload a function based on its reference qualifier. Moreover, we
+may overload a function by its reference qualifier and by whether it is a const
+member. As an example, we’ll give Foo a vector member and a function named
+sorted that returns a copy of the Foo object in which the vector is sorted:
+
+        class Foo {
+            public:
+                Foo sorted() &&;        // my run on modifiable rvalues
+                Foo sorted() const &;   // my run on anykind of Foo
+                // Other members of Foo
+            private:
+                vector<int> data;
+        };
+        
+        // `this` object is an rvalue, so we can sort it in place
+        Foo Foo::sorted() && {
+            sort(data.begin(), data.end());
+            return *this;
+        }
+
+        // `this` object is either const or it's an lvalue; either way we can't sort in place
+        Foo Foo::sorted() const & {
+            Foo ret(*this);                         // don't confuse: this is a copy-initialize
+            sort(ret.data.begin(), ret.data.end()); // sort the copy
+            return ret;                             // return the copy
+        }
+
+When we run sorted on an rvalue, it is safe to sort the data member directly. The object is an
+rvalue, which means it has no other users, so we can change the object itself. When we run sorted
+on a const rvalue or on an lvalue, we can’t change this object, so we copy data before sorting it.
+Overload resolution uses the lvalue/rvalue property of the object that calls sorted to determine 
+which version is used:
+
+        retVal().sorted();      // retVal is an rvalue, call Foo::sorted() &&
+        retFoo().sorted();      // retFoo is an lvalue, call Foo::sorted() const &
+
+If you still confuse, just make to make clear after you read until this section. go back to NOTE.txt.
+
+When we define const member functions, we can define two versions that differ only in that one is 
+const qualified and the other is not. There is no similar default for reference qualified functions.
+When we define two or more members that have the same name and the same parameter list, we must
+provide a reference qualifier on all or none of those functions:
+
+        class Foo {
+            public:
+                Foo sorted() &&;
+                Foo sorted() const;     // Error: must have reference qualifier
+                // Comp is a type-alias for the function type (See 6.7 P.249)
+                // that can be used to compare int values
+                using Comp = bool(const int&, const int&);
+                Foo sorted(Comp*);          // Ok: different parameter list
+                Foo sorted(Comp*) const;    // Ok: neither version is reference qualified
+        };
+
+Here the declaration of the const version of sorted that has no parameters is an error. There is a second
+version of sorted that has no parameters and that function has a reference qualifier, so the const version
+of that function must have a reference qualifier as well. On the other hand, the versions of sorted that
+take a pointer to a comparison operation are fine, because neither function has a reference qualifier.
+
+If a member function has a reference qualifier, all the versions of that member with the same parameter
+list must have reference qualifiers.

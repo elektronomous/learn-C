@@ -1,0 +1,91 @@
+Member functions other than constructors and assignment can benefit from providing
+both copy and move versions. Such move-enabled members typically use the same parameter
+pattern as the copy/move constructor and the assignment operators—one version takes an
+lvalue reference to const, and the second takes an rvalue reference to nonconst. For example,
+the library containers that define push_back provide two versions: one that has an rvalue
+reference parameter and the other a const lvalue reference. Assuming X is the element type,
+these containers define:
+
+    void push_back(const X&);   // copy: bind to any kind of X
+    void push_back(X&&);        // move: binds only to modifiable rvalues of type
+
+
+We can pass any object that can be converted to type X to the first version of
+push_back. This version copies(copy-initialized) data from its parameter. We can pass only an rvalue
+that is not const to the second version. This version is an exact match (and a better
+match) for nonconst rvalues and will be run when we pass a modifiable rvalue (§
+13.6.2, p. 539). Usually, we pass an rvalue reference when we want to “steal” from the
+argument. In order to do so, the argument must not be const. Similarly, copying from an 
+object should not change the  object being copied. As a result, there is usually no need to
+define a version that take a (plain) X& parameter.
+
+Overloaded functions that distinguish between moving and copying a parameter typically have one
+version that takes a const T& and one that takes a T&&.
+
+As a more concrete example, we’ll give our StrVec class a second version of push_back:
+StrVec.hpp. When we call push_back the type of the argument determines whether the new
+element is copied or moved into the container:
+
+        StrVec vec;     // empty StrVec
+        string s = "some string or another";
+        vec.push_back(s);       // call push_back(const string &)
+        vec.push_back("done");  // call push_back(string&&);
+
+These calls differ as to whether the argument is an lvalue (s) or an rvalue (the temporary string
+created from "done"). 
+
+Ordinarily, we can call a member function on an object, regardless of whether that object is an 
+lvalue or an rvalue. For example:
+
+        string s1 = "a value", s2 = "another";
+        string::size_type  n = (s1+s2).find('a');
+
+Here, we called the find member (§ 9.5.3, p. 364) on the string rvalue that results from adding two
+strings. Sometimes such usage can be surprising:
+
+        s1 + s2 = "wow!";
+
+Here we assign to the rvalue result of concatentating these strings. (In my opinion that these rvalue object
+is a common think where we can assign to or calling function in rvalues, because the object has return a value
+from using overloading the plus operator which is an object of its type.)
+
+Prior to the new standard, there was no way to prevent such usage. In order to maintain backward compatability, 
+the library classes continue to allow assignment to rvalues, However, we might want to prevent such usage in our
+own classes. In this case, we’d like to force the left-hand operand (i.e., the object to which `this` points) to be
+an lvalue.
+
+We indicate the lvalue/rvalue property of `this` in the same way that we define const member functions 
+(§ 7.1.2, p. 258); we place a reference qualifier after the parameter list:
+
+        class Foo {
+            public:
+                Foo& operator=(const Foo&) &;   // may assign only to modifiable lvalues
+                // other members of Foo
+        };
+
+        Foo& Foo::operator=(const Foo& rhs) & {
+            // do whatever is needed to assign rhs to this object
+            return *this;
+        } 
+
+The reference qualifier can be either & or &&, indicating that `this` may point to an rvalue or lvalue, respectively.
+Like the const qualifier, a reference qualifier may appear only on a (nonstatic) member function and must appear in
+both the declaration and definition of the function.
+
+We may run a function qualified by & only on an lvalue and may run a function qualified by && only on an rvalue:
+
+        Foo &retFoo();      // returns a reference; a call to retFoo is an lvalue
+        Foo retVal();       // returns by value; a call to retVal is an rvalue
+        Foo i,j;            // i and j are lvalues
+        i = j;              // Ok: i is an lvalue
+        retFoo() = j;       // Ok: retFoo() returns an lvalue
+        retVal() = j;       // Error: retVal() returns an rvalue
+        i = retVal();       // Ok: we can pass an rvalue as the right-operand to assignment 
+
+A function can be both const and reference qualified. In such cases, the reference qualifier must follow the const qualifier:
+
+        class Foo {
+            public:
+                Foo someMem() & const;      // Error: const qualifier must come first
+                Foo someMem() const &;      // Ok: const qualifier come first
+        };
