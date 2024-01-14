@@ -1,0 +1,18 @@
+The definition of these functions is trivial. More important are the design principles
+that these functions embody:
+        • If a class has an operation to determine whether two objects are equal, it
+          should define that function as operator== rather than as a named function:
+          Users will expect to be able to compare objects using ==; providing == means
+          they won’t need to learn and remember a new name for the operation; and it is
+          easier to use the library containers and algorithms with classes that define the
+          == operator.
+        • If a class defines operator==, that operator ordinarily should determine
+          whether the given objects contain equivalent data.
+        • Ordinarily, the equality operator should be transitive, meaning that if a == b
+          and b == c are both true, then a == c should also be true.
+        • If a class defines operator==, it should also define operator!=. Users will
+          expect that if they can use == then they can also use !=, and vice versa.
+        • One of the equality or inequality operators should delegate the work to the
+          other. That is, one of these operators should do the real work to compare
+          objects. The other should call the one that does the real work.
+

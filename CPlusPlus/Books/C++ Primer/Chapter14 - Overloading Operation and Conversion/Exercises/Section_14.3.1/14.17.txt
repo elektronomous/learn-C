@@ -1,0 +1,2 @@
+Should your class you chose for Exercise 7.40 from $ 7.5.1 (p. 291)
+define the equality operators? If so, implement them. If not, why not?

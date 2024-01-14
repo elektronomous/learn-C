@@ -22,7 +22,10 @@ class Sales_data {
 
     // 14.3 Arithmetic operator
     friend Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs);
-    
+
+    // 14.3.1 Equality Operators
+    friend bool operator==(const Sales_data &, const Sales_data &);
+    friend bool operator!=(const Sales_data &, const Sales_data &);
 
     public:         // access specifier
     // constructors
@@ -87,7 +90,6 @@ class Sales_data {
         double avg_price() const;                       // define elsewhere
 
 
-
     private:
     // data members are unchange from page 72
     // in-class initializer is applied to class directly
@@ -109,6 +111,9 @@ std::istream &operator>>(std::istream&, Sales_data&);
 std::ostream &operator<<(std::ostream&, const Sales_data&);
 // 14.3 Arithmetic operator
 Sales_data operator+(const Sales_data &, const Sales_data &);
+// 14.3.1 Equality Operators
+bool operator==(const Sales_data &, const Sales_data &);
+bool operator!=(const Sales_data &, const Sales_data &);
 
 // defininig the function named avg_price that is declared 
 // in the scope of the Sales_data class.
@@ -195,6 +200,17 @@ Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs) {
     Sales_data sum = lhs;   // copy data members from lhs to sum
     sum += rhs;             // we'll define 14.5 add rhs into sum
     return sum;
+}
+
+// 14.3.1 Equality operators
+bool operator==(const Sales_data &lhs, const Sales_data &rhs) {
+    return (lhs.isbn() == rhs.isbn() && 
+            lhs.revenue == rhs.revenue &&
+            lhs.units_sold == rhs.units_sold);
+}
+
+bool operator!=(const Sales_data &lhs, const Sales_data &rhs) {
+    return !(lhs == rhs);
 }
 
 #endif

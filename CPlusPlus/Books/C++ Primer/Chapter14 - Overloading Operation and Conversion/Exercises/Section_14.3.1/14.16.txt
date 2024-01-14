@@ -1,0 +1,5 @@
+Define equality and inequality operators for your StrBlob(12.1.1, p. 456),
+StrBlobPtr(12.1.6, p. 474), StrVec(13.5, p. 526), String(13.5, p. 531) classes
+
+(answer):
+= Look at the those class in this folder
