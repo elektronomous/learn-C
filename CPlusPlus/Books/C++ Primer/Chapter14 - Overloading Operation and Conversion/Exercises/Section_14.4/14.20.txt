@@ -1,0 +1,5 @@
+Define the addition and compound-assignment operators for your Sales_data
+class.
+
+(answer):
+= Sales_data.hpp

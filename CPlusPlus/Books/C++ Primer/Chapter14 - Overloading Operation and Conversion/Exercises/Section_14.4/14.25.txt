@@ -1,0 +1,5 @@
+Implement any other assignment operators your class should define.
+Explain which types should be used as operands and why.
+
+(answer):
+= Date.hpp

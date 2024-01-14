@@ -1,0 +1,23 @@
+a class can define additional assignment operators that allow other types as the right
+-hand operand.
+As one example, in addition to the copy- and move-assignment operators, the library
+vector class defines a third assignment operator that takes a braced list of elements
+(§ 9.2.5, p. 337). We can use this operator as follows:
+
+        vector<string> v;
+        v = {"a", "an", "the"};
+
+StrVec.hpp:
+We can add this operator to our StrVec class (§ 13.5, p. 526) as well. To be consistent
+with assignment for the built-in types (and with the copy- and move-assignment operators
+we already defined), our new assignment operator will return a reference to its left-
+hand operand. this operator does not need to check for self-assignment. The parameter is
+an initializer_list<string> (§ 6.2.6, p. 220), which means that il cannot be the same
+object as the one denoted by `this`.
+
+Sales_data.hpp:
+For consistency with the built-in compound assignment, these operators should return a
+reference to their left-hand operand.
+
+Assignment operators must, and ordinarily compound-assignment operators should, be defined
+as members. These operators should return a reference to the left-hand operand.

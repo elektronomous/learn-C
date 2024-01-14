@@ -1,0 +1,12 @@
+Write the Sales_data operators so that + does the actual addition
+and the += calls +. Discuss the disadvantage of this approach compared
+to the way these operators were defined in $ 14.3 (p. 560) and $ 14.4
+(p. 564)
+
+(answer):
+
+= Without further to write the Sales_data, if you add two objects then you
+  expected to have some storage to store the result. Now if you add two objects
+  and store the result in the first objects, you have the storage to store the
+  result without expected. Those are two different operation, so when you put
+  the meaning of those two in reversed, then you likely get confused eventually.

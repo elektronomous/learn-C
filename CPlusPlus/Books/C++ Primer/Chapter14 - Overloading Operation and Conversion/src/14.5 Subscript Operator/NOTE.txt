@@ -1,0 +1,2 @@
+Classes that represent containers from which elements can be retrieved by position
+often define the subscript operator, operator[].

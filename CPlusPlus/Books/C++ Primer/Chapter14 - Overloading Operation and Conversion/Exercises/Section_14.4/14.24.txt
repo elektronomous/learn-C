@@ -1,0 +1,5 @@
+Decide whether the class you chose from $ 7.40 from 7.5.1 (p. 291)
+needs a copy- and move-assignment operator. If so, define those operators
+
+(answer):
+= Date.hpp
