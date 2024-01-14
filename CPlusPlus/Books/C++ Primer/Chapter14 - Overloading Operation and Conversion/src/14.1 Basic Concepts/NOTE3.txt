@@ -1,0 +1,6 @@
+Because string defines + as an ordinary nonmember function, "hi" + s is equivalent 
+to operator+("hi", s). As with any function call, either of the arguments can be
+converted to the type of the parameter. The only requirements are that at least one
+of the operands has a class type, and that both operands can be converted 
+(unambiguously) to string.
+

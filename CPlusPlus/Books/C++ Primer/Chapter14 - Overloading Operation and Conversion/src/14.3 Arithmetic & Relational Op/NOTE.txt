@@ -1,0 +1,15 @@
+Ordinarily, we define the arithmetic and relational operators as nonmember functions
+in order to allow conversions for either the left- or right-hand operand (§ 14.1, p.
+555). These operators shouldn’t need to change the state of either operand, so the
+parameters are ordinarily references to const.
+
+An arithmetic operator usually generates a new value that is the result of a computation
+on its two operands. The operation returns a copy of this local as its result.
+
+Classes that define an arithmetic operator generally define the corresponding compound
+assignment operator as well. When a class has both operators, it is usually more 
+efficient to define the arithmetic operator to use compound assignment:
+    Sales_data.hpp
+
+Classes that define both an arithmetic operator and the related compound assignment 
+ordinarily ought to implement the arithmetic operator by using the compound assignment.

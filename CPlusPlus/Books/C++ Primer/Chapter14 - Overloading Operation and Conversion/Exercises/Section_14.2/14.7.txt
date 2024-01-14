@@ -1,0 +1,5 @@
+Define an output operator for your String class you wrote for
+the exercise in 13.5
+
+(answer):
+= Look at the String.hpp

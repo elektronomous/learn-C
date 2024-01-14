@@ -1,0 +1,24 @@
+Explain how to decide whether the following should be class members:
+    (a) %
+    (b) %=
+    (c) ++
+    (d) ->
+    (e) <<
+    (f) &&
+    (g) ==
+    (h) ()
+
+(answer):
+    (a) Both operand must be a class that contain integer. We make
+        it as the nonmember because we don't change the object being %.
+    (b) All of the compound-assignment must be part of the member class.
+    (c) Increment operator must be part of the member class since it does change
+        our object state.
+    (d) The access row must be part of the member class 
+    (e) IO must be nonmember function because the way you implement the IO class
+        type to the object being IO.
+    (f) We don't change anything in the object state, but we are evaluating the
+        both of object so we come up with nonmember class.
+    (g) same as the (f), we're evaluating the value of the objects so we don't need
+        it to be member class.
+    (h) call operator must be define as member operator function.

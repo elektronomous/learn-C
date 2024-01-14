@@ -1,0 +1,5 @@
+Define an ouput operator for the class you chose in exercise
+7.40 from 7.5.1
+
+(answer):
+= Look at the Date.hpp

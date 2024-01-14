@@ -1,0 +1,31 @@
+Why do you think it is more efficient to define operator+
+to call operator+= rather than the other way around?
+
+(answer):
+= If you go to the start of the discussion of 14.5 subscript operator,
+  you'll find the operator+= overloaded for the Sales_data:
+    
+        Sales_data& Sales_data::operator+=(const Sales_data &rhs) {
+            units_sold += rhs.units_sold;
+            revenue += rhs.revenue;
+            return *this;
+        }
+  
+  now come to the operator+ for the Sales_data:
+
+        Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs) {
+            Sales_data sum = rhs;   // copy the rhs into sum
+            sum += lhs;             // add lhs to the sum;
+            return sum;
+        }
+
+= If you wonder, why they are not define the other way around because you dont
+  change the state of the result when you have expression like:
+
+        data1 + data;
+  
+  instead, you return a temporary result. Now compare the following expression.
+
+        data1 += data2;
+  
+  you're changing the data1 value by assigning it data2 object. 

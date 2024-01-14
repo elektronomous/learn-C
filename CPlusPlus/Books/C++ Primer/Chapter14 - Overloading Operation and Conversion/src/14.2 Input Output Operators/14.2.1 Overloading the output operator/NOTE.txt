@@ -1,0 +1,20 @@
+Sales_data.hpp:
+The output operators for the built-in types do little if any formatting. In particular,
+they do not print newlines. Users expect class output operators to behave similarly. An
+output operator that does minimal formatting lets users control the details of their output.
+
+Input and output operators that conform to the conventions of the iostream library must be
+ordinary nonmember functions These operators cannot be members of our own class. If they 
+were, then the left-hand operand would have to be an object of our class type:
+
+        Sales_data data;
+        data << cout;       // if operator<< is a member of Sales_data
+
+If you confuse, you can call the operator directly:
+        
+        data.operator<<(cout);
+
+If these operators are members of any class, they would have to be members of istream or 
+ostream. However, those classes are part of the standard library, and we cannot add members
+to a class in the library.
+

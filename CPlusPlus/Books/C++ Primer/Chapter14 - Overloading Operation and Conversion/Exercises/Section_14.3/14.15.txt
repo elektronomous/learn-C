@@ -1,0 +1,6 @@
+Should the class you chose for exercise 7.40 from $ 7.4.1 (p. 291)
+define any arithmetic operators? If so, implement them. if not, explain
+why not?
+
+(answer):
+= Look at the Date.hpp

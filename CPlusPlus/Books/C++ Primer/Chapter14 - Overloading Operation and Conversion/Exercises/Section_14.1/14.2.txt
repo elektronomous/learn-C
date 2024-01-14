@@ -1,0 +1,5 @@
+Write declarations for the overloaded input, output, addition, and 
+compound-assignment operators for Sales_data.
+
+(answer):
+= Look at the Sales_data

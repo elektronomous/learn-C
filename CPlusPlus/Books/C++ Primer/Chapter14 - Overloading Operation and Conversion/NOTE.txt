@@ -1,0 +1,12 @@
+Operator overloading lets us define the meaning of an operator when applied to
+operand(s) of a class type. Judicious (bijaksana) use of operator overloading can make our
+programs easier to write and easier to read. As an example, because our original
+Sales_item class type (§ 1.5.1, p. 20) defined the input, output, and addition
+operators, we can print the sum of two Sales_items as:
+
+        cout << item1 + item2;      // print the sum of two Sales_items
+
+In contrast, because our Sales_data class (§ 7.1, p. 254) does not yet have
+overloaded operators, code to print their sum is more verbose and, hence, less clear:
+
+        print(cout, add(data1, data2));     // print the sum of two Sales_datas

@@ -1,0 +1,4 @@
+Define an output operator for your Sales_data class.
+
+(answer):
+= Look at the Sales_data.hpp

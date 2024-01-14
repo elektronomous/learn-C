@@ -1,0 +1,8 @@
+Which other arithmetic operators (Table 4.1 (p. 139)), if any, 
+do you think Sales_data ought to support? Define any you think
+the class should include.
+
+(answer):
+= I think we only got addition operator since the class not need
+  to know the result of two object being substracted, divided or
+  multiplicated.

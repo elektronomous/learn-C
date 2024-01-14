@@ -1,0 +1,66 @@
+Overloaded operators are functions with special names: the keyword operator
+followed by the symbol for the operator being defined. Like any other function, an
+overloaded operator has a return type, a parameter list, and a body.
+
+An overloaded operator function has the same number of parameters as the operator has
+operands. A unary operator has one parameter; a binary operator has two. In a binary 
+operator, the left-hand operand is passed to the first parameter and the right-hand
+operand to the second. Except for the overloaded function-call operator, operator(), an
+overloaded operator may not have default arguments (§ 6.5.1, p. 236).
+
+If an operator function is a member function, the first (left-hand) operand is bound
+to the implicit `this` pointer (§ 7.1.2, p. 257). Because the first operand is implicitly
+bound to `this`, a member operator function has one less (explicit) parameter than
+the operator has operands.
+
+An operator function must either be a member of a class or have at least one parameter of 
+class type:
+
+        int operator+(int,int);     // Error: cannot redefine the built-in operator for ints
+
+This restriction means that we cannot change the meaning of an operator when applied to 
+operands of built-in type.
+
+Operators that may be overloaded:
+
+    +       -       *       /       %       ^       &       |       ~       !       ,   
+    =       <       >       <=      >=      ++      --      <<      >>      ==      !=      
+    &&      ||      +=      -=      /=      %=      ^=      &=      |=      *=      <<=
+    >>=     []      ()      ->      ->*     new     new[]   delete  delete[]
+
+Operators that cannot be overloaded:
+
+    ::      .*      .       ?
+
+We can overload only existing operators and cannot invent new operator symbols. For example, we
+cannot define operator** to provide exponentiation.
+
+Four symbols (+, -, *, and &) serve as both unary and binary operators. Either or both of these 
+operators can be overloaded. The number of parameters determines which operator is being defined.
+
+An overloaded operator has the same precedence and associativity (§ 4.1.2, p. 136) as the 
+corresponding built-in operator. Regardless of the operand types:
+
+        x == y + z;
+
+is always equivalent to x == (y + z).
+
+Ordinarily, we “call” an overloaded operator function indirectly by using the operator on arguments
+of the appropriate type:
+
+        data1 + data2;              // normal expression
+    
+However, we can also call an overloaded operator function directly in the same way that we call an
+ordinary function:
+
+        operator+(data1, data2);        // equivalent function calls 
+
+We call a member operator function explicitly in the same way that we call any other member function.
+We name an object (or pointer) on which to run the function and use the dot (or arrow) operator to fetch
+the function we wish to call:
+
+        data1 += data2;             // expression-based "call"
+        data1.operator+=(data2);    // equivalent call to a member operator function
+
+Each of these statements calls the member function operator+=, binding `this` to the address of data1 and
+passing data2 as an argument.

@@ -1,0 +1,28 @@
+Describe the behavior of the Sales_data input operator if
+given the following input:
+    (a) 0-201-99999-9 10 24.95
+    (b) 10 24.95 0-201-99999-9
+
+(answer):
+
+= If you read the code, it first read into:
+  (1) bookNo        => string 
+  (2) units_sold    => unsigned int
+  (3) price         => double 
+
+  (a) (1) bookNo = "0-201-99999-9"
+      (2) units_sold = 10
+      (3) price = 24.95
+      (4) the IO operator will show us:
+          0-201-99999-9 10 249.5 24.95
+          
+   
+  (b) (1) bookNo = "10"
+      (2) units_sold = 24
+      (3) price = 0.95
+      (4) the IO operator will show us:
+          10 24 (0.95 * 24 = 22.8) 0.95
+
+= If you doubt the answers, then go run the dummy.cpp
+   
+  

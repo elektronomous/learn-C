@@ -1,0 +1,16 @@
+What, if anything, is wrong with the following Sales_data input operator?
+What would happen if we gave this operator the data in the previous exercises?
+
+        istream& operator>>(istream &in, Sales_data &s) {
+            double price;
+            in >> s.bookNo >> s.units_sold >> price;
+            s.revenue = s.units_sold * price;
+            return in;
+        }
+
+(answer):
+= If you try to input a string into the units_sold, it's make IO failed.
+  Then you get the units_sold will be an undefined value so when the result
+  is assigned by this undefined value, you'll likely get the undefined result.
+  You don't evaluate the IO objects here, that's wrong way to pass those code
+  into the previous exercise.

@@ -1,0 +1,19 @@
+Both string and vector define an overloaded == operator that can
+be used to compare objects of those types. Assuming svec1 and svec2
+are vectors that hold strings, identify which version of == is applied
+in each of the following expressions:
+
+    (a) "cobble" == "stone"
+    (b) svec1[0] == svec2[0]
+    (c) svec1 == svec2
+    (d) "svec1[0] == "stone"
+
+(answer):
+
+    (a) It's an error because const char * has no overloaded == operator
+        of its own. 
+    (b) Because [] operator return the element, when the == operator is
+        applied to the element it's use the overloaded == operator of the
+        element. which in this case is the string == overloaded operator.
+    (c) It obviously use the vector == overloaded operator 
+    (d) It has syntax error.

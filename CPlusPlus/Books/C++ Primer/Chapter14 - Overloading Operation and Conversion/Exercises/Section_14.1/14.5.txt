@@ -1,0 +1,19 @@
+In exercise 7.40 from $ 7.4.1 (p. 291) you wrote a sketch of one
+of the following classes. Decide, if any, overloaded operators your
+class should provide.
+
+(answer):
+= Date.hpp would provide: 
+  = IO overloaded operator (<< and >>)
+    - show your date
+  = overloading the addition operator (+) and compound-assignment(+=):
+    - you can add date by only a number of days
+    - also you can add date by Date itself
+  = overloading the substraction operator (-) and compound-assignment(-=):
+    - you can substract by only a number of days
+    - also you can substract date by Date itself
+    - you can also get a range of both Date objects.
+  = equality operator overloaded.
+    - you evaluate both of your Date objects.
+  = assignmetn operator overloaded.
+    - you can assign other Date to your Date object.

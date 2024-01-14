@@ -1,0 +1,27 @@
+The operator usually returns a reference to its given stream. The second parameter 
+must be nonconst because the purpose of an input operator is to read data into 
+this object.
+
+Sales_data.hpp:
+The if checks whether the reads were successful. If an IO error occurs, the operator
+resets its given object to the empty Sales_data. That way, the object is guaranteed
+to be in a consistent state.
+
+The kinds of errors that might happen in an input operator include the following:
+        • A read operation might fail because the stream contains data of an incorrect
+        type. For example, after reading bookNo, the input operator assumes that the
+        next two items will be numeric data. If nonnumeric data is input, that read and
+        any subsequent use of the stream will fail.
+        • Any of the reads could hit end-of-file or some other error on the input stream.
+
+Sales_data.hpp:
+Rather than checking each read, we check once after reading all the data and before
+using those data. The effect would be to associate a different bookNo with those data.
+
+Some input operators need to do additional data verification. For example, our input
+operator might check that the bookNo we read is in an appropriate format. In such cases,
+the input operator might need to set the stream’s condition state to indicate failure 
+(§ 8.1.2, p. 312), even though technically speaking the actual IO was successful. Usually
+an input operator should set only the failbit. Setting eofbit would imply that the file 
+was exhausted, and setting badbit would indicate that the stream was corrupted. These 
+errors are best left to the IO library itself to indicate.

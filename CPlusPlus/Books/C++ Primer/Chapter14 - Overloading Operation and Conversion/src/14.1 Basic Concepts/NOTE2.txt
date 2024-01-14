@@ -1,0 +1,63 @@
+Recall that a few operators guarantee the order in which operands are evaluated.
+Because using an overloaded operator is really a function call, these guarantees do
+not apply to overloaded operators. 
+
+In particular, the operand-evaluation guarantees of the logical AND, logical OR 
+(§ 4.3, p. 141), and comma (§ 4.10, p. 157) operators are not preserved. Moreover, 
+overloaded versions of && or || operators do not preserve short-circuit evaluation
+properties of the built-in operators. Because the overloaded versions of these operators
+do not preserve order of evaluation and/or short-circuit evaluation, it is usually a bad
+idea to overload them.
+
+Another reason not to overload comma, which also applies to the address-of operator, is
+that unlike most operators, the language defines what the comma and address-of operators
+mean when applied to objects of class type. Because these operators have built-in meaning,
+they ordinarily should not be overloaded. Users of the class will be surprised if these
+operators behave differently from their normal meanings.
+
+Use Definitions That Are Consistent with the Built-in Meaning:
+
+        • If the class does IO, define the shift operators to be consistent with how IO is
+          done for the built-in types.
+        • If the class has an operation to test for equality, define operator==. If the class
+          has operator==, it should usually have operator!= as well.
+        • If the class has a single, natural ordering operation, define operator<. If the
+          class has operator<, it should probably have all of the relational operators.
+        • The return type of an overloaded operator usually should be compatible with the
+          return from the built-in version of the operator: The logical and relational
+          operators should return bool, the arithmetic operators should return a value of
+          the class type, and assignment and compound assignment should return a reference 
+          to the left-hand operand.
+        • If a class has an arithmetic (§ 4.2, p. 139) or bitwise (§ 4.8, p. 152) operator, 
+          then it is usually a good idea to provide the corresponding compound-assignment
+          operator as well.
+
+When we define an overloaded operator, we must decide whether to make the operator a class
+member or an ordinary nonmember function. In some cases, there is no choice—some operators
+are required to be members; in other cases, we may not be able to define the operator
+appropriately if it is a member. The following guidelines can be of help in deciding whether
+to make an operator a member or an ordinary nonmember function:
+
+        • The assignment (=), subscript ([]), call (()), and member access arrow (->)
+          operators must be defined as members.
+        • The compound-assignment operators ordinarily ought to be members. However,unlike 
+          assignment, they are not required to be members.
+        • Operators that change the state of their object or that are closely tied to their
+          given type—such as increment, decrement, and dereference—usually should be members.
+        • Symmetric operators—those that might convert either operand, such as the arithmetic,
+          equality, relational, and bitwise operators—usually should be defined as ordinary 
+          nonmember functions. For example, we can add an int and a double. The addition is
+          symmetric because we can use either type as the left-hand or the right-hand operand.
+          If we want to provide similar mixed-type expressions involving class objects, then the
+          operator must be defined as a nonmember function.
+
+When we define an operator as a member function, then the left-hand operand must be an object of
+the class of which that operator is a member. For example:
+
+        string s = "world";
+        string t = s + "!";     // Ok: we can add const char * to a string
+        string u = "hi" + s;    // Error: would be an error if + were a member of string
+
+If operator+ were a member of the string class, the first addition would be equivalent to s.operator+("!").
+Likewise, "hi" + s would be equivalent to "hi".operator+(s). However, the type of "hi" is const char*, and
+that is a built-in type; it does not even have member functions.
