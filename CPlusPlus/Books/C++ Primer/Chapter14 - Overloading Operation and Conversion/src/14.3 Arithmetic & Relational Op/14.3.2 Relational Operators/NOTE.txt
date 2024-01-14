@@ -1,0 +1,43 @@
+Classes for which the equality operator is defined also often (but not always) have
+relational operators. Because the associative containers and some of the algorithms 
+use the less-than operator, it can be useful to define an operator<.
+
+Ordinarily the relational operators should
+    1. Define an ordering relation that is consistent with the requirements for use as
+       a key to an associative container (§ 11.2.2, p. 424); and
+    2. Define a relation that is consistent with == if the class has both operators. In
+       particular, if two objects are !=, then one object should be < the other.
+
+Although we might think our Sales_data class should support the relational operators, it
+turns out that it probably should not do so. The reasons are subtle and are worth 
+understanding:
+
+    The Sales_data == operator treats two transactions with the same ISBN as unequal if
+    they have different revenue or units_sold members. If we defined the < operator to
+    compare only the ISBN member, then two objects with the same ISBN but different 
+    units_sold or revenue would compare as unequal, but neither object would be less than
+    the other. Ordinarily, if we have two objects, neither of which is less than the 
+    other, then we expect that those objects are equal.
+    (
+     If you confused by the above statements, let me clear you mind: Suppose that you have
+     two objects, those are data1("ABC", 10, 20) and data2("ABC", 5, 5). Now as the ==operator
+     that these objects are unequal or different although both objects have the same isbn. Now
+     if you compare them using < operator by only their isbn, it's the problem. If the ==operator
+     says that two objects are same, then < operator would evaluated as false. But because you're 
+     comparing only their isbn, the meaning is incosistent. 
+     ==operator says that those objects are different, when you compare them using only their isbn
+     using < operator or > operator it should be return true because they're different. but we got
+     the result that < operator/ > operator is return false because we only compare them using their isbn. 
+     Now you get it? 
+    )
+
+    However, there is nothing essential about this ordering. Depending on how we plan to use the class,
+    we might want to define the order based first on either revenue or units_sold. We might want those
+    objects with fewer units_sold to be “less than” those with more. Or we might want to consider those
+    with smaller revenue “less than” those with more.
+    For Sales_data, there is no single logical definition of <. Thus, it is better for this
+    class not to define < at all.
+
+
+If a single logical definition for < exists, classes usually should define the < operator. However, if
+the class also has ==, define < only if the definitions of < and == yield consistent results.

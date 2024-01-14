@@ -9,6 +9,8 @@ class StrVec {
     // 14.16.txt
     friend bool operator==(const StrVec &, const StrVec &);
     friend bool operator!=(const StrVec &, const StrVec &);
+    // 14.18.txt
+    friend bool operator<(const StrVec &, const StrVec &);
     
     public:
         StrVec():       // the allocator member is default initialized
@@ -182,4 +184,17 @@ bool operator==(const StrVec &lhs, const StrVec &rhs) {
 // 14.16.txt
 bool operator!=(const StrVec &lhs, const StrVec &rhs) {
     return !(lhs == rhs);
+}
+
+// 14.18.txt
+bool operator<(const StrVec &lhs, const StrVec &rhs) {
+    if (lhs.size() < rhs.size()) return true;
+    else if (rhs.size() == lhs.size()) {
+        for (string::size_type n = 0; n < lhs.size(); n++)
+            if (lhs.elements[n] > rhs.elements[n])
+                return false;
+            return true;
+    }
+
+    return false;
 }

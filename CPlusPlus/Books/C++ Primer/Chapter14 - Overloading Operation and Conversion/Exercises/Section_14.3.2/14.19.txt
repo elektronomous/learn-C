@@ -1,0 +1,6 @@
+Should the class you chose from Exercise 7.40 from $ 7.5.1 (p. 291)
+define the relational operators? If so, implement them. If not, explain
+why not.
+
+(answer):
+= Look at the Date.hpp

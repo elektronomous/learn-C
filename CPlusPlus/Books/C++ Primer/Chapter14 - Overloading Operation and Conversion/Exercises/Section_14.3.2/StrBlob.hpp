@@ -12,6 +12,8 @@ class StrBlobPtr {
     // 14.16.txt
     friend bool operator==(const StrBlobPtr &, const StrBlobPtr &);
     friend bool operator!=(const StrBlobPtr &, const StrBlobPtr &);
+    // 14.18.txt
+    friend bool operator<(const StrBlobPtr &, const StrBlobPtr &);
     public:
         StrBlobPtr(): curr(0) { }   // implicit null to wptr
         StrBlobPtr(StrBlob &a, size_t sz = 0);
@@ -31,12 +33,20 @@ class StrBlobPtr {
 
 // 14.16.txt
 bool operator==(const StrBlobPtr &lhs, const StrBlobPtr &rhs) {
-    return (lhs.wptr.lock() == rhs.wptr.lock() &&
-            lhs.curr == rhs.curr);
+    // if it's point to the same object
+    return (lhs.wptr.lock() == rhs.wptr.lock());
 }
+
 // 14.16.txt
 bool operator!=(const StrBlobPtr &lhs, const StrBlobPtr &rhs) {
     return !(lhs == rhs);
+}
+
+// 14.18.txt
+bool operator<(const StrBlobPtr &lhs, const StrBlobPtr &rhs) {
+    // you always get undefined value on either object evaluated to be less-than
+    // because this is a pointer
+    return (lhs.wptr.lock() < rhs.wptr.lock());
 }
 
 

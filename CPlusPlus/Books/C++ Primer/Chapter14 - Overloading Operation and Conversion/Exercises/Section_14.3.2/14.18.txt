@@ -1,0 +1,5 @@
+Define relational operators for your StrBlob, StrBlobPtr, StrVec and
+String classes.
+
+(answer):
+= Look at the StrBlob.hpp, StrBlobPtr.hpp, StrVec.hpp and String.hpp

@@ -1,3 +1,7 @@
+Ordinarily, classes in C++ define the equality operator to test whether two objects are
+equivalent. That is, they usually compare every data member and treat two objects as
+equal if and only if all the corresponding members are equal.
+
 The definition of these functions is trivial. More important are the design principles
 that these functions embody:
         • If a class has an operation to determine whether two objects are equal, it

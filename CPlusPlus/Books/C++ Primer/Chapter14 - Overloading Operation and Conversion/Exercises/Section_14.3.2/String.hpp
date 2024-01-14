@@ -7,6 +7,9 @@ class String {
     friend ostream& print(ostream &, const String &);
     friend bool operator==(const String &, const String &);
     friend bool operator!=(const String &, const String &);
+
+    // 14.18.txt
+    friend bool operator<(const String &, const String &);
     public:
         String():
             elements(alloc.allocate(1)), str(elements), cap(elements) {
@@ -198,4 +201,19 @@ bool operator==(const String &lhs, const String &rhs) {
 // 14.16.txt
 bool operator!=(const String &lhs, const String &rhs) {
     return !(lhs == rhs);
+}
+
+// 14.18.txt
+bool operator<(const String &lhs, const String &rhs) {
+
+    if (lhs.size() < rhs.size()) return true;
+    else {
+        if (lhs.size() == rhs.size()) {
+            for (size_t n = lhs.size(); n < lhs.size(); n++)
+                if (lhs.elements[n] > rhs.elements[n])
+                    return false;
+            return true;
+        }
+    }
+    return false;
 }
