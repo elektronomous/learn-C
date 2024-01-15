@@ -36,6 +36,15 @@ class StrBlobPtr {
         StrBlobPtr operator++(int);    // postfix operator
         StrBlobPtr operator--(int);
 
+        // 14.7 Member Access Operators
+        string& operator*() const {
+            shared_ptr<vector<string>> getAddr = check(curr, "dereference past end");
+            return (*getAddr)[curr];
+        }
+
+        string* operator->() const {
+            return &this->operator*();
+        }
 
         
     

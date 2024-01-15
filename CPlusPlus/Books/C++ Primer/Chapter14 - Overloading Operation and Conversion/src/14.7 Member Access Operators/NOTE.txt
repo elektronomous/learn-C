@@ -1,0 +1,14 @@
+The dereference (*) and arrow (->) operators are often used in classes 
+that represent iterators and in smart pointer classes (§ 12.1, p. 450).
+
+Operator arrow must be a member. The dereference operator is not required
+to be a member but usually should be a member as well.
+
+StrBlobPtr:
+It is worth noting that we’ve defined these operators as const members.
+Unlike the increment and decrment operators, fetching an element doesn’t 
+change the state of a StrBlobPtr. Also note that these operators return 
+a reference or pointer to nonconst string. They do so because we know 
+that a StrBlobPtr can only be bound to a nonconst StrBlob (§ 12.1.6, p. 474).
+We can use these operators the same way that we’ve used the corresponding
+operations on pointers or vector iterators: dummy.hpp
