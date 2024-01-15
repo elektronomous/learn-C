@@ -1,0 +1,5 @@
+Define subscript operator for your StrVec, String, StrBlob and
+StrBlobPtr classes.
+
+(answer):
+= Look at the those class in this folder.

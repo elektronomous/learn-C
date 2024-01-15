@@ -7,3 +7,4 @@ that is fetched. By returning a reference, subscript can be used on either side 
 assignment. Consequently, it is also usually a good idea to define both const and
 nonconst versions of this operator. When applied to a const object, subscript should
 return a reference to const so that it is not possible to assign to the returned object.
+
