@@ -1,0 +1,3 @@
+Add increment and decrement operators to your StrBlobPtr class.
+(answer):
+= StrBlob.hpp

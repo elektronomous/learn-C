@@ -1,0 +1,6 @@
+We did not define a const version of the increment and decrement operators.
+Why not?
+
+(answer):
+= Since both postfix and prefix is changing the object state, we don't create
+  a const version.

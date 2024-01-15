@@ -1,0 +1,5 @@
+Define addition and substraction for StrBlobPtr so that these opera-
+tors implement pointer arithmetic ($ 3.5.3, p. 119)
+
+(answer):
+= StrBlob.hpp

@@ -1,0 +1,40 @@
+The increment (++) and decrement (--) operators are most often implemented for
+iterator classes. These operators let the class move between the elements of a 
+sequence. There is no language requirement that these operators be members of the
+class. However, because these operators change the state of the object on which
+they operate, our preference is to make them members.
+
+Classes that define increment or decrement operators should define both the prefix
+and postfix versions. These operators usually should be defined as members.
+
+To be consistent with the built-in operators, the prefix operators should return
+a reference to the incremented or decremented object.
+
+StrBlob.hpp:
+The increment and decrement operators work similarly to each other—they call check 
+to verify that the StrBlobPtr is still valid. If so, check also verifies that its
+given index is valid. If check doesn’t throw an exception, these operators return
+a reference to this object.
+In the case of increment, we pass the current value of curr to check. So long as
+that value is less than the size of the underlying vector, check will return. If
+curr is already at the end of the vector, check will throw:
+The decrement operator decrements curr before calling check. That way, if curr
+(which is an unsigned number) is already zero, the value that we pass to check
+will be a large positive value representing an invalid subscript (§ 2.1.2, p. 36).
+
+There is one problem with defining both the prefix and postfix operators: Normal
+overloading cannot distinguish between these operators.
+The prefix and postfix versions use the same symbol, meaning that the overloaded
+versions of these operators have the same name. They also have the same number 
+and type of operands.
+
+To solve this problem, the postfix versions take an extra (unused) parameter of
+type int. When we use a postfix operator, the compiler supplies 0 as the argument
+for this parameter. Although the postfix function can use this extra parameter,
+it usually should not. That parameter is not needed for the work normally performed
+by a postfix operator. Its sole purpose is to distinguish a postfix function from
+the prefix version.
+
+To be consistent with the built-in operators, the postfix operators should return the
+old (unincremented or undecremented) value. That value is returned as a value, not a 
+reference.

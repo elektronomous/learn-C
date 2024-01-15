@@ -96,7 +96,10 @@ void substractDay(const int &nDay) {
 }
 
 int main(void) {
-    cout << getRange(3,1,2023,1,2,2023) << endl;
+    int x = 10;
+    ++x = 20;
+
+    cout << x << endl;
 
     return 0;
 }
