@@ -45,6 +45,7 @@ class StrBlobPtr {
         string* operator->() const {
             return &this->operator*();
         }
+        /* how this operator works, then visit the dummy.hpp */
 
         
     
