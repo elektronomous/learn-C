@@ -10,7 +10,7 @@ class ReadString {
         ReadString(istream &in = cin):
             is(in) { }
         
-        string operator()(string &s) {
+        string operator()(string &s) const {
             is >> s;
 
             // if fail return empty string

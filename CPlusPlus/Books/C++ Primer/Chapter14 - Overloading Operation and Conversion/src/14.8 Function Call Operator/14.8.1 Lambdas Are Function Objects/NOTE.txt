@@ -1,0 +1,58 @@
+When we write a lambda, the compiler translates that expression into an unnamed 
+object of an unnamed class (§ 10.3.3, p. 392). The classes generated from a lambda
+contain an overloaded function-call operator. For example, the lambda that we
+passed as the last argument to stable_sort:
+
+        // sort words by size, but maintain alphabetical order for words of the
+        // same size
+        stable_sort(words.begin(), words.end(), 
+                    [](const string &s, const string &b){
+                        return a.size() < b.size();
+                    });
+
+acts like an unnamed object of a class that would look something like
+
+        class ShorterString {
+            public:
+                bool operator()(const string &s1, const string &s2) const {
+                    return s1.size() < s2.size();
+                }
+        };
+
+The generated class has a single member, which is a function-call operator that
+takes two strings and compares their lengths. The parameter list and function body
+are the same as the lambda
+
+As we’ve seen, when a lambda captures a variable by reference, it is up to the
+program to ensure that the variable to which the reference refers exists when the
+lambda is executed (§ 10.3.3, p. 393).Therefore, the compiler is permitted to use the
+reference directly without storing that reference as a data member in the generated
+class.
+
+In contrast, variables that are captured by value are copied into the lambda 
+(§ 10.3.3, p. 392). As a result, classes generated from lambdas that capture variables
+by value have data members corresponding to each such variable. These classes also have
+a constructor to initialize these data members from the value of the captured variables.
+
+        // get an iterator to the first element whose size is >= sz
+        auto wc = find_if(words.begin(), words.end(), 
+                          [sz] (const string &s) { 
+                            return s.size() > sz; 
+                         });
+
+would generate a class that looks something like:
+
+        class SizeCmp {
+            public:
+                SizeCmp(size_t n):      // parameter for each captured variable 
+                    sz(n) { }
+                // call operator with the same return type, parameters and body as the lambda
+                bool operator()(const string &s) {
+                    return s.size() >= sz;
+                }
+
+            private:
+                size_t sz;    
+        };
+
+To use this class 

@@ -9,7 +9,7 @@ class IsEqual {
         IsEqual(const int &val):
             cmpVal(val) { }
 
-        bool operator()(const int &val) {
+        bool operator()(const int &val) const {
             return ( cmpVal == val );
         }
     
