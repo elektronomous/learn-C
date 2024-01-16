@@ -1,0 +1,4 @@
+How many operands may an overloaded function-call operator take?
+
+(answer):
+= as many as the ordinary function

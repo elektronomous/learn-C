@@ -8,28 +8,6 @@ class StrBlobPtr;
 class StrBlobPtrPtr;
 class StrBlob;
 
-// 14.32.txt
-class StrBlobPtrPtr {
-    public:
-        StrBlobPtrPtr() = default;
-        StrBlobPtrPtr(StrBlobPtr *s):
-            sp(s) { }
-        
-        // 14.32.txt
-        StrBlobPtr* operator*() const;
-        StrBlobPtr** operator->();
-        
-    private:
-        StrBlobPtr *sp;
-};
-
-StrBlobPtr* StrBlobPtrPtr::operator*() const {
-    return sp;
-}
-
-StrBlobPtr** StrBlobPtrPtr::operator->() const {
-    return &sp;
-}
 
 // StrBlobPtr throws an exception on attempts to access a nonexistent element
 class StrBlobPtr {
@@ -42,6 +20,8 @@ class StrBlobPtr {
     friend StrBlobPtr operator+(const StrBlobPtr &, const int &);
     friend StrBlobPtr operator-(const StrBlobPtr &, const int &);
 
+    // 14.32.txt
+    friend class StrBlobPtrPtr;
     public:
         StrBlobPtr(): curr(0) { }   // implicit null to wptr
         StrBlobPtr(StrBlob &a, size_t sz = 0);
@@ -303,3 +283,38 @@ bool operator==(const StrBlob &lhs, const StrBlob &rhs) {
 bool operator!=(const StrBlob &lhs, const StrBlob &rhs) {
     return !(lhs == rhs);
 }
+
+// 14.32.txt
+class StrBlobPtrPtr {
+    public:
+        StrBlobPtrPtr() = default;
+        StrBlobPtrPtr(StrBlobPtr *s):
+            sp(s) { }
+        
+        // 14.32.txt
+        StrBlobPtr& operator*() const;
+        StrBlobPtr* operator->();
+        
+    private:
+        StrBlobPtr *sp;
+};
+
+StrBlobPtr& StrBlobPtrPtr::operator*() const {
+    return *sp;
+}
+
+StrBlobPtr* StrBlobPtrPtr::operator->() {
+    return &this->operator*();
+}
+
+/* 
+NOTE:
+When the object is a pointer to pointer, then the return object
+when you dereference the object is a pointer to the actual object.
+you need to use dot (.) operator to access the member function or
+data.
+
+when the object is a pointer to pointer, when using the arrow operator
+to access the object you get the pointer to actual object also you can
+access its member function or data.
+*/

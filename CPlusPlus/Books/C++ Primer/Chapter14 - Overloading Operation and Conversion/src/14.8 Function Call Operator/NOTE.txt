@@ -1,0 +1,27 @@
+Classes that overload the call operator allow objects of its type to be used as if they
+were a function. Because such classes can also store state, they can be more flexible
+than ordinary functions.
+
+AbsInt.cpp:
+This class defines a single operation: the function-call operator. That operator takes
+an argument of type int and returns the argument’s absolute value.
+
+The function-call operator must be a member function. A class may define multiple 
+versions of the call operator, each of which must differ as to the number or types of
+their parameters.
+
+Objects of classes that define the call operator are referred to as function objects. 
+Such objects “act like functions” because we can call them.
+
+Function-object classes often contain data members that are used to customize the operations
+in the call operator.
+
+PrintString.cpp:
+As an example, we’ll define a class that prints a string argument. By default, our class will
+write to cout and will print a space following each string
+
+Function objects are most often used as arguments to the generic algorithms.
+For example, we can use the library for_each algorithm (§ 10.3.2, p. 391) and our
+PrintString class to print the contents of a container:
+
+    for_each(vs.begin(), vs.end(), PrintString(cerr, '\n'));
