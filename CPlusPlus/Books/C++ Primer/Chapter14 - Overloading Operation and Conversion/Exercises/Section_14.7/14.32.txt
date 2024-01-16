@@ -1,0 +1,5 @@
+Define a class that holds a pointer to StrBlobPtr. Define the
+overloaded arrow operator?
+
+(answer):
+= Look at the StrBlobPtrPtr.hpp

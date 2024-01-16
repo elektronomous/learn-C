@@ -5,7 +5,31 @@
 using namespace std;
 
 class StrBlobPtr;
+class StrBlobPtrPtr;
 class StrBlob;
+
+// 14.32.txt
+class StrBlobPtrPtr {
+    public:
+        StrBlobPtrPtr() = default;
+        StrBlobPtrPtr(StrBlobPtr *s):
+            sp(s) { }
+        
+        // 14.32.txt
+        StrBlobPtr* operator*() const;
+        StrBlobPtr** operator->();
+        
+    private:
+        StrBlobPtr *sp;
+};
+
+StrBlobPtr* StrBlobPtrPtr::operator*() const {
+    return sp;
+}
+
+StrBlobPtr** StrBlobPtrPtr::operator->() const {
+    return &sp;
+}
 
 // StrBlobPtr throws an exception on attempts to access a nonexistent element
 class StrBlobPtr {
@@ -17,7 +41,6 @@ class StrBlobPtr {
     // 14.28.txt
     friend StrBlobPtr operator+(const StrBlobPtr &, const int &);
     friend StrBlobPtr operator-(const StrBlobPtr &, const int &);
-
 
     public:
         StrBlobPtr(): curr(0) { }   // implicit null to wptr

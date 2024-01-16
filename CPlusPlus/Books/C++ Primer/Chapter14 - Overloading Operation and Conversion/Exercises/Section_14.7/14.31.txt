@@ -1,0 +1,9 @@
+Our StrBlobPtr class does not define the copy constructor, assignment 
+operator, or a destructor. Why is that okay?
+
+(answer):
+= The member is a weak_ptr, obviously we dont control a life-time resource
+  here so there's no need to create a destructor. when you create a destructor
+  the copy constructor and assignment should be included too. But because we
+  don't know if the object being pointed is exist, we don't need to create those
+  three.

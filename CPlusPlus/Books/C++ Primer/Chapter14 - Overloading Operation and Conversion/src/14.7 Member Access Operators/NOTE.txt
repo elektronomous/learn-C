@@ -12,3 +12,26 @@ a reference or pointer to nonconst string. They do so because we know
 that a StrBlobPtr can only be bound to a nonconst StrBlob (§ 12.1.6, p. 474).
 We can use these operators the same way that we’ve used the corresponding
 operations on pointers or vector iterators: dummy.hpp
+
+When we overload arrow, we change the object from which arrow fetches the
+specified member. We cannot change the fact that arrow fetches a member.
+
+When we write point->mem, point must be a pointer to a class object (SomeClass*) 
+or it must be an object of a class with an overloaded operator->. Depending on
+the type of point, writing point->mem is equivalent to
+
+        (*point).mem;           // point is a built-in pointer type
+        point.operator()->mem;  // point is an object of class type
+
+That is, point->mem executes as follows:
+        1. If point is a pointer, then the built-in arrow operator is applied, which means
+           this expression is a synonym for (*point).mem. The pointer is dereferenced
+           and the indicated member is fetched from the resulting object. If the type
+           pointed to by point does not have a member named mem, then the code is in
+           error.
+        2. If point is an object of a class that defines operator->, then the result of
+           point.operator->() is used to fetch mem. If that result is a pointer, then
+           step 1 is executed on that pointer. If the result is an object that itself has an
+           overloaded operator->(), then this step is repeated on that object. This
+           process continues until either a pointer to an object with the indicated member
+           is returned or some other value is returned, in which case the code is in error.

@@ -11,10 +11,15 @@ class ConstStrBlobPtr {
     public:
 
         ConstStrBlobPtr(): curr(0) { }
-        ConstStrBlobPtr(const StrBlob &strBlob, size_t sz = 0);
+        ConstStrBlobPtr(const StrBlob &strBlob, size_t sz = 0):
+            pointToVec(strBlob.data), curr(sz) { }
 
         const string& deref() const;
         const ConstStrBlobPtr& incr();      // prefix version
+
+        // 14.30.txt
+        const string& operator*() const;
+        const string* operator->() const;
 
 
     private:
@@ -43,6 +48,14 @@ const ConstStrBlobPtr& ConstStrBlobPtr::incr() {
     check(curr, "increment past the end of ConstStrBlobPtr");
     ++curr;     // advance the current state;
     return *this;
+}
+
+const string& ConstStrBlobPtr::operator*() const {
+    return deref();
+}
+
+const string* ConstStrBlobPtr::operator->() const {
+    return &deref();
 }
 
 class StrBlob {
@@ -109,6 +122,6 @@ int main(void) {
     const StrBlob s1 {"Hello","There"};
     ConstStrBlobPtr p(s1);
 
-    cout << p.incr().deref() << endl;
+    cout << *p << endl;
     return 0;
 }

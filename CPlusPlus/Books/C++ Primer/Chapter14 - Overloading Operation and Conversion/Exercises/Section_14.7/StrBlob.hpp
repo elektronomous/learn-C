@@ -18,7 +18,6 @@ class StrBlobPtr {
     friend StrBlobPtr operator+(const StrBlobPtr &, const int &);
     friend StrBlobPtr operator-(const StrBlobPtr &, const int &);
 
-
     public:
         StrBlobPtr(): curr(0) { }   // implicit null to wptr
         StrBlobPtr(StrBlob &a, size_t sz = 0);
@@ -252,10 +251,6 @@ StrBlobPtr StrBlob::begin() {
 StrBlobPtr StrBlob::end() {
     return StrBlobPtr(*this, data->size());
 }
-
-// define StrBlobPtr incomplete types
-StrBlobPtr::StrBlobPtr(StrBlob &strblob, size_t sz):
-            wptr(strblob.data), curr(sz) { }
 
 // 14.16.txt
 bool operator==(const StrBlob &lhs, const StrBlob &rhs) {
