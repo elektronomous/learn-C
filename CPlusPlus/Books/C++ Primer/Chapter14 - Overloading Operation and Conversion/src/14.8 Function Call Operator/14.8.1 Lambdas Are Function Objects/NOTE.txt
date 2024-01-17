@@ -55,4 +55,12 @@ would generate a class that looks something like:
                 size_t sz;    
         };
 
-To use this class 
+To use this class we must passed an argument:
+
+        // get an iterator to the first element whose size() is >= sz
+        auto wc = find_if(words.begin(), words.end(), SizeCmp(sz));
+
+Classes generated from a lambda expression have a deleted default constructor, deleted assignment
+operators, and a default destructor. Whether the class has a defaulted or deleted copy/move
+constructor depends in the usual ways on the types of the captured data members 
+(§ 13.1.6, p. 508, and § 13.6.2, p. 537).

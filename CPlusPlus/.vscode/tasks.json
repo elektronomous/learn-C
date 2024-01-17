@@ -4,7 +4,7 @@
       "type": "shell",
       "label": "C/C++: g++.exe BUILD ACTIVE FILE",
       // "command": "g++.exe",
-      "command": "g++-12",
+      "command": "g++-13",
       "args": [
         "-fdiagnostics-color=always",
         "-ggdb3",

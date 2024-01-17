@@ -1,0 +1,11 @@
+Why do you suppose the new standard added lambdas?
+Explain when you would use a lambda and when you would
+write a class instead.
+
+(answer):
+= If you want the shortes code, you can go with the lambda instead
+  of using function-object class. But the more you use the lambda
+  the more code you would write. If the lambda seems like we will
+  often use it, then I prefer to use the function-object class. If
+  you use an algorithm that's only once or twice, I prefer to use
+  the lambda.

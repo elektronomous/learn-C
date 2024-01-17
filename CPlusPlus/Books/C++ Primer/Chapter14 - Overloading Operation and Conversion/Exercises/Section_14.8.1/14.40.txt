@@ -1,0 +1,5 @@
+Rewrite the biggies function from $ 10.3.2 (p. 391) to use
+function-object classes instead of lambdas.
+
+(answer):
+= Look at the 14.40.cpp

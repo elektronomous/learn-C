@@ -1,0 +1,46 @@
+The standard library defines a set of classes that represent the arithmetic, relational,
+and logical operators. Each class defines a call operator that applies the named
+operation.
+
+These classes are templates to which we supply a single type. That type specifies
+the parameter type for the call operator. For example, plus<string> applies the
+string addition operator to string objects; for plus<int> the operands are ints;
+plus<Sales_data> applies + to Sales_datas; and so on:
+
+These types, listed in Table 14.2, are defined in the functional header:
+
+    Arithmetic:             | Relational:           | Logical:
+        plus<Type>          |   equal_to<Type>      |   logical_and<Type>
+        minus<Type>         |   not_equal_to<Type>  |   logical_or<Type>
+        multiplies<Type>    |   greater<Type>       |   logical_not<Type>
+        divides<Type>       |   greater_equal<Type> |
+        modulus<Type>       |   less<Type>          |
+        negate<Type>        |   less_equal<Type>    |
+
+The function-object classes that represent operators are often used to override the
+default operator used by an algorithm.
+
+        sort(svec.begin(), svec.end(), greater<string>());
+
+When sort compares elements, rather than applying the < operator for the element type,
+it will call the given greater function object. That object applies > to the string
+elements.
+
+One important aspect of these library function objects is that the library guarantees
+that they will work for pointers. Recall that comparing two unrelated pointers is
+undefined (§ 3.5.3, p. 120).
+However, we might want to sort a vector of pointers based on their addresses in memory.
+Although it would be undefined for us to do so directly, we can do so through one of the
+library function objects:
+
+        vector<string *> nameTable;         // vector of pointers
+
+        // Error: the pointers in nameTable are unrelated, so < is undefined
+        sort(nameTable.begin(), nameTable.end(), [] (string* a, string *b) { return a < b; });
+
+        // Ok: library guarantees that less on pointer type is well defined
+        sort(nameTable.begin(), nameTable.end(), less<string*>()); 
+
+It is also worth noting that the associative containers use less<key_type> to order
+their elements. As a result, we can define a set of pointers or use a pointer as the
+key in a map without specifying less directly.
