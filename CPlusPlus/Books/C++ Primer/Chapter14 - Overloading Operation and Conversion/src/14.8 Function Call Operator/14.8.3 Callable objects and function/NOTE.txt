@@ -1,0 +1,78 @@
+C++ has several kinds of callable objects: functions and pointers to functions,
+lambdas (§ 10.3.2, p. 388), objects created by bind (§ 10.3.4, p. 397), and classes
+that overload the function-call operator. 
+Like any other object, a callable object has a type. For example, each lambda has
+its own unique (unnamed) class type. Function and function-pointer types vary by
+their return type and argument types, and so on.
+However, two callable objects with different types may share the same call signature.
+The call signature specifies the type returned by a call to the object and the 
+argument type(s) that must be passed in the call. A call signature corresponds to
+a function type. For example:
+
+    int(int,int);
+
+is a function type that takes two ints and returns an int.
+
+Sometimes we want to treat several callable objects that share a call signature as if
+they had the same type. For example, consider the following different types of callable
+objects:
+
+        // ordinary function
+        int add(int i, int j) { return i + j; }
+
+        // lambda, which generates an unnamed function-object class
+        auto mod = [](int i, int j) { return i % j; }
+
+        // function object
+        struct div {
+            int operator() (int denominator, int divisor) {
+                retur denominator / divisor;
+            }
+        };
+
+Each of these callables applies an arithmetic operation to its parameters. Even though
+each has a distinct type, they all share the same call signature:
+
+        int (int,int);
+
+We might want to use these callables to build a simple desk calculator. To do so, we’d want
+to define a function table to store “pointers” to these callables. When the program needs to
+execute a particular operation, it will look in the table to find which function to call.
+
+In C++, function tables are easy to implement using a map. In this case, we’ll use a string 
+corresponding to an operator symbol as the key; the value will be the function that implements
+that operator. When we want to evaluate a given operator, we’ll index the map with that 
+operator and call the resulting element. If all our functions were freestanding functions, and
+assuming we were handling only binary operators for type int, we could define the map as
+
+        map<string, int(*)(int,int)> binops;
+
+put a pointer to add into binops as follows:
+
+        binops.add({"+", add});     // {"+", add} is a pair $ 11.2.3 (p. 426)
+
+However, we can't store mod or div in binops:
+
+        binops.add({"%", mod});     // Error: mod is not a pointer to function
+
+The problem is that mod is a lambda, and each lambda has its own class type. That
+type does not match the type of the values stored in binops.
+
+We can solve this problem using a new library type named function that is defined in
+the functional header; Table 14.3 (p. 579) lists the operations defined by function.
+
+        function<T> f;              f is a null funtion object that can store callable objects with
+                                    a call signature that is equivalent to the function type T (i.e,
+                                    T is a retType(args))
+        function<T> f(nullptr);     Explicitly construct a null function.
+        function<T> f(obj);         Stores A copy of the callable object in f.
+        f                           Use f as a condition; true if f holds a callable object; false 
+                                    otherwise 
+        
+        Types defined as members of function<T>
+        result_type                 The type returned by this functions type's callable object
+        argument_type               Types defined when T has exactly one or two arguments.
+        first_argument_type         if T has one argument, argument_type is a synonim for that
+        second_argument_type        type. If T has two arguments, first_argument_type and second
+                                    _argument_type are synonim for those argument types.
+ 

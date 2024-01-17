@@ -1,0 +1,76 @@
+function is a template. As with other templates we’ve used, we must specify additional
+information when we create a function type. In this case, that information is the call
+signature of the objects that this particular function type can represent. As with 
+other templates, we specify the type inside angle brackets:
+
+        function<int(int,int)>
+
+Here we’ve declared a function type that can represent callable objects that return an
+int result and have two int parameters. We can use that type to represent any of our 
+desk calculator types:
+
+        function<int(int,int)> f1 = add;                // function pointer
+        function<int(int,int)> f2 = div();              // object of a function-object class
+        function<int(int,int)> f3 = [] (int i, int j)   // lambda
+                                    {
+                                        return i * j;
+                                    };
+
+        cout << f1(4,2) << endl;    // prints 6
+        cout << f2(4,2) << endl;    // prints 2
+        cout << f3(4,2) << endl;    // prints 8
+
+We can now redefine our map using this function type:
+
+        // table of callable object corresponding to each binary operator
+        // all the callables must take two ints and return an int
+        // an element can be a function pointer, function object or lambda
+        map<string, function<int(int,int)>> binops;
+
+We can add each of our callable objects, be they function pointers, lambdas, or
+function objects, to this map:
+
+        map<string, function<int(int,int)>> binops {
+            {"+", add},                 // function pointer
+            {"-", minus<int>()},        // library function object
+            {"/", div()},               // user-defined function object,
+            {"*", [] (int i, int j) {   // unnamed lambda
+                return i * j;
+            }},
+            {"%", mod}                  // named lambda object
+        };
+
+As usual, when we index a map, we get a reference to the associated value. When we
+index binops, we get a reference to an object of type function. The function type
+overloads the call operator. That call operator takes its own arguments and passes
+them along to its stored callable object:
+
+        binops["+"](10, 5);     // calls add(10, 5)
+        binops["-"](10, 5);     // uses the call operator of the minus<int> object
+        binops["/"](10, 5);     // uses the call operator for the div object
+        binops["*"](10, 5);     // calls the lambda function object
+        binops["%"](10, 5);     // calls the lambda function object
+
+We cannot (directly) store the name of an overloaded function in an object of type
+function:
+
+        int add(int i, int j) { return i + j; }
+        Sales_data add(const Sales_data &, const Sales_data &);
+        map<string, function<int(int,int)>> binops;
+
+        binops.insert({"+", add});      // Error: which add? 
+
+One way to resolve the ambiguity is to store a function pointer (§ 6.7, p. 247) instead
+of the name of the function:
+
+        int (*fp)(int,int) = add;       // pointer to the version of add that takes two ints
+        binops.insert({"+", fp});       // Ok: fp points to the right version of add
+
+Alternatively, we can use a lambda to dissambiguate:
+
+        // Ok: Use a lambda to dissambiguate which version of add we want to use
+        binops.insert({"+", [](int a, int b){ return add(a, b); } });
+
+The function class in the new library is not related to classes named unary_function and
+binary_function that were part of earlier versions of the library. These classes have been 
+deprecated by the more general bind function (§ 10.3.4, p. 401).

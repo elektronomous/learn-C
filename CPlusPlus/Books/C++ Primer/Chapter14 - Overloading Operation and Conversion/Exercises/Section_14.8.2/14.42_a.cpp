@@ -6,9 +6,13 @@
 using namespace std;
 
 int main(void) {
-    vector<int> vint {1234,2435,3242,212,4523,512};
-    greater<int> greaterThan1024(1024);
-    size_t greaterThan1024 = count_if(vint.begin(), vint.end(), greater<int>(1024));
+    vector<int> vints {1023, 100233, 9952, 34214, 555};
+    greater<int> greaterThan1024;
 
-    
+    int valuesGreaterThan1024 = count_if(vints.begin(), vints.end(), bind(greaterThan1024, placeholders::_1, 1024));
+
+    cout << "How many values that are greater than 1024 inside the vints: " << endl;
+    cout << valuesGreaterThan1024 << endl;
+
+    return 0;
 }

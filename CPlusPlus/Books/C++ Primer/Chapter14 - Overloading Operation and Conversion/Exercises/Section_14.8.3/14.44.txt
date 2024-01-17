@@ -1,0 +1,5 @@
+Write your own version of a simple desk calculator that can handle 
+binary operations.
+
+(answer):
+= Look at the 14.44.cpp
