@@ -1,0 +1,7 @@
+Using library function objects and adaptors, define an expression to
+    (a) Count the number of values that are greater than 1024
+    (b) Find the first string that is not equal to "pooh"
+    (c) Multiply all values by 2
+
+(answer):
+= Look at 14.42_a.cpp, 14.42_b.cpp, and 14.42_c.cpp
