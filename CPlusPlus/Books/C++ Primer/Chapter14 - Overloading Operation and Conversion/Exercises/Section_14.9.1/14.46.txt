@@ -1,0 +1,9 @@
+Explain whether defining these Sales_data conversion operators
+is a good idea and whether they should be explicit.
+
+(answer):
+= Assume that you have identical isbn, when you add them together it's
+  obvious that the context when you add them is result in type of revenue.
+  So it should be a good idea to be implicitly define the class. But the
+  string type conversion should be explicit since there's no context in which
+  we combine the string value of this objects.

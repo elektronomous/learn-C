@@ -1,0 +1,12 @@
+Determine whether the class you used in exercise 7.40 from
+$ 7.5.1 (p. 291) should have a conversion to bool. If so,
+explain why, and explain whether the operator should be
+explicit. If not, explain why not.
+
+(answer):
+= The class that i used in that Exercises is Date class which
+  represent the day, month and year. There's nothing could be
+  the bool to be used as the context of this class. Because it's
+  not store the state of something, it just store the numbers. If
+  you read something to this object, let the IO class handle the
+  failure of the input. 

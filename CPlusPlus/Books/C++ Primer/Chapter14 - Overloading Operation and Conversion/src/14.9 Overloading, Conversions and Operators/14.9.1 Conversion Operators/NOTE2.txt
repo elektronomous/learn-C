@@ -1,0 +1,51 @@
+It is not uncommon for classes to define conversions to bool. Under earlier
+versions of the standard, classes that wanted to define a conversion to bool
+faced a problem: Because bool is an arithmetic type, a class-type object that is
+converted to bool can be used in any context where an arithmetic type is expected.
+Such conversions can happen in surprising ways. In particular, if istream had a
+conversion to bool, the following code would compile:
+
+        int i = 42;
+        cin << i;   // this code would be legal if the conversion to bool were not explicit
+
+This program attempts to use the output operator on an input stream. There is no <<
+defined for istream, so the code is almost surely in error. However, this code could
+use the bool conversion operator to convert cin to bool. The resulting bool value
+would then be promoted to int and used as the left-hand operand to the built-in
+version of the left-shift operator. The promoted bool value (either 1 or 0) would be
+shifted left 42 positions.
+
+To prevent such problems, the new standard introduced explicit conversion:
+
+        class SmallInt {
+            public:
+                // the compiler won't automatically apply this conversion
+                explicit operator int() const { return val; }
+                // other members as before 
+        };
+
+As with an explicit constructor (§ 7.5.4, p. 296), the compiler won’t (generally) use
+an explicit conversion operator for implicit conversions:
+
+        SmallInt si = 3;        // Ok: the SmallInt constructor is not explicit
+        si + 3;                 // Error: implicit is conversion required, but operator int is explicit
+        static_cast<int>(si);   // Ok: Explicitly request the conversion
+
+If the conversion operator is explicit, we can still do the conversion. However, with
+one exception, we must do so explicitly through a cast.
+
+The exception is that the compiler will apply an explicit conversion to an expression used as a condition.
+That is, an explicit conversion will be used implicitly to convert an expression used as
+        • The condition of an if, while, or do statement
+        • The condition expression in a for statement header
+        • An operand to the logical NOT (!), OR (||), or AND (&&) operators
+        • The condition expression in a conditional (?:) operator
+
+Under the new standard, the IO library instead defines an explicit conversion to bool. Whenever we use a 
+stream object in a condition, we use the operator bool that is defined for the IO types. For example, 
+        
+        while (std::cin >> value)
+
+The condition in the while executes the input operator, which reads into value and returns cin. To evaluate
+the condition, cin is implicitly converted by the istream operator bool conversion function. That function 
+returns true if the condition state of cin is good (§ 8.1.2, p. 312), and false otherwise.

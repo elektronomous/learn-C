@@ -1,0 +1,8 @@
+Write conversion operators to convert a Sales_data to string
+and to double. What values do you think these operators should
+return?
+
+(answer):
+= the string would be the bookNo member and the double would be
+  the revenue
+= Look at the Sales_data.hpp

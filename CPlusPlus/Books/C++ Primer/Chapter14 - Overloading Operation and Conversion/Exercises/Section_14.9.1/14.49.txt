@@ -1,0 +1,5 @@
+Regardless of whether it is a good idea to do so, define 
+a conversion to bool for the class from the previous exercise.
+
+(answer):
+= Look at the Date.hpp

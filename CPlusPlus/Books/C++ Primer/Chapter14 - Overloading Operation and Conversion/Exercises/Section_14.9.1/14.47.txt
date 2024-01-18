@@ -1,0 +1,12 @@
+Explain the difference between these two conversion operators:
+
+        struct Integral {
+            operator const int();
+            operator int() const;
+        };
+
+
+(answer):
+= The first operator type return the const int type and the second one
+  is the int itself.
+  

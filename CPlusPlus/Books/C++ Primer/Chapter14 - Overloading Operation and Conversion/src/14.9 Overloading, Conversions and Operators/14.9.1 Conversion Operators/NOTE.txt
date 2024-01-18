@@ -36,4 +36,42 @@ of arithmetic type to a SmallInt. The conversion operator converts SmallInt obje
 
 Although the compiler will apply only one user-defined conversion at a time (§ 4.11.2, p. 162),
 an implicit user-defined conversion can be preceded or followed by a standard (built-in) conversion
-(§ 4.11.1, p. 159).
+(§ 4.11.1, p. 159). As a result, we can pass any arithmetic type to the SmallInt constructor. 
+Similarly, we can use the converion operator to convert a SmallInt to an int and then convert the
+resulting int value to another arithmetic type:
+
+        // the double argument is converted to int using the built-in conversion 
+        SmallInt si = 3.14;     // calls the SmallInt(int) constructor
+
+        // the SmallInt conversion operator converts si to int.
+        si + 3.14;      // that int is converted to double using the built-in conversion
+
+Although a conversion function does not specify a return type, each conversion function must return
+a value of its corresponding type:
+        
+        class SmallInt;
+        operator int(SmallInt&);        // Error: nonmember
+        
+        class SmallInt {
+            public:
+                int operator int() const;               // Error: return type
+                operator int(int = 0) const;            // Error: parameter list
+                operator int*() const { return 42; }    // Error: 42 is not a pointer
+        };
+
+CAUTION: AVOID OVERUSE OF CONVERSION FUNCTIONS
+Conversion operators are misleading when there is no obvious single mapping between the class type
+and the conversion type. For example, consider a class that represents a Date. We might think it 
+would be a good idea to provide a conversion from Date to int. However, what value should the 
+conversion function return? The function might return a decimal representation of the year, month,
+and day. For example, July 30, 1989 might be represented as the int value 19800730. Alternatively, the
+conversion operator might return an int representing the number of days that have elapsed since some 
+epoch point, such as January 1, 1970. Both these conversions have the desirable property that later 
+dates correspond to larger integers, and so either might be useful. The problem is that there is no 
+single one-to-one mapping between an object of type Date and a value of type int. In such cases, it is
+better not to define the conversion operator. Instead, the class ought to define one or more ordinary 
+members to extract the information in these various forms.
+
+(there is no single one-to-one mapping between an object of type Date and a value of type int.) means
+you pass one argument and you get one value as the output. It turns out that Date class needs 3 argument
+as the day, month and year.
