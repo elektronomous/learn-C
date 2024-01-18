@@ -1,0 +1,6 @@
+In § 7.5.4 (p. 294) we saw that a nonexplicit constructor that can be called with
+one argument defines an implicit conversion. Such constructors convert an object
+from the argument’s type to the class type. We can also define conversions from
+the class type. We define a conversion from a class type by defining a conversion
+operator. Converting constructors and conversion operators define class-type conversions.
+Such conversions are also referred to as user-defined conversions

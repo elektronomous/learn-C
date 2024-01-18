@@ -1,0 +1,39 @@
+A conversion operator is a special kind of member function that converts a value of a class
+type to a value of some other type. A conversion function typically has the general form 
+    
+        operator type() const;
+
+where type represents a type. Conversion operators can be defined for any type (other than 
+void) that can be a function return type (§ 6.1, p. 204). Conversions to an array or a 
+function type are not permitted. Conversions to pointer types—both data and function 
+pointers—and to reference types are allowed. Conversion operators have no explicitly stated
+return type and no parameters, and they must be defined as member functions. Conversion 
+operations ordinarily should not change the object they are converting. As a result, 
+conversion operators usually should be defined as const members.
+
+As an example, we’ll define a small class that represents an integer in the range of
+0 to 255:
+
+        class SmallInt {
+            public:
+                SmallInt(int i = 0): val(i) {
+                    if (i < 0 || i > 255)
+                        throw std::out_of_range("Bad SmallInt value");
+                }
+
+                operator int() const { return val; }
+
+            private:
+                std::size_t val;
+        };
+
+Our SmallInt class defines conversions to and from its type. The constructor converts values
+of arithmetic type to a SmallInt. The conversion operator converts SmallInt object to int:
+
+        SmallInt si;
+        si = 4;         // implicitly converts 4 to SmallInt then calls SmallInt::operator=
+        si + 3;         // implicitly converts si to int followed by integer addition
+
+Although the compiler will apply only one user-defined conversion at a time (§ 4.11.2, p. 162),
+an implicit user-defined conversion can be preceded or followed by a standard (built-in) conversion
+(§ 4.11.1, p. 159).
