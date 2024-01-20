@@ -1,0 +1,98 @@
+it is important to ensure that there is only one way to convert from the class type to
+the target type. If there is more than one way to perform a conversion, it will be 
+hard to write unambiguous code. There are two ways that multiple conversion paths can
+occur. The first happens when two classes provide mutual conversions. For example, 
+mutual conversions exist when a class A defines a converting constructor that takes an
+object of class B and B itself defines a conversion operator to type A.
+
+        // usually a bad idea to have mutual conversions between to class types 
+        
+        struct B;
+        struct A {
+            A() = default; 
+            A(const B&);        // converts B to A implicitly
+            // other members
+        };
+
+        struct B {
+            operator A() const; // converts B to an A
+            // other members 
+        };
+
+        A f(const A&);          // declare a function that takes A's object and A's object
+
+        B b;
+        A a = f(b);     // Error ambiguous: f(B::operator A())
+                        //              or: f(A::A(const B&))
+
+Because there are two ways to obtain an A from a B, the compiler doesn’t know which
+conversion to run; the call to f is ambiguous. This call can use the A constructor that
+takes a B, or it can use the B conversion operator that converts a B to an A. Because
+these two functions are equally good, the call is in error.
+
+If we want to make this call, we have to explicitly call the conversion operator or
+the constructor:
+
+        A a1 = f(b.operator A());   // Ok: use B's conversion operator
+        A a2 = f(A(b));             // Ok: use A's constructor
+
+Note that we can’t resolve the ambiguity by using a cast—the cast itself would have
+the same ambiguity.
+
+        f(static_cast<A>b);         // Same ambiguity
+
+The second way to generate multiple conversion paths is to define multiple conversions
+from or to types that are themselves related by conversions. The most obvious instance
+is the built-in arithmetic types. A given class ordinarily ought to define at most one
+conversion to or from an arithmetic type.
+
+The easiest case to illustrate—and one that is particularly problematic—is when a class
+defines constructors from or conversions to more than one arithmetic type.
+For example, the following class has converting constructors from two different
+arithmetic types, and conversion operators to two different arithmetic types:
+
+        struct A {
+            A(int = 0);     // usually a bad idea to have two
+            A(double);      // conversions from arithmetic type
+
+            operator int() const;       // usually a bad idea to have two
+            operator double() const;    // conversions to arithmetic type
+
+            // other members 
+        };
+
+        void f2(long double);       // function that takes long double value
+
+        A a;
+        f2(a);      // Error amibiguous: f2(A::operator int())
+                    //               or: f2(A::operator double())
+
+        long lg;
+        A a2(lg);   // Error ambigiuous: A::A(int) or A::A(double)
+
+In the call to f2, neither conversion is an exact match to long double. However, either
+conversion can be used, followed by a standard conversion to get to long double. Hence, 
+neither conversion is better than the other; the call is ambiguous. We encounter the 
+same problem when we try to initialize a2 from a long. Neither constructor is an exact 
+match for long. Each would require that the argument be converted before using the 
+constructor:
+
+        • Standard long to double conversion followed by A(double)
+        • Standard long to int conversion followed by A(int)
+
+These conversion sequences are indistinguishable, so the call is ambiguous.  The call to f2,
+and the initialization of a2, are ambiguous because the standard conversions that were 
+needed had the same rank (§ 6.6.1, p. 245). When a userdefined conversion is used, the rank
+of the standard conversion, if any, is used to select the best match:
+
+        short s = 42;
+        // promoting short to int is better than converting short to double
+        A a3(s);        // uses A::A(int)
+
+Hence a3 is constructed using the A::A(int) constructor, which is run on the (promoted) value of s.
+
+When two user-defined conversions are used, the rank of the standard conversion, if any, preceding or
+following the conversion function is used to select the best match.
+
+two user-defined conversions (that's is in the same class, A(int) and A(double)), the rank of the standard
+conversions, if any, preceding or following the conversion function is used to select the best match

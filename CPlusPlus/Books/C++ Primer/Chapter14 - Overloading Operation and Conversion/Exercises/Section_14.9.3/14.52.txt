@@ -1,0 +1,33 @@
+Which operator+, if any, is selected for each of the addition
+expressions? List the candidate functions, the viable functions
+and the type conversions on the arguments for each viable function:
+
+        struct LongDouble { 
+            // member operator+ for illustration purposes; + is
+            // usually a nonmember
+            LongDouble operator+(const SmallInt&);
+            LongDouble(double = 0.0);
+            operator double();
+            operator float();
+        };
+        class SmallInt {
+            friend SmallInt operator+(const SmallInt&, const SmallInt&);
+        public:
+            SmallInt(int = 0);                      // conversion from int
+            operator int() const { return val; }    // conversion to int
+        private:
+            std::size_t val;
+        };
+
+        LongDouble operator+(LongDouble, double);
+        SmallInt si;
+        LongDouble ld; 
+        ld = si + ld;
+        ld = ld + si;
+
+(answer):
+
+= There's no way to convert LongDouble to si, also the LongDouble object has two
+  conversion operator that convert the object to float or double make it the ambiguous
+  calls 
+= the second one would be ld.operator+(const SmallInt&);

@@ -1,0 +1,19 @@
+Caution: Conversions and Operators
+Correctly designing the overloaded operators, conversion constructors, and conversion
+functions for a class requires some care. In particular, ambiguities are easy to 
+generate if a class defines both conversion operators and overloaded operators. A few
+rules of thumb can be helpful:
+
+    • Don’t define mutually converting classes—if class Foo has a constructor
+      that takes an object of class Bar, do not give Bar a conversion operator to
+      type Foo.
+    • Avoid conversions to the built-in arithmetic types. In particular, if you do
+      define a conversion to an arithmetic type, then
+        – Do not define overloaded versions of the operators that take arithmetic
+        types. If users need to use these operators, the conversion operation will
+        convert objects of your type, and then the built-in operators can be used.
+        – Do not define a conversion to more than one arithmetic type. Let the
+        standard conversions provide conversions to the other arithmetic types.
+        The easiest rule of all: With the exception of an explicit conversion to
+        bool, avoid defining conversion functions and limit nonexplicit
+        constructors to those that are “obviously right.”

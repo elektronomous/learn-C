@@ -1,0 +1,21 @@
+Show the possible class-type conversion sequences for the initializations
+of ex1 and ex2. Explain whether the initializations are legal or not.
+
+        struct LongDouble {
+            LongDouble(double = 0.0);
+            operator double();
+            operator float();
+        };
+
+        longDouble ldObj;
+        int ex1 = ldObj;
+        float ex2 = ldObj;
+
+(answer):
+= Since the ex1 is an int, and the LongDouble has two arithmetic-type conversion which
+  return double and float value. You can convert these two types into int, in which they
+  will discard their decimal point. So this is illegal since it makes the operator conversion
+  ambiguous.
+= Now the case of ex2 is a variable of type float. ldObj has that type operator conversion, so
+  it obvious legal for the ldObj to be converted to that type.
+  (14.50.cpp to prove them)

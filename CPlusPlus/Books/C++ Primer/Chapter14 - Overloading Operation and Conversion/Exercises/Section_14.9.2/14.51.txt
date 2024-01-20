@@ -1,0 +1,12 @@
+Show the conversion sequences (if any) needed to call each version
+of calc and explain why the best viable function is selected.
+
+        void calc(int);
+        void calc(LongDouble);
+
+        double dval;
+        calc(dval);     // which calc?
+
+(answer):
+= These class has two different types. The compiler will use its built-in conversion rather than
+  using implicit user-defined conversion.

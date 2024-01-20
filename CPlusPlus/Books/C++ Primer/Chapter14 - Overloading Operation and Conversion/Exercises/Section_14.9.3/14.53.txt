@@ -1,0 +1,25 @@
+Given the definition of SmallInt on page 588, determine whether
+the following addition expression is legal. If so, what addition
+operator is used? If not, how might you change the code to make it
+legal?
+        SmallInt s1;
+        double d = s1 + 3.14;
+
+(answer):
+
+        class SmallInt {
+            friend SmallInt operator+(const SmallInt&, const SmallInt&);
+        public:
+            SmallInt(int = 0);                      // conversion from int
+            operator int() const { return val; }    // conversion to int
+        private:
+            std::size_t val;
+        };
+
+= This is illegal since s1 could be int and 3.14 could be converted to SmallInt.
+  to make it legal, you can make explicitly wrap the 3.14 as the SmallInt object or
+  call the conversion operator on s1.
+
+        double d = s1 + SmallInt(3.14);
+  or
+        double d = s1.operator int() + 3.14;

@@ -1,0 +1,75 @@
+Choosing among multiple conversions is further complicated when we call an overloaded 
+function. If two or more conversions provide a viable match, then the conversions are
+considered equally good. As one example, ambiguity problems can arise when overloaded
+functions take parameters that differ by class types that define the same converting
+constructors:
+
+        struct C {
+            C(int);
+            // other members 
+        };
+
+        struct D {
+            D(int);
+            // other members 
+        };
+
+        void manip(const C&);
+        void manip(const D&);
+        // If you look at the type is obvious different
+
+        manip(10);  // Error ambiguous: manip(C(10)) or manip(D(10))
+
+Here both C and D have constructors that take an int. Either constructor can be used
+to match a version of manip. Hence, the call is ambiguous: It could mean convert the
+int to C and call the first version of manip, or it could mean convert the int to D
+and call the second version.
+
+The caller can disambiguate by explicitly constructing the correct type:
+
+        manip(C(10));   // Ok: calls manip(const C&)
+
+Needing to use a constructor or a cast to convert an argument in a call to an overloaded
+function frequently is a sign of bad design
+
+In a call to an overloaded function, if two (or more) user-defined conversions provide
+a viable match, the conversions are considered equally good. !The rank of any standard 
+conversions that might or might not be required is not considered. Whether a built-in
+conversion is also needed is considered only if the overload set can be matched using 
+the same conversion function.!
+
+NOTE:
+    if you don't understand the statement that begin and end with ! you probably would
+    look at the different code that passed to function of f2 (NOTE.txt) and manip2 in
+    this NOTE2. you can also look at the 14.9.1 conversion operators example's code.
+
+For example, our call to manip would be ambiguous even if one of the classes defined a
+constructor that required a standard conversion for the argument:
+
+        struct E {
+            E(double);
+            // other members
+        };
+
+        void manip2(const C&);
+        void manip2(const E&);
+
+        // Error ambiguous: two different user-defined conversions could be used
+        manip2(10);     // manip2(C(10)) or manip2(E(double(10)))
+
+In this case, C has a conversion from int and E has a conversion from double. For
+the call manip2(10), both manip2 functions are viable:
+    • manip2(const C&) is viable because C has a converting constructor that
+      takes an int. That constructor is an exact match for the argument.
+    • manip2(const E&) is viable because E has a converting constructor that
+      takes a double and we can use a standard conversion to convert the int
+      argument in order to use that converting constructor.
+
+Because calls to the overloaded functions require different user-defined conversions
+from one another, this call is ambiguous. In particular, even though one of the calls
+requires a standard conversion and the other is an exact match, the compiler will still
+flag this call as an error.
+
+In a call to an overloaded function, the rank of an additional standard conversion (if any)
+matters only if the viable functions require the same user-defined conversion. If different
+user-defined conversions are needed, then the call is ambiguous.

@@ -1,0 +1,54 @@
+when an operator function is used in an expression, the set of candidate 
+functions is broader than when we call a function using the call operator.
+If a has a class type, the expression a sym b might be:
+
+        a.operatorsym (b);      // a has operatorsym as a member function
+        operatorsym(a, b);      // operator sym is an ordinary function
+
+When we use an overloaded operator with an operand of class type, the candidate
+functions include ordinary nonmember versions of that operator, as well as the 
+built-in versions of the operator. Moreover, if the left-hand operand has class
+type, the overloaded versions of the operator, if any, defined by that class are
+also included.
+
+When we call a named function, member and nonmember functions with the same name 
+do not overload one another. For example:
+
+        a.operator+(b);     // a has operator+ as a member function
+        operator+(a,b);     // operator+ is an ordinary function
+
+There is no overloading because the syntax we use to call a named function 
+distinguishes between member and nonmember functions. When we use an overloaded 
+operator in an expression, there is nothing to indicate whether we’re using a 
+member or nonmember function. Therefore, both member and nonmember versions must
+be considered:
+
+        a + b;              // use overloaded plus operator, it could called
+        a.operator+(b)      // or 
+        operator+(a,b)
+
+As an example, we’ll define an addition operator for our SmallInt class:
+
+        class SmallInt { 
+            friend SmallInt operator+(const SmallInt &, const SmallInt &);
+            public:
+                SmallInt(int = 0);                      // conversion from int
+                operator int() const { return val; }    // conversion to int
+            private:
+                std::size_t val;
+        };
+
+We can use this class to add two SmallInts, but we will run into ambiguity problems
+if we attempt to perform mixed-mode arithmetic:
+
+        SmallInt s1, s2;
+        SmallInt s3 = s1 + s3;      // uses overloaded operator+
+        int i = s3 + 0;             // Error: ambiguous
+
+The second addition is ambiguous, because we can convert 0 to a SmallInt and use the
+SmallInt version of +, or convert s3 to int and use the built-in addition operator 
+on ints.
+
+Providing both conversion functions to an arithmetic type and overloaded operators for
+the same class type may lead to ambiguities between the overloaded operators and the
+built-in operators.
